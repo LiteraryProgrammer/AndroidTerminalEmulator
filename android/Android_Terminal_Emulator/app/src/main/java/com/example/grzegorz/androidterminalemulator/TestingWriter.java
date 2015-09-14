@@ -44,58 +44,15 @@ public class TestingWriter extends ExtraCommand {
         try {
             for(int i = 0 ; i < 10; i++) {
                 osw.write("asdf");
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Handler handler = new Handler();
-        final OutputStreamWriter finalOsw = osw;
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                try {
-                    finalOsw.write("1");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 2000);
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                try {
-                    finalOsw.write("2");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 3000);
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                try {
-                    finalOsw.write("3");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 3500);
-
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                try {
-                    finalOsw.write("4");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, 4000);
 
 
 
-
-       /* try {
+        try {
             osw.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +69,7 @@ public class TestingWriter extends ExtraCommand {
         synchronized (this) {
             notify();
         }
-*/
+
 
     }
 }

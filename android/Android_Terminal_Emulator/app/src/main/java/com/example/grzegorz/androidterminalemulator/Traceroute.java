@@ -86,6 +86,7 @@ public class Traceroute extends ExtraCommand {
             NativeCommand ping = new NativeCommand("ping -c 1 " + "-t " + j + " " + dstIP);
             ping.start();
 
+
             synchronized (ping) {
                 try {
                     ping.wait();
@@ -118,6 +119,7 @@ public class Traceroute extends ExtraCommand {
             //todo: czy nslookup nie powinien zwracac klasy zamiast stringa?
             //todo: printowanie na biezaco nie dziala!!!!!!!!
             //todo: ip z args a nie na stale
+            //todo: zrobic na asynctaskach
 
             String ip;
             Matcher ttlExceededMatcher = ttlExceededPattern.matcher(output);

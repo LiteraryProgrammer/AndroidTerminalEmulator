@@ -45,6 +45,22 @@ public class CommandExecutor {
 
     public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException {
 
+
+
+
+        int a = 5;
+        final TextView tv2 = (TextView) ma.findViewById(R.id.textView);
+        //todo: przerobic wszystkie extracommands na async task?
+        TestingWriterAsyncTask testingWriterAsyncTask = new TestingWriterAsyncTask();
+        testingWriterAsyncTask.execute(tv2);
+
+
+
+        if(a==5) {
+            return;
+        }
+
+
 //first look in list if commands exists
 
         final Handler handler = new Handler();

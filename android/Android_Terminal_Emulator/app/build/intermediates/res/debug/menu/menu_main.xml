@@ -4,4 +4,4 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
-<!-- From: file:/home/grzegorz/git/Android_Terminal_Emulator/app/src/main/res/menu/menu_main.xml -->
+<!-- From: file:/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/src/main/res/menu/menu_main.xml -->
