@@ -1,9 +1,7 @@
-package alpha.labels;
+package com.example.grzegorz.androidterminalemulator.dns;
 
 import com.google.common.base.Joiner;
-import ver2.Utils;
 
-import java.io.IOError;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
