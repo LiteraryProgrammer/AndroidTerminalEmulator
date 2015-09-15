@@ -37,15 +37,24 @@ public class Whois extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
+        String domainName;
         try {
-            InetAddress serverAddr = InetAddress.getByName("193.59.201.49");
+            domainName = cmd.split(" ")[1]; //todo: temporary solution
+        }
+        catch (Exception e) {
+            publishProgress("No arguments specified\n");
+            return null;
+        }
+
+        try {
+            InetAddress serverAddr = InetAddress.getByName("193.59.201.49"); //todo: parametrize whois server
             Socket socket = new Socket(serverAddr, 43);
 
             InputStream is = socket.getInputStream();
             OutputStream os = socket.getOutputStream();
             InputStreamReader isr = new InputStreamReader(is);
             OutputStreamWriter osw = new OutputStreamWriter(os);
-            osw.write("onet.pl\r\n");
+            osw.write(domainName + "\r\n");
             osw.flush();
             char[] buf = new char[512];
             isr.read(buf);
