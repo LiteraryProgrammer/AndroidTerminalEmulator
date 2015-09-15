@@ -2,10 +2,11 @@
 <project version="4">
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="PROCESS" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2330fda6-693c-4de6-98d4-d816358804c1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" />
@@ -36,24 +37,24 @@
     <favorites_list name="Android_Terminal_Emulator" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.13983549">
+    <splitter split-orientation="vertical" split-proportion="0.210823">
       <split-first>
         <leaf>
-          <file leaf-file-name="CommandExecutor.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="CommandExecutor.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="2.3085105">
-                  <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ExtraCommand.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ExtraCommand.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+                <state vertical-scroll-proportion="1.0384616">
+                  <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -99,10 +100,10 @@
                 <state vertical-scroll-proportion="0.0">
                   <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding>
-                    <marker date="1442344604000" expanded="true" signature="154899:154916" placeholder="..." />
-                    <marker date="1442344604000" expanded="true" signature="154899:154934" placeholder="..." />
-                    <marker date="1442344604000" expanded="true" signature="154899:154947" placeholder="..." />
-                    <marker date="1442344604000" expanded="true" signature="154899:154962" placeholder="..." />
+                    <marker date="1442348303000" expanded="true" signature="154990:155007" placeholder="..." />
+                    <marker date="1442348303000" expanded="true" signature="154990:155025" placeholder="..." />
+                    <marker date="1442348303000" expanded="true" signature="154990:155038" placeholder="..." />
+                    <marker date="1442348303000" expanded="true" signature="154990:155053" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -136,7 +137,7 @@
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+                  <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
                   <folding>
                     <element signature="e#1876#1877#0" expanded="true" />
                     <element signature="e#1901#1902#0" expanded="true" />
@@ -154,8 +155,8 @@
           <file leaf-file-name="Traceroute.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.7654321">
-                  <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.3298351">
+                  <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
                   <folding>
                     <element signature="e#1786#1787#0" expanded="true" />
                     <element signature="e#1812#1813#0" expanded="true" />
@@ -1792,7 +1793,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442344551577</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="cleaning">
+      <created>1442344632201</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1442344632201</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1813,7 +1820,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23056059" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32368898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19801085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1882,7 +1889,8 @@
     <MESSAGE value="fix appending to textview" />
     <MESSAGE value="not working traceroute" />
     <MESSAGE value="working traceroute stub" />
-    <option name="LAST_COMMIT_MESSAGE" value="working traceroute stub" />
+    <MESSAGE value="cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1898,12 +1906,6 @@
           <line>100</line>
           <properties />
           <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java</url>
-          <line>133</line>
-          <properties />
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="25" />
@@ -1940,10 +1942,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1442344604000" expanded="true" signature="154899:154916" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154934" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154947" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154962" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155007" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155025" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155038" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155053" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -2246,10 +2248,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1442344604000" expanded="true" signature="154899:154916" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154934" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154947" placeholder="..." />
-            <marker date="1442344604000" expanded="true" signature="154899:154962" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155007" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155025" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155038" placeholder="..." />
+            <marker date="1442348303000" expanded="true" signature="154990:155053" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -2316,24 +2318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.3085105">
-          <caret line="60" column="26" selection-start-line="60" selection-start-column="26" selection-end-line="60" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2345,10 +2329,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0384616">
+          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.7654321">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3298351">
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding>
             <element signature="e#1786#1787#0" expanded="true" />
             <element signature="e#1812#1813#0" expanded="true" />

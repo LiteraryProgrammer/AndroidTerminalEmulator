@@ -84,11 +84,22 @@ public class Traceroute extends ExtraCommand {
         //todo: printowanie na biezaco nie dziala!!!!!!!!
         //todo: ip z args a nie na stale
         //todo: zrobic na asynctaskach
+        //todo: zaimplelmtnwoac opcje tracerouta jakies?
+        //todo: add arguments support and help info
+        //todo: support fqdns
+        //todo: globalny notyfikator ze komenda trwa
 
+        publishProgress(cmd + "\n");
 
+        String dstIP;
         //todo: refactor to seperate methods!!!! IMPORTANT
-        String dstIP = "46.4.242.141";
-        //temporary //todo
+        try {
+            dstIP = cmd.split(" ")[1]; //todo: temporary solution
+        }
+            catch (Exception e) {
+                publishProgress("No arguments specified\n");
+                return null;
+            }
 
         for(int j = 1; j < PING_MAX_TTL; j++) {
             runtime = Runtime.getRuntime();
@@ -131,7 +142,7 @@ public class Traceroute extends ExtraCommand {
                         j + ": " + ip + "\n" :
                         j + ": " + "no response\n");
 
-                if (ip.equals(dstIP)) break;
+                if (ip != null && ip.equals(dstIP)) break;
 
             } catch (IOException e) {
                 e.printStackTrace();
