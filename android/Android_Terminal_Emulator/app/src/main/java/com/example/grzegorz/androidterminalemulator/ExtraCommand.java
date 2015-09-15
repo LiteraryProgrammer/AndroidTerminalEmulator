@@ -1,5 +1,7 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.TextView;
+
 import java.io.IOException;
 
 /**
@@ -9,4 +11,14 @@ public abstract class ExtraCommand extends Command {
     public ExtraCommand(String cmd) {
         super(cmd);
     }
+
+    //todo: move to upper class?
+    //todo: refactor
+
+
+    protected abstract void onPreExecute(TextView view);
+
+    @Override
+    protected abstract Object doInBackground(Object[] params);
+
 }

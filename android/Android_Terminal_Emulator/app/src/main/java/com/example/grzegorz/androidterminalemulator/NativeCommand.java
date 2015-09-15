@@ -18,15 +18,16 @@ public class NativeCommand extends Command {
         super(cmd);
 
     }
-/*
-    @Override
-    public Boolean allFinished() throws IOException {
-        if(this.getState() == State.TERMINATED && is.available() == 0 && es.available() == 0) {
-            return true;
+
+    /*
+        @Override
+        public Boolean allFinished() throws IOException {
+            if(this.getState() == State.TERMINATED && is.available() == 0 && es.available() == 0) {
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
-*/
+    */
     private Runtime runtime = null;
     private TextView tv = null;
     private Process process = null;
@@ -36,8 +37,8 @@ public class NativeCommand extends Command {
         process.destroy();
     }
 
-    //todo: refactor arguments
-    boolean isRunning(Process process) {
+    //todo: refactor arguments, move to upper class
+    public boolean isRunning() {
         try {
             process.exitValue();
             return false;
@@ -54,6 +55,7 @@ public class NativeCommand extends Command {
     @Override
     protected Object doInBackground(Object[] params) {
         //todo: IMPLEMENT AS ASYNC TASK!!!!
+        Log.d("PROCESS","DO IN BACKGROUND");
         runtime = Runtime.getRuntime();
         try {
             process = runtime.exec(cmd.split(" "));
@@ -61,24 +63,18 @@ public class NativeCommand extends Command {
             es = process.getErrorStream();
             os = process.getOutputStream();
 
-            //todo: necessary?
-            synchronized (this) {
-                notify();
+            if(tv != null) { //todo: correct?
+                InputStreamReader inputStreamReader = new InputStreamReader(is);
+                //todo: add error stream?
+                while (inputStreamReader.ready() || isRunning()) {
+                    char c = (char) inputStreamReader.read();
+                    publishProgress(String.valueOf(c));
+                }
+                publishProgress("END OF COMMAND");
             }
-
-            int a= 5;
-
-            InputStreamReader inputStreamReader = new InputStreamReader(is);
-//            while(is.available() != 0) {
-//            while(is.available() != 0 || isRunning(process)) {
-            while(inputStreamReader.ready() || isRunning(process)) {
-                char c = (char) inputStreamReader.read();
-                publishProgress(String.valueOf(c));
-            }
-            publishProgress("END OF COMMAND");
 
 //            tu skonczylem refaktoryzacje na async task!!
-            process.waitFor();
+            process.waitFor(); //todo: necessary?
         } catch (IOException e) {
             es = new ByteArrayInputStream("No such command".getBytes());
             is = new ByteArrayInputStream("".getBytes());
@@ -94,7 +90,15 @@ public class NativeCommand extends Command {
     //todo: refactor args types
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
-        Log.d("LETTER", (String) values[0]);
-        tv.append((String) values[0]);
+        if (tv != null) {
+            Log.d("LETTER", (String) values[0]);
+            tv.append((String) values[0]);
+        }
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+
     }
 }

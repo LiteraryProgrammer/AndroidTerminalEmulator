@@ -1,24 +1,30 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by grzegorz on 11.05.15.
  */
-/*
+
 public class Traceroute extends ExtraCommand {
 
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64; //todo
+    private TextView tv = null;
 
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: obsluzyc gdy nie odpowiada bardzo dlugo - max limit
@@ -43,41 +49,50 @@ public class Traceroute extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-        //todo: implelemtn getting TextView pointer
-        //todo
+    protected void onPreExecute(TextView view) {
+        tv = view;
+    }
+
+    @Override
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+        if(tv != null) {
+            tv.append((String) values[0]);
+        }
     }
 
     @Override
     protected Object doInBackground(Object[] params) {
 
-        //temporary //todo:
         String dstIP = "46.4.242.141";
         //temporary //todo
 
         for(int j = 1; j < PING_MAX_TTL; j++) {
-            NativeCommand ping = new NativeCommand("ping -c 1 " + "-t " + j + " " + dstIP);
-            ping.run(); //todo: implement as async task in native command class
+//            NativeCommand ping = new NativeCommand("ping -c 1 " + "-t " + j + " " + dstIP);
+            NativeCommand ping = new NativeCommand("ls");
+            ping.execute(); //todo: implement as async task in native command class
 
-            //wait for ping to setup streams
-            synchronized (ping) {
-                try {
-                    ping.wait();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
 
             final InputStream pingIs = ping.getInputStream();
             final InputStream pingEs = ping.getErrorStream();
             final OutputStream pingOs = ping.getOutputStream();
+
+            //todo: support all streams
+            InputStreamReader inputStreamReader = new InputStreamReader(pingIs);
+
+            try {
+                while(inputStreamReader.ready() || ping.isRunning()) {
+                    char c = (char) inputStreamReader.read();
+                    publishProgress(String.valueOf(c));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         return null;
     }
-
-
-
+/*
     @Override
     public void run() {
 
@@ -149,13 +164,11 @@ public class Traceroute extends ExtraCommand {
             synchronized (this) {
                 notify();
             }
-
         }
 
         try {
             osw.close();
             pos.close();
-
             //todo: refactor, merge with previous synchornized
             synchronized (this) {
                 notify();
@@ -164,9 +177,8 @@ public class Traceroute extends ExtraCommand {
             e.printStackTrace();
         }
     }
-    @Override
     public Boolean allFinished() throws IOException {
         return finishedFlag;
     }
+    */
 }
-*/

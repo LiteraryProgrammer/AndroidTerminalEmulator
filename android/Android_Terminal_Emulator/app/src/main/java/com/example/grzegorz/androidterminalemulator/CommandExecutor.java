@@ -30,7 +30,7 @@ public class CommandExecutor {
     private MainActivity ma = null;
 
     public CommandExecutor(MainActivity ma) {
-//        this.registerCommand(Traceroute.class);
+        this.registerCommand(Traceroute.class);
 //        this.registerCommand(Nslookup.class);
 //        this.registerCommand(Whois.class);
 //        this.registerCommand(TestingWriter.class);
@@ -45,28 +45,30 @@ public class CommandExecutor {
 
     public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException {
 
-
-
-
         int a = 5;
-        final TextView tv2 = (TextView) ma.findViewById(R.id.textView);
-        //todo: przerobic wszystkie extracommands na async task?
-//        TestingWriterAsyncTask testingWriterAsyncTask = new TestingWriterAsyncTask();
-//        testingWriterAsyncTask.execute(tv2);
+        final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
-        NativeCommand nativeCommand = new NativeCommand("ping -c 3 8.8.8.8");
-        nativeCommand.onPreExecute(tv2);
-        nativeCommand.execute();
+        String[] cmd_parts = cmd.split(" ");
 
-
-
-
-        if(a==5) {
-            return;
+        for (Class<? extends ExtraCommand> extracommand: extracommands) {
+            String className = extracommand.getName().toLowerCase();
+            if (className.endsWith(cmd_parts[0])) { // if equals zero argument in cmd (name of command)
+                Constructor ctor = extracommand.getConstructor(String.class);
+                ExtraCommand ec = (ExtraCommand) ctor.newInstance(cmd);
+                //todo: necessary?
+                command = ec;
+                ec.onPreExecute(tv);
+                ec.execute();
+                //todo: implement extra command
+                return;
+            }
         }
 
+        //if not extra command found use native
+
+        NativeCommand nativeCommand = new NativeCommand(cmd);
+        nativeCommand.onPreExecute(tv);
+        nativeCommand.execute();
 
     }
-
-
 }

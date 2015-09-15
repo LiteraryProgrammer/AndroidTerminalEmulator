@@ -18,11 +18,12 @@ public abstract class Command extends AsyncTask {
         this.cmd = cmd;
     }
 
+    //todo: refactor if necessary?
     protected InputStream is = null;
     protected OutputStream os = null;
     protected InputStream es = null;
 
-
+    public InputStream getInputStream() { return is; }
     public InputStream getErrorStream() {
         return es;
     }
