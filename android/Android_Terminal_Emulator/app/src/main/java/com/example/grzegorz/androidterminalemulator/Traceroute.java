@@ -14,9 +14,11 @@ import java.util.regex.Pattern;
 /**
  * Created by grzegorz on 11.05.15.
  */
+/*
 public class Traceroute extends ExtraCommand {
 
     private Boolean finishedFlag = false;
+    private int PING_MAX_TTL = 64; //todo
 
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: obsluzyc gdy nie odpowiada bardzo dlugo - max limit
@@ -32,61 +34,33 @@ public class Traceroute extends ExtraCommand {
     private String pingFinalResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*\\n.*1 received, 0% packet loss.*\\n.*\\n";
     private String pingNoResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*100% packet loss.*\\n\\n";
 
+    Pattern ttlExceededPattern = Pattern.compile(pingTtlExceededResponseRegexp);
+    Pattern finalResponsePattern = Pattern.compile(pingFinalResponseRegexp);
+    Pattern noResponsePattern = Pattern.compile(pingNoResponseRegexp);
+
     public Traceroute(String cmd) {
         super(cmd);
     }
 
     @Override
-    public Boolean allFinished() throws IOException {
-        return finishedFlag;
+    protected void onPreExecute() {
+        super.onPreExecute();
+        //todo: implelemtn getting TextView pointer
+        //todo
     }
-/*
-    private String extractIP(String pingResult) {
-        int fromPosition = pingResult.indexOf("From");
-        int icmpPosition = pingResult.indexOf("icmp_seq");
-        int bytesPosition = pingResult.indexOf("64 bytes"); //only in last ping
-        String ip;
-        if (bytesPosition == -1) {
-            ip = pingResult.substring(fromPosition + 5, icmpPosition - 1);
-        }
-        else { //if last
-            ip = pingResult.substring(bytesPosition+14, icmpPosition - 2);
-        }
-        Log.d("TRACEROUTE IP",ip);
-        return ip;
-    }
-*/
+
     @Override
-    public void run() {
+    protected Object doInBackground(Object[] params) {
 
-        String[] cmd_parts = cmd.split(" ");
+        //temporary //todo:
         String dstIP = "46.4.242.141";
-        Pattern ttlExceededPattern = Pattern.compile(pingTtlExceededResponseRegexp);
-        Pattern finalResponsePattern = Pattern.compile(pingFinalResponseRegexp);
-        Pattern noResponsePattern = Pattern.compile(pingNoResponseRegexp);
+        //temporary //todo
 
-        //todo :Refactor
-        is = new PipedInputStream();
-        es = new PipedInputStream(); //todo: czy potrzebne
-        PipedOutputStream pos = null;
-        OutputStreamWriter osw = null;
-        try {
-            pos = new PipedOutputStream((PipedInputStream) is);
-            osw = new OutputStreamWriter(pos);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        synchronized (this) {
-            notify();
-        }
-
-        for(int j = 1; j < 64; j++) { //todo: specify 64 by parameter
-
+        for(int j = 1; j < PING_MAX_TTL; j++) {
             NativeCommand ping = new NativeCommand("ping -c 1 " + "-t " + j + " " + dstIP);
-            ping.start();
+            ping.run(); //todo: implement as async task in native command class
 
-
+            //wait for ping to setup streams
             synchronized (ping) {
                 try {
                     ping.wait();
@@ -95,7 +69,24 @@ public class Traceroute extends ExtraCommand {
                 }
             }
 
-            //todo: implement to only one stream!!!!!!!!! wazne nie tylko w tym tylko wszedzie
+            final InputStream pingIs = ping.getInputStream();
+            final InputStream pingEs = ping.getErrorStream();
+            final OutputStream pingOs = ping.getOutputStream();
+        }
+        return null;
+    }
+
+
+
+    @Override
+    public void run() {
+
+        String[] cmd_parts = cmd.split(" ");
+        String dstIP = "46.4.242.141";
+
+        for(int j = 1; j < 64; j++) { //todo: specify 64 by parameter
+
+             //todo: implement to only one stream!!!!!!!!! wazne nie tylko w tym tylko wszedzie
             final InputStream pingIs = ping.getInputStream();
             final InputStream pingEs = ping.getErrorStream();
             final OutputStream pingOs = ping.getOutputStream();
@@ -173,4 +164,9 @@ public class Traceroute extends ExtraCommand {
             e.printStackTrace();
         }
     }
+    @Override
+    public Boolean allFinished() throws IOException {
+        return finishedFlag;
+    }
 }
+*/

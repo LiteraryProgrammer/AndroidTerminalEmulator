@@ -1,10 +1,12 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.util.Log;
+import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 /**
@@ -16,7 +18,7 @@ public class NativeCommand extends Command {
         super(cmd);
 
     }
-
+/*
     @Override
     public Boolean allFinished() throws IOException {
         if(this.getState() == State.TERMINATED && is.available() == 0 && es.available() == 0) {
@@ -24,9 +26,9 @@ public class NativeCommand extends Command {
         }
         return false;
     }
-
-
+*/
     private Runtime runtime = null;
+    private TextView tv = null;
     private Process process = null;
 
     @Override
@@ -34,44 +36,64 @@ public class NativeCommand extends Command {
         process.destroy();
     }
 
+    //todo: refactor arguments
+    boolean isRunning(Process process) {
+        try {
+            process.exitValue();
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+    }
+
+    protected void onPreExecute(TextView view) {
+        super.onPreExecute();
+        tv = view;
+    }
 
     @Override
-    public void run() {
+    protected Object doInBackground(Object[] params) {
+        //todo: IMPLEMENT AS ASYNC TASK!!!!
+        runtime = Runtime.getRuntime();
+        try {
+            process = runtime.exec(cmd.split(" "));
+            is = process.getInputStream();
+            es = process.getErrorStream();
+            os = process.getOutputStream();
 
-            runtime = Runtime.getRuntime();
-
-            try {
-                process = runtime.exec(cmd.split(" "));
-                is = process.getInputStream();
-                es = process.getErrorStream();
-                os = process.getOutputStream();
-                Log.d("BLABLA", cmd);
-                Log.d("NATIVE COMMAND ", "NOTIFY");
-                Log.d("NATIVE COMMAND", is.toString() + es.toString() + os.toString());
-                synchronized (this) {
-                    notify();
-                }
-
-                process.waitFor();
-
-
-                //System.out.println("koniec procesu");
-
-
-            } catch (IOException e) {
-                Log.d("RUNTIME", "ERROR IN RUNTIME EXEC");
-                es = new ByteArrayInputStream("No such command".getBytes());
-                is = new ByteArrayInputStream("".getBytes());
-
+            //todo: necessary?
+            synchronized (this) {
                 notify();
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
 
+            int a= 5;
 
+            InputStreamReader inputStreamReader = new InputStreamReader(is);
+//            while(is.available() != 0) {
+            while(is.available() != 0 || isRunning(process)) {
+                char c = (char) inputStreamReader.read();
+                publishProgress(String.valueOf(c));
+            }
+            publishProgress("END OF COMMAND");
 
+//            tu skonczylem refaktoryzacje na async task!!
+            process.waitFor();
+        } catch (IOException e) {
+            es = new ByteArrayInputStream("No such command".getBytes());
+            is = new ByteArrayInputStream("".getBytes());
+            notify();
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-
+    @Override
+    //todo: refactor args types
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+        Log.d("LETTER", (String) values[0]);
+        tv.append((String) values[0]);
     }
 }

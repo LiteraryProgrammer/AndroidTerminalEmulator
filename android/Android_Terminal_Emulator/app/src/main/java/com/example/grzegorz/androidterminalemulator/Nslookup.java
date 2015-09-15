@@ -5,6 +5,7 @@ import java.io.IOException;
 /**
  * Created by grzegorz on 12.05.15.
  */
+/*
 public class Nslookup extends ExtraCommand {
     public Nslookup(String cmd) {
         super(cmd);
@@ -26,3 +27,4 @@ public class Nslookup extends ExtraCommand {
 
     }
 }
+*/

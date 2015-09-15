@@ -15,6 +15,7 @@ import java.net.UnknownHostException;
 /**
  * Created by grzegorz on 18.06.15.
  */
+/*
 public class Whois extends ExtraCommand {
     public Whois(String cmd) {
         super(cmd);
@@ -56,3 +57,4 @@ public class Whois extends ExtraCommand {
         }
     }
 }
+*/

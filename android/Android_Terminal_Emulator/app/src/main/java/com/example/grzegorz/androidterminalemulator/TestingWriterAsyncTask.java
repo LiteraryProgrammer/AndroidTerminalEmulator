@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 /**
  * Created by grzegorz on 11.05.15.
  */
-
+/*
 public class TestingWriterAsyncTask extends AsyncTask<TextView,String,String> {
 
     private int a = 0;
@@ -74,4 +74,4 @@ public class TestingWriterAsyncTask extends AsyncTask<TextView,String,String> {
         super.onPostExecute(s);
         Log.d("PROGRESSUPDATE","FINISH");
     }
-}
+}*/

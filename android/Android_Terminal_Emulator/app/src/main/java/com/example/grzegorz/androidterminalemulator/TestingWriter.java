@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 /**
  * Created by grzegorz on 11.05.15.
- */
+ *//*
 public class TestingWriter extends ExtraCommand {
 
     public TestingWriter(String cmd) {
@@ -73,3 +73,4 @@ public class TestingWriter extends ExtraCommand {
 
     }
 }
+*/
