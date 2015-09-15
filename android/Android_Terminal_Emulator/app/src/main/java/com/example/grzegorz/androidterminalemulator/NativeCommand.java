@@ -70,7 +70,8 @@ public class NativeCommand extends Command {
 
             InputStreamReader inputStreamReader = new InputStreamReader(is);
 //            while(is.available() != 0) {
-            while(is.available() != 0 || isRunning(process)) {
+//            while(is.available() != 0 || isRunning(process)) {
+            while(inputStreamReader.ready() || isRunning(process)) {
                 char c = (char) inputStreamReader.read();
                 publishProgress(String.valueOf(c));
             }
