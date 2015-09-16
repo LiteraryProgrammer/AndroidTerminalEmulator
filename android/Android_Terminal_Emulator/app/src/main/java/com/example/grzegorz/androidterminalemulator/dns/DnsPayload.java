@@ -30,6 +30,7 @@ public class DnsPayload extends FramePayload {
             throw new Exception(); //todo: change to illegal argument exception
         }
 
+
     }
 
     public enum NameType {

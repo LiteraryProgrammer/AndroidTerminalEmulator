@@ -70,7 +70,6 @@ public class NativeCommand extends Command {
                     char c = (char) inputStreamReader.read();
                     publishProgress(String.valueOf(c));
                 }
-                publishProgress("END OF COMMAND");
             }
 
 //            tu skonczylem refaktoryzacje na async task!!
