@@ -1,7 +1,10 @@
 package com.example.grzegorz.androidterminalemulator.dns;
 
+import com.google.common.base.Joiner;
+
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.StringJoiner;
+import java.util.List;
 
 /**
  * Created by gpietrus on 02.08.15.
@@ -35,7 +38,7 @@ public class DnsQueryPayload extends DnsPayload {
         //qname
 
         String domainParts[] = domainName.split("\\."); //split by dot
-        qnameBytes = new byte[String.join("", domainParts).length() + domainParts.length + 1]; //length of all domainParts without dots + numer of length bytes + ending \0
+        qnameBytes = new byte[Joiner.on("").join(domainParts).length() + domainParts.length + 1]; //length of all domainParts without dots + numer of length bytes + ending \0
 
         int qnameIterator = 0;
 
@@ -70,7 +73,7 @@ public class DnsQueryPayload extends DnsPayload {
 
     public String getDomainName() {
 
-        StringJoiner stringJoiner = new StringJoiner(".");
+        List<String> domainNameParts = new ArrayList<String>();
         int labelPartLength = qnameBytes[0];
         int labelIter = 1;
         while(labelPartLength != 0) {
@@ -81,10 +84,10 @@ public class DnsQueryPayload extends DnsPayload {
             }
             labelPartLength = qnameBytes[i];
             labelIter = i + 1;
-            stringJoiner.add(domainNamePart);
+            domainNameParts.add(domainNamePart);
         }
 
-        return stringJoiner.toString();
+        return Joiner.on(".").join(domainNameParts);
     }
 
 }
