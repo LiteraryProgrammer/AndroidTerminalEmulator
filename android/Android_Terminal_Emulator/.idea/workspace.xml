@@ -2,20 +2,9 @@
 <project version="4">
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2330fda6-693c-4de6-98d4-d816358804c1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command_dep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandsManager_dep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand_dep.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/TestingWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/TestingWriterAsyncTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Main.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/MainActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/Nslookup.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/Nslookup.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -23,25 +12,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsFrame.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsHeader.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsHeader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsPayload.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsPayload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsPayloadAnalyzer.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsPayloadAnalyzer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsQueryPayload.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsQueryPayload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayload.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayload.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataA.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataA.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataSOA.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataSOA.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Android_Terminal_Emulator.iws" />
@@ -66,6 +36,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="Traceroute.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.5384616">
+              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DomainNameLabels.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,16 +64,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DnsResponsePayloadRdataMX.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataMX.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -150,21 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExtraCommand.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExtraCommand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5538462">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DnsResponsePayloadRdataNS.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataNS.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -1472,7 +1432,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsFrame.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsHeader.java" />
@@ -1485,6 +1444,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java" />
       </list>
     </option>
   </component>
@@ -1981,7 +1941,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442423941561</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="cleaning">
+      <created>1442426016140</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1442426016140</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2009,7 +1975,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831326" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4628514" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18072289" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40461847" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2071,14 +2037,14 @@
     <MESSAGE value="fix appending to textview" />
     <MESSAGE value="not working traceroute" />
     <MESSAGE value="working traceroute stub" />
-    <MESSAGE value="cleaning" />
     <MESSAGE value="fix traceroute null pointer exception" />
     <MESSAGE value="whois working" />
     <MESSAGE value="first attempt to merge clean java code" />
     <MESSAGE value="fix some methods after moving to android" />
     <MESSAGE value="merge traceroute to android" />
     <MESSAGE value="some fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="some fixes" />
+    <MESSAGE value="cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2108,7 +2074,7 @@
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="33" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2241,13 +2207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="650" column="0" selection-start-line="650" selection-start-column="0" selection-end-line="650" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Alpha.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2325,14 +2284,6 @@
             <element signature="e#432#433#0" expanded="true" />
             <element signature="e#457#458#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="102" column="43" selection-start-line="102" selection-start-column="43" selection-end-line="102" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2493,8 +2444,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5538462">
+        <state vertical-scroll-proportion="0.0">
           <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33238637">
+          <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5384616">
+          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
           <folding />
         </state>
       </provider>
