@@ -60,7 +60,7 @@ public class DnsFrame extends Frame {
     }
 
     public List<DnsPayload> getPayloads(Class c) { //deprecated?
-        //todo: zmienic na iterable
+        //todo: change to iterable?
         List<DnsPayload> specificDnsPayloads = new ArrayList<DnsPayload>();
         for (FramePayload payload : framePayloadList) {
             if (payload.getClass() == c) {

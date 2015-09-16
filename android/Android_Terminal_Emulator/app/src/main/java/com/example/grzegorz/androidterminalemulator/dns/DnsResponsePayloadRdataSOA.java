@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class DnsResponsePayloadRdataSOA extends DnsResponsePayloadRdata {
 
-    private DomainNameLabels primaryNSLabels; //todo: change to domainnamelabels
+    private DomainNameLabels primaryNSLabels;
     private DomainNameLabels adminMBLabels;
     private long serialNumber;
     private long refreshInterval;

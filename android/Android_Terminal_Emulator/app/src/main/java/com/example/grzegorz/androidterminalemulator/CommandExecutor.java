@@ -55,11 +55,9 @@ public class CommandExecutor {
             if (className.endsWith(cmd_parts[0])) { // if equals zero argument in cmd (name of command)
                 Constructor ctor = extracommand.getConstructor(String.class);
                 ExtraCommand ec = (ExtraCommand) ctor.newInstance(cmd);
-                //todo: necessary?
                 command = ec;
                 ec.onPreExecute(tv);
                 ec.execute();
-                //todo: implement extra command
                 return;
             }
         }

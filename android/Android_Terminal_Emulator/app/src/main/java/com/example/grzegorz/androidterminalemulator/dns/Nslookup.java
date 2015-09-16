@@ -28,7 +28,7 @@ public class Nslookup {
         datagramSocket = new DatagramSocket();
         address = InetAddress.getByName(dnsServer);
 
-        //todo: sprawdzenie czy numer nadanej ramki zgadza sie z odebrana?
+        //todo: check if received frame serial number is the same as sent
         send(queryDnsFrame);
         recv();
         return printResponse();

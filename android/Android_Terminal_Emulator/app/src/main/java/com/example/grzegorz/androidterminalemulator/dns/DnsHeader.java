@@ -44,8 +44,7 @@ public class DnsHeader extends FrameHeader {
 
 
     DnsHeader(QR qr) { //new frame
-        //todo: implement default and parameters?
-        //todo: zastanowic sie ktore sa potrzebne w query a ktore w response i ktore nalezy ustawiac
+        //todo: implement default parameters?
 
         addFieldsToList();
 

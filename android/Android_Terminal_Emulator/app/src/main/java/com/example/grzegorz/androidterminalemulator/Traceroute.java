@@ -23,14 +23,14 @@ import static java.lang.Thread.sleep;
 public class Traceroute extends ExtraCommand {
 
     private Boolean finishedFlag = false;
-    private int PING_MAX_TTL = 64; //todo
+    private int PING_MAX_TTL = 64; //todo: verify
     private TextView tv = null;
     private Runtime runtime;
     private Process process;
 
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
-    //todo: obsluzyc gdy nie odpowiada bardzo dlugo - max limit
-    //todo: dodac obsluge czasow!!!!!!!!!!!!!!!!!!!!!!!!! pomiary
+    //todo: add timeout
+    //todo: extract timing
     private String pingTtlExceededResponseRegexp =
             "PING .*\\n" +
             "From ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}).*\n" +
@@ -75,26 +75,21 @@ public class Traceroute extends ExtraCommand {
     @Override
     protected Object doInBackground(Object[] params) {
 
-        //todo: obsluzyc co gdy nie dziala ping lub zly ip
-        //todo: obsluzyc gdy dany router nie odpowiada dlugo
-        //todo: implelemtn printing as FQDN!!!!!!!!!!!!!!!!!!!!!! - za pomoca rev dns
-        //todo: TRACEROUTE UZYWA UDP A NIE PINGA - DO PRZEMYSLENIA
-        //todo: uzywa dnsa do zrobienia requestu o nazwe domeny
-        //todo: czy nslookup nie powinien zwracac klasy zamiast stringa?
-        //todo: printowanie na biezaco nie dziala!!!!!!!!
-        //todo: ip z args a nie na stale
-        //todo: zrobic na asynctaskach
-        //todo: zaimplelmtnwoac opcje tracerouta jakies?
-        //todo: add arguments support and help info
+        //todo: global notification - running
         //todo: support fqdns
-        //todo: globalny notyfikator ze komenda trwa
+        //todo: traceroute options
+        //todo: convert ip to fqdn
+        //todo: use udp instead of ping?
+        //todo: timeout
+        //todo: ip validation
+        //todo: refactor to seperate methods
 
         publishProgress(cmd + "\n");
 
         String dstIP;
-        //todo: refactor to seperate methods!!!! IMPORTANT
         try {
-            dstIP = cmd.split(" ")[1]; //todo: temporary solution
+            //todo: refactor args
+            dstIP = cmd.split(" ")[1];
         }
             catch (Exception e) {
                 publishProgress("No arguments specified\n");

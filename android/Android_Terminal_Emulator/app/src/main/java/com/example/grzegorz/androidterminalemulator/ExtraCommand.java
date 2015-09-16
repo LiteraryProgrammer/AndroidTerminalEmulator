@@ -12,10 +12,7 @@ public abstract class ExtraCommand extends Command {
         super(cmd);
     }
 
-    //todo: move to upper class?
-    //todo: refactor
-
-
+    //todo: refactor, move to upper class
     protected abstract void onPreExecute(TextView view);
 
     @Override

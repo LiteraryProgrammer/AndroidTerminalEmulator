@@ -45,25 +45,5 @@ public class DnsPayload extends FramePayload {
         return NameType.SEQ_OF_LABELS;
     }
 
-    public static String decodeDnsLabels(byte[] bytes) {
-        //todo: depracated - to remove or refactor, replaced by DomainNameLabels
-        //find zero byte - terminating
-        int zeroByteIndex = Utils.findFirstZeroByte(bytes); //todo: czy to sie musi konczyc \0? chyba nie
-        byte[] labelsBytes = Arrays.copyOfRange(bytes, 0, zeroByteIndex);
-
-        int labelsLength = labelsBytes.length;
-        int i = 0;
-        List labelsList = new ArrayList<String>();
-        while(i < labelsLength) {
-            //first byte in each label is length
-            int labelLength = labelsBytes[i]; //tu zwraca -64 nie wiem czemu?
-            int endOfLabel = i + labelLength + 1;
-            labelsList.add(new String(Arrays.copyOfRange(labelsBytes, i + 1, endOfLabel)));
-            //todo :tu skonczylem blad endOfLabel = -58 skad?
-            i = endOfLabel;
-        }
-
-        return Joiner.on(".").join(labelsList);
-    }
 
 }

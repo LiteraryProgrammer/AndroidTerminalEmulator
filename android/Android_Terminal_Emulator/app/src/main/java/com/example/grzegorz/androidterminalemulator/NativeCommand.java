@@ -19,15 +19,6 @@ public class NativeCommand extends Command {
 
     }
 
-    /*
-        @Override
-        public Boolean allFinished() throws IOException {
-            if(this.getState() == State.TERMINATED && is.available() == 0 && es.available() == 0) {
-                return true;
-            }
-            return false;
-        }
-    */
     private Runtime runtime = null;
     private TextView tv = null;
     private Process process = null;
@@ -54,8 +45,6 @@ public class NativeCommand extends Command {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        //todo: IMPLEMENT AS ASYNC TASK!!!!
-        Log.d("PROCESS","DO IN BACKGROUND");
         runtime = Runtime.getRuntime();
         try {
             process = runtime.exec(cmd.split(" "));
@@ -63,7 +52,7 @@ public class NativeCommand extends Command {
             es = process.getErrorStream();
             os = process.getOutputStream();
 
-            if(tv != null) { //todo: correct?
+            if(tv != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(is);
                 //todo: add error stream?
                 while (inputStreamReader.ready() || isRunning()) {
@@ -72,8 +61,7 @@ public class NativeCommand extends Command {
                 }
             }
 
-//            tu skonczylem refaktoryzacje na async task!!
-            process.waitFor(); //todo: necessary?
+            process.waitFor(); //todo: check if necessary?
         } catch (IOException e) {
             es = new ByteArrayInputStream("No such command".getBytes());
             is = new ByteArrayInputStream("".getBytes());

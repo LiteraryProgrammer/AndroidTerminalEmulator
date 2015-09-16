@@ -39,7 +39,8 @@ public class Whois extends ExtraCommand {
     protected Object doInBackground(Object[] params) {
         String domainName;
         try {
-            domainName = cmd.split(" ")[1]; //todo: temporary solution
+            //todo: refactor args
+            domainName = cmd.split(" ")[1];
         }
         catch (Exception e) {
             publishProgress("No arguments specified\n");
@@ -47,7 +48,7 @@ public class Whois extends ExtraCommand {
         }
 
         try {
-            InetAddress serverAddr = InetAddress.getByName("193.59.201.49"); //todo: parametrize whois server
+            InetAddress serverAddr = InetAddress.getByName("193.59.201.49"); //todo: make whois server as parameter
             Socket socket = new Socket(serverAddr, 43);
 
             InputStream is = socket.getInputStream();
@@ -63,8 +64,6 @@ public class Whois extends ExtraCommand {
             Log.d("RESPONSE", String.valueOf(buf));
             publishProgress(String.valueOf(buf));
 
-
-
         } catch (UnknownHostException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -72,5 +71,4 @@ public class Whois extends ExtraCommand {
         }
         return null;
     }
-
 }

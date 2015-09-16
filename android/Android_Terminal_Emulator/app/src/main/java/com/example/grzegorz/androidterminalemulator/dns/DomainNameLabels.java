@@ -86,9 +86,6 @@ public class DomainNameLabels {
 
 
     public String toFullString(byte[] bytes) {
-
-        //todo: znalezienie w bytes odpowiedniego labela
-        String pointerString;
         if(pointerAddress != 0) {
             DomainNameLabels baseLabel = new DomainNameLabels(Arrays.copyOfRange(bytes, pointerAddress, bytes.length));
                 return labelsString + ((labelsString.length() > 0) ? "." : "") + baseLabel.toFullString(bytes);

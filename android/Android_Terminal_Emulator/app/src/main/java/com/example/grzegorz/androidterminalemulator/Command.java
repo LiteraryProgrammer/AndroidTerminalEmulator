@@ -11,29 +11,15 @@ import java.io.OutputStream;
  */
 public abstract class Command extends AsyncTask {
 
-    //tutaj umiescic wszystkie inne metody ktore byly tam
-
     String cmd;
     public Command(String cmd) {
         this.cmd = cmd;
     }
 
-    //todo: refactor if necessary?
     protected InputStream is = null;
     protected OutputStream os = null;
     protected InputStream es = null;
 
-    public InputStream getInputStream() { return is; }
-    public InputStream getErrorStream() {
-        return es;
-    }
-    public OutputStream getOutputStream() {
-        return os;
-    }
-
-    //public abstract Boolean allFinished() throws IOException;
-
+    //todo: implement canceling
     public void cancel() {};
-
-
 }

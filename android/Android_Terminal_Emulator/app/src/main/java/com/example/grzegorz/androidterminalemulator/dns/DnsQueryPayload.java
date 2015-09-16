@@ -29,7 +29,7 @@ public class DnsQueryPayload extends DnsPayload {
 
     private void addToList() {
 
-        listOfFields.add(Utils.byteArrayToBitField(qnameBytes)); //todo: konwecja to bitfield ale po zainicjalizowaniu?
+        listOfFields.add(Utils.byteArrayToBitField(qnameBytes));
         listOfFields.add(qtype);
         listOfFields.add(qclass);
     }
@@ -64,7 +64,7 @@ public class DnsQueryPayload extends DnsPayload {
         qtype.loadBinaryString(Utils.intToBinaryString(recordType.value, qtype.size()));
 
         //qclass
-        //todo: investigate
+        //todo: verify?
         qclass.setBit(15,true);
 
         //adding to list

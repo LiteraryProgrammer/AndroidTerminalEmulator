@@ -13,7 +13,7 @@ public class DnsResponsePayloadRdataA extends DnsResponsePayloadRdata {
         ipAddress = InetAddress.getByAddress(bytes).toString();
     }
 
-    //todo: refactor, niepotrzebne przekazywanie bytes w niektorych typach?
+    //todo: refactor, unnecessary passing bytes?
     public String toConsoleString(byte[] bytes) {
         return "IPv4 Address:\t" + ipAddress;
     }

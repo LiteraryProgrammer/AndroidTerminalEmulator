@@ -65,18 +65,13 @@ public class Utils {
     }
 
     //todo: move to dns class
-
-    //todo: koniecznie przenisc do klasy dns ktorejs
     public static void analyzeDnsResponsePayloads(byte[] bytes) {
         String s = Utils.byteArraytoBinaryString(bytes);
 
         String binaryStr = Utils.byteArraytoBinaryString(bytes);
         Utils.printBinaryString(binaryStr);
-
                 // A pointer is an unsigned 16-bit value with the following format (the top two bits of 11 indicate the pointer format):
                 //http://www.zytrax.com/books/dns/ch15/#answer
-
-        //todo: sprawdzac czy to label czy pointer?
     }
 
 

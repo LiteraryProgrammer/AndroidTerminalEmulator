@@ -27,7 +27,6 @@ public class Nslookup extends ExtraCommand {
     protected Object doInBackground(Object[] params) {
         com.example.grzegorz.androidterminalemulator.dns.Nslookup nslookup = new com.example.grzegorz.androidterminalemulator.dns.Nslookup();
         //todo: refactor arguments
-
         String args[] = cmd.split(" ");
         if(args.length == 3) {
             String domainName = args[1];

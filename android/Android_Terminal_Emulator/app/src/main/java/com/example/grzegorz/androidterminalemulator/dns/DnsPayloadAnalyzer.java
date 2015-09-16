@@ -148,8 +148,6 @@ public class DnsPayloadAnalyzer {
             dnsResponsePayloadRdata = new DnsResponsePayloadRdataRP(rdata);
         }
         else {
-            //todo: zaimplementowac wszystkie, co z pozostalymi?
-//            System.out.println("implement more");
         }
 
         iter += rdata.length;
@@ -158,20 +156,6 @@ public class DnsPayloadAnalyzer {
 
         return new DnsResponsePayload(domainNameLabels, type, dnsClass, ttl, dataLength, dnsResponsePayloadRdata);
 
-    }
-
-    /*
-    public void analyzeDnsAuthoritativeNameserversPayload(byte[] bytes) throws Exception {
-        tu skonczylem
-    }
-
-    public void analyzeAdditionalRecordsPayload(byte[] bytes) throws Exception {
-        tu skonczylem
-    }
-    */
-
-    public void analyzeRData(byte[] bytes, DnsPayload.RecordType recordType) {
-        //todo: implement and return rdata object zalezny od typu rekordu
     }
 
 
