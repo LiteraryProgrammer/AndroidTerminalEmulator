@@ -31,7 +31,7 @@ public class CommandExecutor {
 
     public CommandExecutor(MainActivity ma) {
         this.registerCommand(Traceroute.class);
-//        this.registerCommand(Nslookup.class);
+        this.registerCommand(Nslookup.class);
         this.registerCommand(Whois.class);
 //        this.registerCommand(TestingWriter.class);
         this.ma = ma;

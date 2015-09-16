@@ -18,11 +18,10 @@ public class Nslookup {
     private DatagramPacket recvPacket;
     private DnsFrame responseDnsFrame;
     private byte responseBytes[];
-    //private String dnsServer = "8.8.8.8"; //todo: make it an argument
-    private String dnsServer = "216.239.32.10"; //todo: make it an argument
+    private String dnsServer = "8.8.8.8"; //todo: make it an argument
     private int port = 53;
 
-    public void run(String domainName, DnsPayload.RecordType recordType) throws Exception {
+    public String run(String domainName, DnsPayload.RecordType recordType) throws Exception {
 
         DnsFrame queryDnsFrame = new DnsFrame(domainName, recordType);
 
@@ -32,8 +31,7 @@ public class Nslookup {
         //todo: sprawdzenie czy numer nadanej ramki zgadza sie z odebrana?
         send(queryDnsFrame);
         recv();
-        printResponse();
-
+        return printResponse();
     }
 
     private String printResponse() {
