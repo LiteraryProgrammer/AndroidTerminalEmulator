@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="2330fda6-693c-4de6-98d4-d816358804c1" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/InputStreamTerminalWriter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Telnet.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/Nslookup.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/grzegorz/androidterminalemulator/Nslookup.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
@@ -12,6 +13,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Android_Terminal_Emulator.iws" />
@@ -36,86 +41,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Traceroute.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Traceroute.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5384616">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DomainNameLabels.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java">
+      <file leaf-file-name="InputStreamTerminalWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/InputStreamTerminalWriter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-              <folding />
+              <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Telnet.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Telnet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="2.741784">
+              <caret line="69" column="67" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Nslookup.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="73" column="47" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="47" />
+              <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Whois.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="36" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="36" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#627#628#0" expanded="true" />
+                <element signature="e#652#653#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DnsResponsePayloadRdataPTR.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataPTR.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DnsResponsePayloadRdataRP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataRP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="36" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DnsResponsePayloadRdataSOA.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataSOA.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Utils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -124,13 +102,50 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandExecutor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AsyncTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -1427,12 +1442,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataRP.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsResponsePayloadRdataNS.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsFrame.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsHeader.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DnsPayload.java" />
@@ -1445,6 +1456,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Util.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Utils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/InputStreamTerminalWriter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Telnet.java" />
       </list>
     </option>
   </component>
@@ -1461,7 +1480,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="1112" />
+    <option name="height" value="1124" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -1487,8 +1506,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -1591,48 +1608,16 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="androidterminalemulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dns" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android_Terminal_Emulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Android_Terminal_Emulator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.58.101:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22_x86" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
@@ -1663,6 +1648,9 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.grzegorz.androidterminalemulator" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns" />
@@ -1947,7 +1935,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442426016140</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="some changes">
+      <created>1442428175749</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1442428175752</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1960,29 +1954,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1112" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1124" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47088355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32837301" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4702381" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26506025" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26488096" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.6455823" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7609127" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831326" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18072289" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32738096" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4107143" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.40461847" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25772098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32831326" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32738096" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2044,37 +2038,38 @@
     <MESSAGE value="merge traceroute to android" />
     <MESSAGE value="some fixes" />
     <MESSAGE value="cleaning" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaning" />
+    <MESSAGE value="some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java</url>
-          <line>72</line>
+          <line>73</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java</url>
-          <line>87</line>
+          <line>88</line>
           <properties />
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java</url>
-          <line>41</line>
+          <line>42</line>
           <properties />
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java</url>
-          <line>39</line>
+          <line>40</line>
           <properties />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="39" />
+      <option name="time" value="45" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2125,7 +2120,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1715#1716#0" expanded="false" />
+            <element signature="e#1741#1742#0" expanded="false" />
+            <element signature="e#1805#1806#0" expanded="false" />
+            <element signature="e#1830#1831#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2196,7 +2197,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2249,48 +2249,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="6" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#342#343#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#457#458#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2316,7 +2278,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2326,7 +2288,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2344,8 +2306,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2365#2373#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2365#2373#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2408,36 +2370,75 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/DomainNameLabels.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.61918193">
           <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#525#526#0" expanded="false" />
+            <element signature="e#560#561#0" expanded="false" />
+            <element signature="e#636#637#0" expanded="false" />
+            <element signature="e#673#674#0" expanded="false" />
+            <element signature="e#2454#2455#0" expanded="false" />
+            <element signature="e#2526#2527#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Nslookup.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.61918193">
           <caret line="73" column="47" selection-start-line="73" selection-start-column="47" selection-end-line="73" selection-end-column="47" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/dns/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.46685472">
           <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/NativeCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#571#572#0" expanded="false" />
+            <element signature="e#604#605#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Whois.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="36" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="36" />
+          <folding>
+            <element signature="e#627#628#0" expanded="true" />
+            <element signature="e#652#653#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Nslookup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="28" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Command.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+          <caret line="11" column="44" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -2445,24 +2446,63 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/ExtraCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/CommandExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5147265">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <folding>
+            <element signature="e#624#1061#0" expanded="true" />
+            <element signature="e#1060#1061#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33238637">
+        <state vertical-scroll-proportion="0.0">
           <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Traceroute.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/InputStreamTerminalWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5384616">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/grzegorz/androidterminalemulator/Telnet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.741784">
+          <caret line="69" column="67" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

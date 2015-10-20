@@ -34,6 +34,7 @@ public class CommandExecutor {
         this.registerCommand(Nslookup.class);
         this.registerCommand(Whois.class);
 //        this.registerCommand(TestingWriter.class);
+        this.registerCommand(Telnet.class);
         this.ma = ma;
     }
 
@@ -45,7 +46,6 @@ public class CommandExecutor {
 
     public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException {
 
-        int a = 5;
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
         String[] cmd_parts = cmd.split(" ");

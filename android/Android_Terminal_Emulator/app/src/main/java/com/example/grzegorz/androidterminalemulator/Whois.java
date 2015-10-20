@@ -37,6 +37,7 @@ public class Whois extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
+        publishProgress(cmd + "\n");
         String domainName;
         try {
             //todo: refactor args
@@ -57,7 +58,7 @@ public class Whois extends ExtraCommand {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             osw.write(domainName + "\r\n");
             osw.flush();
-            char[] buf = new char[512];
+            char[] buf = new char[4096]; //todo: refactor
             isr.read(buf);
             isr.close();
             osw.close();
@@ -69,6 +70,7 @@ public class Whois extends ExtraCommand {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        publishProgress("\n");
         return null;
     }
 }

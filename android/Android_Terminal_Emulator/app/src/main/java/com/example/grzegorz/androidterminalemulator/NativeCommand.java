@@ -45,6 +45,7 @@ public class NativeCommand extends Command {
 
     @Override
     protected Object doInBackground(Object[] params) {
+        publishProgress(cmd + "\n");
         runtime = Runtime.getRuntime();
         try {
             process = runtime.exec(cmd.split(" "));
