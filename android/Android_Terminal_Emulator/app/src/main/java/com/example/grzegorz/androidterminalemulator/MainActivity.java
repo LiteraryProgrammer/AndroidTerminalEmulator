@@ -48,12 +48,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                if(ce[0] == null) { //todo: refactor
+                if (ce[0] == null) { //todo: refactor
                     ce[0] = new CommandExecutor(ma);
                 }
                 try {
-                    ce[0].executeCommand(et.getText().toString(), ma);
-                    ce[0].queue.add(et.getText().toString()); //todo: change to run only one!
+                    String text = et.getText().toString();
+                    if (text.startsWith("--")) { //todo: tmp change!!
+                        ce[0].write(text.substring(2) + "\r\n");
+                    } else {
+                        ce[0].executeCommand(et.getText().toString(), ma);
+                    }
+//
+// ce[0].queue.add(et.getText().toString()); //todo: change to run only one!
+
 
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();

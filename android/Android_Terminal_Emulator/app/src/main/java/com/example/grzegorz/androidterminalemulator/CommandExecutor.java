@@ -46,9 +46,21 @@ public class CommandExecutor {
     }
 
     private Command command;
+    private OutputStreamWriter osw;
 
     public void cancelCommand() throws InterruptedException {
         command.cancel();
+    }
+
+    public void write(String text) {
+        try {
+            if(osw != null) {
+                osw.write(text + "\r\n");
+                osw.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException {
@@ -71,23 +83,9 @@ public class CommandExecutor {
                 command = ec;
                 ec.onPreExecute(tv, queue);
                 ec.execute();
-//                queue.add("ASDF\r\n");
-//                queue.add("SDFGSDFG\r\n");
-//                queue.add("ASDASDFASDFF\r\n");
-
                 try {
-                    OutputStreamWriter osw = new OutputStreamWriter((OutputStream) ec.get());
+                    osw = new OutputStreamWriter((OutputStream) ec.get());
                     tv.append(osw.toString());
-                    osw.write("ASDF\r\n");
-                    osw.flush();
-                    osw.write("ASDF\r\n");
-                    osw.flush();
-                    osw.write("ASDF\r\n");
-                    osw.flush();
-                    osw.write("ASDF\r\n");
-                    osw.flush();
-                    osw.write("ASDF\r\n");
-                    osw.flush();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
