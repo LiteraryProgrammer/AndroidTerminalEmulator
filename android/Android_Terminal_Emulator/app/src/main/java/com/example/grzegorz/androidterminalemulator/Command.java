@@ -20,6 +20,10 @@ public abstract class Command extends AsyncTask {
     protected OutputStream os = null;
     protected InputStream es = null;
 
+    public OutputStream getOutputStream() {
+        return os;
+    }
+
     //todo: implement canceling
     public void cancel() {};
 }

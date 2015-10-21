@@ -11,6 +11,7 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.ArrayBlockingQueue;
 
 
 /**
@@ -25,7 +26,7 @@ public class Whois extends ExtraCommand {
     private TextView tv = null; //todo: move to upper class
 
     @Override
-    protected void onPreExecute(TextView view) {
+    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
         tv = view;
     }
 

@@ -25,13 +25,13 @@ public class MainActivity extends ActionBarActivity {
         final MainActivity ma = this;
 
 
-        Button bt = (Button) findViewById(R.id.executebutton);
-        Button bt2 = (Button) findViewById(R.id.cancelbutton);
+        Button executeButton = (Button) findViewById(R.id.executebutton);
+        Button cancelButton = (Button) findViewById(R.id.cancelbutton);
         final EditText et = (EditText) findViewById(R.id.editText);
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 
-        bt2.setOnClickListener(new View.OnClickListener() {
+        cancelButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -44,13 +44,16 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        bt.setOnClickListener(new View.OnClickListener() {
+        executeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ce[0] = new CommandExecutor(ma);
+                if(ce[0] == null) { //todo: refactor
+                    ce[0] = new CommandExecutor(ma);
+                }
                 try {
                     ce[0].executeCommand(et.getText().toString(), ma);
+                    ce[0].queue.add(et.getText().toString()); //todo: change to run only one!
 
                 } catch (NoSuchMethodException e) {
                     e.printStackTrace();
@@ -65,8 +68,6 @@ public class MainActivity extends ActionBarActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-
             }
         });
     }

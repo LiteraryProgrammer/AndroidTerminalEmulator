@@ -11,10 +11,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by grzegorz on 11.05.15.
@@ -28,6 +33,7 @@ public class CommandExecutor {
     }
 
     private MainActivity ma = null;
+    public ArrayBlockingQueue<String> queue;
 
     public CommandExecutor(MainActivity ma) {
         this.registerCommand(Traceroute.class);
@@ -36,6 +42,7 @@ public class CommandExecutor {
 //        this.registerCommand(TestingWriter.class);
         this.registerCommand(Telnet.class);
         this.ma = ma;
+        this.queue = new ArrayBlockingQueue<String>(16); //todo: 16
     }
 
     private Command command;
@@ -48,6 +55,12 @@ public class CommandExecutor {
 
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
+        //todo: new command or outputstream check
+        //todo: check what happens when multiple commands
+        if(command != null) {
+
+        }
+
         String[] cmd_parts = cmd.split(" ");
 
         for (Class<? extends ExtraCommand> extracommand: extracommands) {
@@ -56,8 +69,29 @@ public class CommandExecutor {
                 Constructor ctor = extracommand.getConstructor(String.class);
                 ExtraCommand ec = (ExtraCommand) ctor.newInstance(cmd);
                 command = ec;
-                ec.onPreExecute(tv);
+                ec.onPreExecute(tv, queue);
                 ec.execute();
+//                queue.add("ASDF\r\n");
+//                queue.add("SDFGSDFG\r\n");
+//                queue.add("ASDASDFASDFF\r\n");
+
+                try {
+                    OutputStreamWriter osw = new OutputStreamWriter((OutputStream) ec.get());
+                    tv.append(osw.toString());
+                    osw.write("ASDF\r\n");
+                    osw.flush();
+                    osw.write("ASDF\r\n");
+                    osw.flush();
+                    osw.write("ASDF\r\n");
+                    osw.flush();
+                    osw.write("ASDF\r\n");
+                    osw.flush();
+                    osw.write("ASDF\r\n");
+                    osw.flush();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
                 return;
             }
         }

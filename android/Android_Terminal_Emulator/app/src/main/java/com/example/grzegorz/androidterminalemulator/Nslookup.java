@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
 
-import java.io.IOException;
+import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by grzegorz on 12.05.15.
@@ -19,7 +19,7 @@ public class Nslookup extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute(TextView view) {
+    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
         tv = view;
     }
 
