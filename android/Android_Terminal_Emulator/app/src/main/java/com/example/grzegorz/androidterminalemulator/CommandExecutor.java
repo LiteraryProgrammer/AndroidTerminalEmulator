@@ -33,7 +33,7 @@ public class CommandExecutor {
     }
 
     private MainActivity ma = null;
-    public ArrayBlockingQueue<String> queue;
+    public ArrayBlockingQueue<String> queue; //todo necessary?
 
     public CommandExecutor(MainActivity ma) {
         this.registerCommand(Traceroute.class);
@@ -45,7 +45,7 @@ public class CommandExecutor {
         this.queue = new ArrayBlockingQueue<String>(16); //todo: 16
     }
 
-    private Command command;
+    public Command command;
     private OutputStreamWriter osw;
 
     public void cancelCommand() throws InterruptedException {

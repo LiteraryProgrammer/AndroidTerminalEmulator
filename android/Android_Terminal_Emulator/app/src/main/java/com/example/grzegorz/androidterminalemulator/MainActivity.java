@@ -47,14 +47,14 @@ public class MainActivity extends ActionBarActivity {
         executeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //todo: how will behave on multiple commands?
                 if (ce[0] == null) { //todo: refactor
                     ce[0] = new CommandExecutor(ma);
                 }
                 try {
                     String text = et.getText().toString();
-                    if (text.startsWith("--")) { //todo: tmp change!!
-                        ce[0].write(text.substring(2) + "\r\n");
+                    if (ce[0].command != null) {
+                        ce[0].write(text + "\r\n");
                     } else {
                         ce[0].executeCommand(et.getText().toString(), ma);
                     }
