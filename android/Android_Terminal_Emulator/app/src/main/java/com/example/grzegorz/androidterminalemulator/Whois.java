@@ -32,7 +32,7 @@ public class Whois extends ExtraCommand {
 
     @Override
     public Boolean finished() {
-        return null;
+        return true;
     }
 
     @Override
