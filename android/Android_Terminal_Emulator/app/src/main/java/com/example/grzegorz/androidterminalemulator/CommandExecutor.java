@@ -43,6 +43,7 @@ public class CommandExecutor {
         this.registerCommand(Nslookup.class);
         this.registerCommand(Whois.class);
         this.registerCommand(Telnet.class);
+        this.registerCommand(Netstat.class);
         this.ma = ma;
         this.queue = new ArrayBlockingQueue<String>(16); //todo: 16
     }
@@ -92,8 +93,11 @@ public class CommandExecutor {
                 ec.execute();
                 isRunning = true; //todo //todo: remove
                 try {
-                    osw = new OutputStreamWriter((OutputStream) ec.get());
-                    tv.append(osw.toString());
+                    OutputStream outputStream = (OutputStream) ec.get();
+                    if(outputStream != null) {
+                        osw = new OutputStreamWriter(outputStream);
+                        tv.append(osw.toString());
+                    }
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
