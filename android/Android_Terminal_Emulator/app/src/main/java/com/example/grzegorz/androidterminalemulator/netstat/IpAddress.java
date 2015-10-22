@@ -32,27 +32,28 @@ public class IpAddress {
                 return "-1.-1.-1.-1";
             }
         } else if (addressLength == 32) { //ipv6
-            //todo:
-            //::100:0 amiast ::1:0? sprawdzic kolejnosc bajtow
-            //todo: move to single function, chain of resposibility?
-            //todo: upewnic sie ze dobrze liczy bo ostatni baj cos sie nie zgdza?
-            //todo: netstat zle podaje? bo z ifconfig sie zgadza
-            //todo: 8da0 nie ma w netstat - zamiast tego jest dodatkowe pole 0000
-            //todo: bug w netstacie?
-            //todo: sprawdzic na androridzie
             return Ipv6AddressConverter.getCompressedAddress(Ipv6AddressConverter.addColons(Ipv6AddressConverter.changeByteOrder(hexAddress)));
         } else {
             throw new Exception("unknown address length");
         }
 
+        //todo:
+        //::100:0 amiast ::1:0? sprawdzic kolejnosc bajtow
+        //todo: move to single function, chain of resposibility?
+        //todo: upewnic sie ze dobrze liczy bo ostatni baj cos sie nie zgdza?
+        //todo: netstat zle podaje? bo z ifconfig sie zgadza
+        //todo: 8da0 nie ma w netstat - zamiast tego jest dodatkowe pole 0000
+        //todo: bug w netstacie?
+        //todo: sprawdzic na androridzie
 
     }
 
     //todo: refactor classes?
     public static class Ipv6AddressConverter {
         public static String getCompressedAddress(String longAddress) throws UnknownHostException {
-            longAddress = Inet6Address.getByName(longAddress).getHostAddress();
-            return longAddress.replaceFirst("(^|:)(0+(:|$)){2,8}", "::");
+//            longAddress = Inet6Address.getByName(longAddress).getHostAddress();
+//            return longAddress.replaceFirst("(^|:)(0+(:|$)){2,8}", "::");
+            return longAddress; //todo: temporarly disabled due, not working well
         }
 
         public static String changeByteOrder(String address) {

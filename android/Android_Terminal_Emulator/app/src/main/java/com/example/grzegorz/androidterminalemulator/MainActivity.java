@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
                 if(ce[0] == null) {
                     ce[0] = new CommandExecutor(ma);
                 }
+                //todo: clean input on execute push
 
                 if(ce[0].getIsRunning()) {
                     ce[0].write(command + "\r\n");

@@ -49,7 +49,7 @@ public class RoutingV4 {
                 mask + '\t' +
                 mtu + '\t' +
                 window + '\t' +
-                irtt + '\t';
+                irtt + '\n';
     }
 
     public RoutingV4(String iface, String destination, String gateway, String flags, /* String refCnt, String use, */ String metric, String mask, String mtu, String window, String irtt) {

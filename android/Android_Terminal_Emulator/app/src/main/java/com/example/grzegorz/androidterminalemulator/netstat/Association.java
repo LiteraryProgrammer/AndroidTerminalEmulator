@@ -2,7 +2,7 @@ package com.example.grzegorz.androidterminalemulator.netstat;
 
 public class Association {
 
-    //todo: change types
+    //todo: change types?
     ConnectionType connectionType;
     String recvq;
     String sendq;

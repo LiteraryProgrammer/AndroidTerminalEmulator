@@ -61,22 +61,25 @@ public class Netstat extends ExtraCommand {
 
         //todo: both tcp6 and tcp
 
+        char ipVersion;
+        if(commandLine.hasOption("6")) {
+            ipVersion = 6;
+        }
+        else {
+            ipVersion = 4;
+        }
+
         if(commandLine.hasOption("t")) {
-            publishProgress(NetstatUtils.getConnections(ConnectionType.TCP));
+            publishProgress(NetstatUtils.getConnections(ConnectionType.TCP, ipVersion));
         }
-        else if(commandLine.hasOption("u")) {
-            publishProgress(NetstatUtils.getConnections(ConnectionType.UDP));
-        }
-
-        else if(commandLine.hasOption("r")) {
-            publishProgress(NetstatUtils.getRouting());
+        if(commandLine.hasOption("u")) {
+            publishProgress(NetstatUtils.getConnections(ConnectionType.UDP, ipVersion));
         }
 
-        else if(commandLine.hasOption("6")) {
-            //todo: to be implemented
+        if(commandLine.hasOption("r")) {
+            publishProgress(NetstatUtils.getRouting(ipVersion));
         }
 
-        //todo: routing6
 
        //todo: setting finished flag
         return null;

@@ -28,9 +28,7 @@ public class NetstatUtils {
     }
 
 
-    public static String getRouting() {
-        //todo: routing dla ipv6
-
+    public static String getRouting(char ipVersion) {
         StringBuilder stringBuilder = new StringBuilder();
 
         BufferedReader in = null;
@@ -58,24 +56,25 @@ public class NetstatUtils {
         return stringBuilder.toString();
     }
 
-    //todo: merge routing v4 and v6
-    public static void getRoutingV6() throws IOException {
+    public static String getRoutingV6() throws IOException {
         BufferedReader in = new BufferedReader(new FileReader("/proc/net/ipv6_route"));
+        StringBuilder stringBuilder = new StringBuilder();
         String line;
         int i = 0;
-        System.out.println("Iface\tDestination\tGateway\tFlags\tMetric\tMask\tMTU\tWINDOW\tIRRT\n");
+        stringBuilder.append("Iface\tDestination\tGateway\tFlags\tMetric\tMask\tMTU\tWINDOW\tIRRT\n");
         while ((line = in.readLine()) != null) {
             line = line.trim();
             String[] fields = line.split("\\s+", 10); //todo: check number of fields //todo: move splitting to seperate function
             RoutingV6 routing = new RoutingV6(fields[0], fields[1], fields[2], fields[3], fields[4],
                     fields[5], fields[6], fields[7], fields[8], fields[9]); //todo: refactor?
-            System.out.println(routing.toConsoleString());
+            stringBuilder.append(routing.toConsoleString());
         }
+        return stringBuilder.toString();
     }
 
 
-    //todo: remove
-    public static String getConnections(ConnectionType connectionType) {
+    //todo: ipv6, remove static
+    public static String getConnections(ConnectionType connectionType, char ipVersion) {
         List<Association> connections = new ArrayList<Association>();
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -97,32 +96,26 @@ public class NetstatUtils {
                         String tx = fields[4].split(":")[0];
                         String rx = fields[4].split(":")[1];
 
-                        Association association = new Association(connectionType, String.valueOf(getInt(rx,8)), String.valueOf(getInt(tx,8)), IpAddress.getAddress(src[0]),
-                                String.valueOf(getInt(src[1],16)), IpAddress.getAddress(dst[0]), String.valueOf(getInt(dst[1],16)),
-                                connectionType == ConnectionType.TCP ? TCP.TcpState.getById(Integer.parseInt(fields[3], 16)) : null);
-                        stringBuilder.append(association.toConsoleString());
+//                        if (ipVersion == '4') {
+                            Association association = new Association(connectionType, String.valueOf(getInt(rx, 8)), String.valueOf(getInt(tx, 8)), IpAddress.getAddress(src[0]),
+                                    String.valueOf(getInt(src[1], 16)), IpAddress.getAddress(dst[0]), String.valueOf(getInt(dst[1], 16)),
+                                    connectionType == ConnectionType.TCP ? TCP.TcpState.getById(Integer.parseInt(fields[3], 16)) : null);
+
+                        String debugonly = association.toConsoleString();
+                            stringBuilder.append(association.toConsoleString());
+//                        }
+//                        else if(ipVersion == '6') {
+//                            todo: connection type append tcp?
+//                            Association association = new Association(connectionType, String.valueOf(getInt(rx, 8)), String.valueOf(getInt(tx, 8)),
+//                                    IpAddress.getAddress(src[0]), )
+//                        }
+
+
                     }
                 }
             }
         } catch (Exception e) {
-
         }
-
         return stringBuilder.toString();
-
-
     }
-
-    public static void main(String[] args) throws IOException {
-
-        //talibca routingu netstat -r
-        //add listen method?
-//        getConnections(ConnectionType.TCP);
-//        getConnections(ConnectionType.UDP);
-
-//        getRouting();
-        getRoutingV6();
-
-    }
-
 }
