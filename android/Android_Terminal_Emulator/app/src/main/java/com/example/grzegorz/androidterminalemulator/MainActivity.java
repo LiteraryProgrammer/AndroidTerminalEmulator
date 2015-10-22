@@ -56,14 +56,7 @@ public class MainActivity extends ActionBarActivity {
                     ce[0] = new CommandExecutor(ma);
                 }
 
-                if (command.startsWith("newcmd")) { //todo: temporary
-                    ce[0] = new CommandExecutor(ma);
-                    command = command.substring(6);
-                }
-
-
-
-                if(ce[0].isRunning) {
+                if(ce[0].getIsRunning()) {
                     ce[0].write(command + "\r\n");
                     //todo: add writing to terminal view to!!
                 }

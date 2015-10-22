@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import junit.framework.Test;
 
+import org.apache.commons.net.telnet.TelnetCommand;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -40,7 +42,6 @@ public class CommandExecutor {
         this.registerCommand(Traceroute.class);
         this.registerCommand(Nslookup.class);
         this.registerCommand(Whois.class);
-//        this.registerCommand(TestingWriter.class);
         this.registerCommand(Telnet.class);
         this.ma = ma;
         this.queue = new ArrayBlockingQueue<String>(16); //todo: 16
@@ -51,6 +52,10 @@ public class CommandExecutor {
 
     public void cancelCommand() throws InterruptedException {
         command.cancel();
+    }
+
+    public Boolean getIsRunning() {
+        return command != null && !command.finished();
     }
 
     public void write(String text) {
@@ -68,11 +73,12 @@ public class CommandExecutor {
 
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
-        //todo: new command or outputstream check
-        //todo: check what happens when multiple commands
-        if(command != null) {
+        //todo: move out of here, maybe to
+        if(command != null && command.finished()) {
+            int a = 5;
+        };
+        //todo
 
-        }
 
         String[] cmd_parts = cmd.split(" ");
 
@@ -84,7 +90,7 @@ public class CommandExecutor {
                 command = ec;
                 ec.onPreExecute(tv, queue);
                 ec.execute();
-                isRunning = true; //todo
+                isRunning = true; //todo //todo: remove
                 try {
                     osw = new OutputStreamWriter((OutputStream) ec.get());
                     tv.append(osw.toString());

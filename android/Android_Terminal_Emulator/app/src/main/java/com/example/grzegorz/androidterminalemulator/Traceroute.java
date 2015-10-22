@@ -23,6 +23,10 @@ public class Traceroute extends ExtraCommand {
     private Runtime runtime;
     private Process process;
 
+    public Boolean finished() {
+        return null;
+    }
+
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: add timeout
     //todo: extract timing

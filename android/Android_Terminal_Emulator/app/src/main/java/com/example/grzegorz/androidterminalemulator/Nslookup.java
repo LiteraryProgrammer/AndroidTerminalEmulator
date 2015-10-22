@@ -18,6 +18,10 @@ public class Nslookup extends ExtraCommand {
         super(cmd);
     }
 
+    public Boolean finished() {
+        return null; //todo
+    }
+
     @Override
     protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
         tv = view;

@@ -6,7 +6,6 @@ import org.apache.commons.net.telnet.TelnetClient;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -16,7 +15,8 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Telnet extends ExtraCommand {
 
     private TextView tv = null; //todo: move to upper class
-    private ArrayBlockingQueue queue;
+    private ArrayBlockingQueue queue; //todo: if necessary?
+    private TelnetClient telnet;
 
     public Telnet(String cmd) {
         super(cmd);
@@ -40,17 +40,20 @@ public class Telnet extends ExtraCommand {
         tv.append((String) values[0]);
     }
 
+    public Boolean finished() {
+        return !telnet.isConnected() && !telnet.isAvailable();
+    }
+
     @Override
     protected Object doInBackground(Object[] params) {
 
         publishProgress(cmd + "\n");
 
-        TelnetClient telnet;
-
         telnet = new TelnetClient();
 
         try {
-            telnet.connect("rainmaker.wunderground.com", 23);
+            telnet.connect("192.168.1.15", 23);
+//            telnet.connect("rainmaker.wunderground.com", 23);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,7 +105,7 @@ public class Telnet extends ExtraCommand {
 //            e.printStackTrace();
 //        }
 
-
+        //todo: disconnecting
         //
         return os; //todo: return both os and is and process then inside command executor
     }

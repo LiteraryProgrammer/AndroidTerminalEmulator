@@ -19,6 +19,10 @@ public class NativeCommand extends Command {
 
     }
 
+    public Boolean finished() {
+        return !isRunning();
+    }
+
     private Runtime runtime = null;
     private TextView tv = null;
     private Process process = null;

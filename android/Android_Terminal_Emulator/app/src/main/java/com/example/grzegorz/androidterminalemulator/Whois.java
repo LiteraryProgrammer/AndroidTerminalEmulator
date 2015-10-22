@@ -31,6 +31,11 @@ public class Whois extends ExtraCommand {
     }
 
     @Override
+    public Boolean finished() {
+        return null;
+    }
+
+    @Override
     protected void onProgressUpdate(Object[] values) { //todo: move to upper class
         super.onProgressUpdate(values);
         tv.append((String) values[0]);
