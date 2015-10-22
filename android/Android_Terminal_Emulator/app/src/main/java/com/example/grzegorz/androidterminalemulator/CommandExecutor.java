@@ -1,26 +1,15 @@
 package com.example.grzegorz.androidterminalemulator;
 
-import android.os.Handler;
-import android.util.Log;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import junit.framework.Test;
-
-import org.apache.commons.net.telnet.TelnetCommand;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 
 /**

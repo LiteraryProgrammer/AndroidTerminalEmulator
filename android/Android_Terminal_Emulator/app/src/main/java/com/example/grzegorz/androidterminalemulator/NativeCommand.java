@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +17,6 @@ public class NativeCommand extends Command {
 
     public NativeCommand(String cmd) {
         super(cmd);
-
     }
 
     public Boolean finished() {
@@ -51,7 +51,10 @@ public class NativeCommand extends Command {
     protected Object doInBackground(Object[] params) {
         runtime = Runtime.getRuntime();
         try {
-            process = runtime.exec(cmd.split(" "));
+            String[] envp = null;
+            File dir = new File("/");
+
+            process = runtime.exec(cmd, envp, dir);
             is = process.getInputStream();
             es = process.getErrorStream();
             os = process.getOutputStream();
