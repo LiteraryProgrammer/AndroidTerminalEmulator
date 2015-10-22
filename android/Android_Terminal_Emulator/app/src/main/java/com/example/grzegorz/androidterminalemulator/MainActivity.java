@@ -2,7 +2,6 @@ package com.example.grzegorz.androidterminalemulator;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,21 +9,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.commons.net.whois.WhoisClient;
+import com.google.common.base.Joiner;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends ActionBarActivity {
 
 
+    private String currentWorkingDirectory = "/";
+
+    private void changeWorkingDirectory(String newWorkingDirectory) {
+        //todo: check if new path is valid
+        newWorkingDirectory = newWorkingDirectory.split("cd ")[1];
+        if (newWorkingDirectory.startsWith("/")) {
+            this.currentWorkingDirectory = newWorkingDirectory;
+        }
+        else if(newWorkingDirectory.equals("../") || newWorkingDirectory.equals("..")) {
+            String[] splittedCWD = this.currentWorkingDirectory.split("/");
+            String tmp= Joiner.on("/").join(Arrays.copyOf(splittedCWD, splittedCWD.length - 1)) + "/";
+            this.currentWorkingDirectory = tmp;
+        }
+        else {
+            this.currentWorkingDirectory = this.currentWorkingDirectory + newWorkingDirectory + "/";
+        }
+    }
+
+    //todo: display prompt with current with CWD
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //todo: do CWD - cd support
 
         final MainActivity ma = this;
 
@@ -32,7 +50,6 @@ public class MainActivity extends ActionBarActivity {
         Button cancelButton = (Button) findViewById(R.id.cancelbutton);
         final EditText et = (EditText) findViewById(R.id.editText);
         final TextView tv = (TextView) findViewById(R.id.textView);
-
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 
@@ -57,32 +74,38 @@ public class MainActivity extends ActionBarActivity {
                 if (command.length() != 0) {
 
                     et.setText(""); //clean input
-                    tv.append(command + "\n");
+                    tv.append("\n" + command + "\n");
 
-                    if (ce[0] == null) {
-                        ce[0] = new CommandExecutor(ma);
-                    }
+                    //todo: autoscorll
 
-                    if (ce[0].getIsRunning()) {
-                        ce[0].write(command + "\r\n");
-                        //todo: add writing to terminal view to!!
+                    if (command.startsWith("cd")) {
+                        changeWorkingDirectory(command);
                     } else {
-                        try {
-                            ce[0].executeCommand(command, ma);
-                        } catch (NoSuchMethodException e) {
-                            e.printStackTrace();
-                        } catch (IllegalAccessException e) {
-                            e.printStackTrace();
-                        } catch (InvocationTargetException e) {
-                            e.printStackTrace();
-                        } catch (InstantiationException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
+                        if (ce[0] == null) {
+                            ce[0] = new CommandExecutor(ma);
+                        }
+
+                        if (ce[0].getIsRunning()) {
+                            ce[0].write(command + "\r\n");
+                            //todo: add writing to terminal view to!!
+                        } else {
+                            try {
+                                ce[0].executeCommand(command, ma, currentWorkingDirectory);
+                            } catch (NoSuchMethodException e) {
+                                e.printStackTrace();
+                            } catch (IllegalAccessException e) {
+                                e.printStackTrace();
+                            } catch (InvocationTargetException e) {
+                                e.printStackTrace();
+                            } catch (InstantiationException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }

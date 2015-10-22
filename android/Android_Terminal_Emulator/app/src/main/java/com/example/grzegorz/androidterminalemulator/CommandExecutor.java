@@ -59,7 +59,7 @@ public class CommandExecutor {
         }
     }
 
-    public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException, ExecutionException {
+    public void executeCommand(final String cmd, final MainActivity ma, String currentWorkingDirectory) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException, ExecutionException {
 
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
@@ -100,7 +100,7 @@ public class CommandExecutor {
         NativeCommand nativeCommand = new NativeCommand(cmd);
         command = nativeCommand;
         isRunning = true;
-        nativeCommand.onPreExecute(tv);
+        nativeCommand.onPreExecute(tv, currentWorkingDirectory);
         nativeCommand.execute();
         nativeCommand.get();
         isRunning = false;

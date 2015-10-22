@@ -25,6 +25,7 @@ public class NativeCommand extends Command {
 
     private Runtime runtime = null;
     private TextView tv = null;
+    private String currentWorkingDirectory;
     private Process process = null;
 
     @Override
@@ -42,9 +43,10 @@ public class NativeCommand extends Command {
         }
     }
 
-    protected void onPreExecute(TextView view) {
+    protected void onPreExecute(TextView view, String currentWorkingDirectory) {
         super.onPreExecute();
-        tv = view;
+        this.tv = view;
+        this.currentWorkingDirectory = currentWorkingDirectory;
     }
 
     @Override
@@ -52,9 +54,8 @@ public class NativeCommand extends Command {
         runtime = Runtime.getRuntime();
         try {
             String[] envp = null;
-            File dir = new File("/");
 
-            process = runtime.exec(cmd, envp, dir);
+            process = runtime.exec(cmd, envp, new File(currentWorkingDirectory));
             is = process.getInputStream();
             es = process.getErrorStream();
             os = process.getOutputStream();
