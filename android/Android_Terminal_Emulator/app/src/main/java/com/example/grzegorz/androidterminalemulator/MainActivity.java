@@ -50,18 +50,26 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 //todo: how will behave on multiple commands?
 
+                String command = et.getText().toString();
 
                 if(ce[0] == null) {
                     ce[0] = new CommandExecutor(ma);
                 }
 
+                if (command.startsWith("newcmd")) { //todo: temporary
+                    ce[0] = new CommandExecutor(ma);
+                    command = command.substring(6);
+                }
+
+
+
                 if(ce[0].isRunning) {
-                    ce[0].write(et.getText().toString() + "\r\n");
+                    ce[0].write(command + "\r\n");
                     //todo: add writing to terminal view to!!
                 }
                 else {
                     try {
-                        ce[0].executeCommand(et.getText().toString(), ma);
+                        ce[0].executeCommand(command, ma);
                     } catch (NoSuchMethodException e) {
                         e.printStackTrace();
                     } catch (IllegalAccessException e) {

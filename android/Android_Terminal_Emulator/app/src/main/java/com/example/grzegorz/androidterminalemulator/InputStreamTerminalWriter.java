@@ -38,10 +38,11 @@ public class InputStreamTerminalWriter extends AsyncTask {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            if(c == '\uFFFF') break;
             String str = String.valueOf(c);
             publishProgress(str);
             }
 
-//        return null;
+        return null;
     }
 }
