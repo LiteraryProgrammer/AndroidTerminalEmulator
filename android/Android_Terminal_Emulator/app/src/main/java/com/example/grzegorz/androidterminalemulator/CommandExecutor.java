@@ -34,6 +34,7 @@ public class CommandExecutor {
 
     private MainActivity ma = null;
     public ArrayBlockingQueue<String> queue; //todo necessary?
+    public Boolean isRunning = false;
 
     public CommandExecutor(MainActivity ma) {
         this.registerCommand(Traceroute.class);
@@ -63,7 +64,7 @@ public class CommandExecutor {
         }
     }
 
-    public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException {
+    public void executeCommand(final String cmd, final MainActivity ma) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException, ExecutionException {
 
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
 
@@ -83,6 +84,7 @@ public class CommandExecutor {
                 command = ec;
                 ec.onPreExecute(tv, queue);
                 ec.execute();
+                isRunning = true; //todo
                 try {
                     osw = new OutputStreamWriter((OutputStream) ec.get());
                     tv.append(osw.toString());
@@ -97,8 +99,11 @@ public class CommandExecutor {
         //if not extra command found use native
 
         NativeCommand nativeCommand = new NativeCommand(cmd);
+        command = nativeCommand;
+        isRunning = true;
         nativeCommand.onPreExecute(tv);
         nativeCommand.execute();
-
+        nativeCommand.get();
+        isRunning = false;
     }
 }

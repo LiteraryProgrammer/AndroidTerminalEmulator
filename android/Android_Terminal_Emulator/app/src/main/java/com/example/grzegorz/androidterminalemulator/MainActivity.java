@@ -13,6 +13,7 @@ import org.apache.commons.net.whois.WhoisClient;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -21,9 +22,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //todo: do CWD - cd support
 
         final MainActivity ma = this;
-
 
         Button executeButton = (Button) findViewById(R.id.executebutton);
         Button cancelButton = (Button) findViewById(R.id.cancelbutton);
@@ -48,36 +49,40 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 //todo: how will behave on multiple commands?
-                if (ce[0] == null) { //todo: refactor
+
+
+                if(ce[0] == null) {
                     ce[0] = new CommandExecutor(ma);
                 }
-                try {
-                    String text = et.getText().toString();
-                    if (ce[0].command != null) {
-                        ce[0].write(text + "\r\n");
-                    } else {
+
+                if(ce[0].isRunning) {
+                    ce[0].write(et.getText().toString() + "\r\n");
+                    //todo: add writing to terminal view to!!
+                }
+                else {
+                    try {
                         ce[0].executeCommand(et.getText().toString(), ma);
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (InstantiationException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
                     }
-//
-// ce[0].queue.add(et.getText().toString()); //todo: change to run only one!
-
-
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         });
     }
+
+    //todo: autoscrolling
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
