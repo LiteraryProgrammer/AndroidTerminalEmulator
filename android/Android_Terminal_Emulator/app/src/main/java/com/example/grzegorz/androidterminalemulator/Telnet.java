@@ -54,8 +54,6 @@ public class Telnet extends ExtraCommand {
     @Override
     protected Object doInBackground(Object[] params) {
 
-        publishProgress(cmd + "\n");
-
         telnet = new TelnetClient();
 
         try {

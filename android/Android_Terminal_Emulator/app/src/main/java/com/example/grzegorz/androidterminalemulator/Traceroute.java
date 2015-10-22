@@ -83,8 +83,6 @@ public class Traceroute extends ExtraCommand {
         //todo: ip validation
         //todo: refactor to seperate methods
 
-        publishProgress(cmd + "\n");
-
         String dstIP;
         try {
             //todo: refactor args

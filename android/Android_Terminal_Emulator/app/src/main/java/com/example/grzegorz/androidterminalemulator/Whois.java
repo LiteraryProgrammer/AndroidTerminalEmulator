@@ -43,7 +43,6 @@ public class Whois extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        publishProgress(cmd + "\n");
         String domainName;
         try {
             //todo: refactor args
