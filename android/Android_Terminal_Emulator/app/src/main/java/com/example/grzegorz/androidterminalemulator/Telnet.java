@@ -12,6 +12,13 @@ import java.util.concurrent.ArrayBlockingQueue;
 /**
  * Created by gpietrus on 20.10.15.
  */
+
+//parameters:
+//-t tcp
+//-u udp
+//-r route
+//-6 ipv6
+
 public class Telnet extends ExtraCommand {
 
     private TextView tv = null; //todo: move to upper class

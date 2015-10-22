@@ -29,23 +29,32 @@ public class NetstatUtils {
         }
     }
 
-    public static String getRouting() throws IOException {
+    public static String getRouting() {
         //todo: routing dla ipv6
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        BufferedReader in = new BufferedReader(new FileReader("/proc/net/route"));
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader("/proc/net/route"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         String line;
         int i = 0;
         stringBuilder.append("Iface\tDestination\tGateway\tFlags\tMetric\tMask\tMTU\tWINDOW\tIRRT\n");
-        while((line= in.readLine()) != null) {
-            if (i++ != 0) { //first line with column names
-                line = line.trim();
-                String[] fields = line.split("\\s+", 11); //todo: check number of fields //todo: move splitting to seperate function
-                RoutingV4 routing = new RoutingV4(fields[0],fields[1],fields[2],fields[3],fields[6],
-                        fields[7],fields[8],fields[9],fields[10]); //todo: refactor?
-                stringBuilder.append(routing.toConsoleString());
+        try {
+            while((line= in.readLine()) != null) {
+                if (i++ != 0) { //first line with column names
+                    line = line.trim();
+                    String[] fields = line.split("\\s+", 11); //todo: check number of fields //todo: move splitting to seperate function
+                    RoutingV4 routing = new RoutingV4(fields[0],fields[1],fields[2],fields[3],fields[6],
+                            fields[7],fields[8],fields[9],fields[10]); //todo: refactor?
+                    stringBuilder.append(routing.toConsoleString());
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return stringBuilder.toString();
     }
@@ -66,12 +75,13 @@ public class NetstatUtils {
     }
 
 
-    public static void getConnections(ConnectionType connectionType) {
+    public static String getConnections(ConnectionType connectionType) {
         List<Association> connections = new ArrayList<Association>();
+
+        StringBuilder stringBuilder = new StringBuilder();
 
         try {
             for (String fileName : (String[]) connectionTypeToFile.get(connectionType)) {
-
 
                 BufferedReader in = new BufferedReader(new FileReader(fileName));
                 String line;
@@ -88,7 +98,7 @@ public class NetstatUtils {
                         Association association = new Association(IpAddress.getAddress(src[0]), String.valueOf(getInt16(src[1])),
                                 IpAddress.getAddress(dst[0]), String.valueOf(getInt16(dst[1])), fields[7], connectionType,
                                 connectionType == ConnectionType.TCP ? TCP.TcpState.getById(Integer.parseInt(fields[3], 16)) : null);
-                        System.out.println(association.toString());
+                        stringBuilder.append(association.toString());
                         i++;
                     }
                 }
@@ -96,6 +106,8 @@ public class NetstatUtils {
         } catch (Exception e) {
 
         }
+
+        return stringBuilder.toString();
 
 
     }
