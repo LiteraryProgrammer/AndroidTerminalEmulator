@@ -48,14 +48,12 @@ public class MainActivity extends ActionBarActivity {
         executeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo: how will behave on multiple commands?
-
                 String command = et.getText().toString();
+                et.setText(""); //clean input
 
                 if(ce[0] == null) {
                     ce[0] = new CommandExecutor(ma);
                 }
-                //todo: clean input on execute push
 
                 if(ce[0].getIsRunning()) {
                     ce[0].write(command + "\r\n");
