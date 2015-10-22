@@ -1,10 +1,9 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
-
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by grzegorz on 12.05.15.
@@ -13,6 +12,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Nslookup extends ExtraCommand {
 
     private TextView tv = null;
+    private ScrollView sv = null;
 
     public Nslookup(String cmd) {
         super(cmd);
@@ -23,8 +23,9 @@ public class Nslookup extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
-        tv = view;
+    protected void onPreExecute(TextView view, ScrollView sv) {
+        this.tv = view;
+        this.sv = sv;
     }
 
     @Override
@@ -63,5 +64,6 @@ public class Nslookup extends ExtraCommand {
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
         tv.append((String) values[0]);
+        sv.fullScroll(ScrollView.FOCUS_DOWN);
     }
 }

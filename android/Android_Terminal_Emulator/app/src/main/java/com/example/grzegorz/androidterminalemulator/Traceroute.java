@@ -1,11 +1,11 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.util.Log;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -15,11 +15,13 @@ import static java.lang.Thread.sleep;
  * Created by grzegorz on 11.05.15.
  */
 
+//todo: live output
 public class Traceroute extends ExtraCommand {
 
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64; //todo: verify
     private TextView tv = null;
+    private ScrollView sv = null;
     private Runtime runtime;
     private Process process;
 
@@ -50,8 +52,9 @@ public class Traceroute extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
-        tv = view;
+    protected void onPreExecute(TextView view, ScrollView sv) {
+        this.tv = view;
+        this.sv = sv;
     }
 
     @Override
@@ -59,6 +62,7 @@ public class Traceroute extends ExtraCommand {
         super.onProgressUpdate(values);
         if(tv != null) {
             tv.append((String) values[0]);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
 

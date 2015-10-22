@@ -1,5 +1,6 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.OutputStream;
@@ -14,7 +15,7 @@ public abstract class ExtraCommand extends Command {
     }
 
     //todo: refactor, move to upper class
-    protected abstract void onPreExecute(TextView view, ArrayBlockingQueue queue);
+    protected abstract void onPreExecute(TextView view, ScrollView queue);
 
 //    protected abstract OutputStream onPostExecute();
 

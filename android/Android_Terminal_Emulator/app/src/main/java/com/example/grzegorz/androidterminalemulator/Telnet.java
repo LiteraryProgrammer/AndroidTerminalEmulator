@@ -1,5 +1,6 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.apache.commons.net.telnet.TelnetClient;
@@ -22,6 +23,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Telnet extends ExtraCommand {
 
     private TextView tv = null; //todo: move to upper class
+    private ScrollView sv = null; //todo: move to upper class
     private ArrayBlockingQueue queue; //todo: if necessary?
     private TelnetClient telnet;
 
@@ -30,9 +32,9 @@ public class Telnet extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
+    protected void onPreExecute(TextView view, ScrollView sv) {
         this.tv = view;
-        this.queue = queue;
+        this.sv = sv;
     }
 
 //    @Override
@@ -45,6 +47,7 @@ public class Telnet extends ExtraCommand {
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
         tv.append((String) values[0]);
+        sv.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     public Boolean finished() {

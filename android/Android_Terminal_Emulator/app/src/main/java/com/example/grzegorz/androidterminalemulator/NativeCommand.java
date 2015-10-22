@@ -1,6 +1,7 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.util.Log;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.ByteArrayInputStream;
@@ -25,6 +26,7 @@ public class NativeCommand extends Command {
 
     private Runtime runtime = null;
     private TextView tv = null;
+    private ScrollView sv = null;
     private String currentWorkingDirectory;
     private Process process = null;
 
@@ -43,9 +45,10 @@ public class NativeCommand extends Command {
         }
     }
 
-    protected void onPreExecute(TextView view, String currentWorkingDirectory) {
+    protected void onPreExecute(TextView view, ScrollView sv, String currentWorkingDirectory) {
         super.onPreExecute();
         this.tv = view;
+        this.sv = sv;
         this.currentWorkingDirectory = currentWorkingDirectory;
     }
 
@@ -86,8 +89,8 @@ public class NativeCommand extends Command {
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
         if (tv != null) {
-            Log.d("LETTER", (String) values[0]);
             tv.append((String) values[0]);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
 

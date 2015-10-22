@@ -1,5 +1,6 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -62,13 +63,7 @@ public class CommandExecutor {
     public void executeCommand(final String cmd, final MainActivity ma, String currentWorkingDirectory) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, IOException, InterruptedException, ExecutionException {
 
         final TextView tv = (TextView) ma.findViewById(R.id.textView);
-
-        //todo: move out of here, maybe to
-        if(command != null && command.finished()) {
-            int a = 5;
-        };
-        //todo
-
+        final ScrollView sv = (ScrollView) ma.findViewById(R.id.scrollView);
 
         String[] cmd_parts = cmd.split(" ");
 
@@ -78,14 +73,13 @@ public class CommandExecutor {
                 Constructor ctor = extracommand.getConstructor(String.class);
                 ExtraCommand ec = (ExtraCommand) ctor.newInstance(cmd);
                 command = ec;
-                ec.onPreExecute(tv, queue);
+                ec.onPreExecute(tv, sv);
                 ec.execute();
                 isRunning = true; //todo: remove
                 try {
                     OutputStream outputStream = (OutputStream) ec.get();
                     if(outputStream != null) {
                         osw = new OutputStreamWriter(outputStream);
-                        tv.append(osw.toString());
                     }
                 } catch (ExecutionException e) {
                     e.printStackTrace();
@@ -100,7 +94,7 @@ public class CommandExecutor {
         NativeCommand nativeCommand = new NativeCommand(cmd);
         command = nativeCommand;
         isRunning = true;
-        nativeCommand.onPreExecute(tv, currentWorkingDirectory);
+        nativeCommand.onPreExecute(tv, sv, currentWorkingDirectory);
         nativeCommand.execute();
         nativeCommand.get();
         isRunning = false;

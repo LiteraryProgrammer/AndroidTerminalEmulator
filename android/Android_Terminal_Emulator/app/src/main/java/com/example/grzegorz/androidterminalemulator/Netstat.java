@@ -1,5 +1,6 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.grzegorz.androidterminalemulator.netstat.ConnectionType;
@@ -8,7 +9,6 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import java.util.concurrent.ArrayBlockingQueue;
 
 
 /**
@@ -21,10 +21,12 @@ public class Netstat extends ExtraCommand {
     }
 
     private TextView tv = null; //todo: move to upper class
+    private ScrollView sv = null; //todo: move to upper class
 
     @Override
-    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
-        tv = view;
+    protected void onPreExecute(TextView view, ScrollView sv) {
+        this.tv = view;
+        this.sv = sv;
     }
 
     @Override
@@ -36,6 +38,7 @@ public class Netstat extends ExtraCommand {
     protected void onProgressUpdate(Object[] values) { //todo: move to upper class
         super.onProgressUpdate(values);
         tv.append((String) values[0]);
+        sv.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.common.base.Joiner;
@@ -50,6 +51,7 @@ public class MainActivity extends ActionBarActivity {
         Button cancelButton = (Button) findViewById(R.id.cancelbutton);
         final EditText et = (EditText) findViewById(R.id.editText);
         final TextView tv = (TextView) findViewById(R.id.textView);
+        final ScrollView sv = (ScrollView) findViewById(R.id.scrollView);
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 
@@ -75,8 +77,10 @@ public class MainActivity extends ActionBarActivity {
 
                     et.setText(""); //clean input
                     tv.append("\n" + command + "\n");
+                    sv.fullScroll(ScrollView.FOCUS_DOWN);
 
                     //todo: autoscorll
+                    //todo: telnet, extract parameter
 
                     if (command.startsWith("cd")) {
                         changeWorkingDirectory(command);

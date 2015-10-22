@@ -1,6 +1,7 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.util.Log;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -11,7 +12,6 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.concurrent.ArrayBlockingQueue;
 
 
 /**
@@ -26,7 +26,7 @@ public class Whois extends ExtraCommand {
     private TextView tv = null; //todo: move to upper class
 
     @Override
-    protected void onPreExecute(TextView view, ArrayBlockingQueue queue) {
+    protected void onPreExecute(TextView view, ScrollView queue) {
         tv = view;
     }
 
