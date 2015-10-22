@@ -4,12 +4,10 @@ import android.widget.TextView;
 
 import com.example.grzegorz.androidterminalemulator.netstat.ConnectionType;
 import com.example.grzegorz.androidterminalemulator.netstat.NetstatUtils;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-
 import java.util.concurrent.ArrayBlockingQueue;
 
 
@@ -59,8 +57,6 @@ public class Netstat extends ExtraCommand {
             e.printStackTrace();
         }
 
-        //todo: both tcp6 and tcp
-
         char ipVersion;
         if(commandLine.hasOption("6")) {
             ipVersion = 6;
@@ -76,10 +72,11 @@ public class Netstat extends ExtraCommand {
             publishProgress(NetstatUtils.getConnections(ConnectionType.UDP, ipVersion));
         }
 
+
+        //todo: routing v6? !!!
         if(commandLine.hasOption("r")) {
             publishProgress(NetstatUtils.getRouting(ipVersion));
         }
-
 
        //todo: setting finished flag
         return null;

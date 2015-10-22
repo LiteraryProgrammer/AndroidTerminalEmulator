@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import org.apache.commons.net.whois.WhoisClient;
 
@@ -16,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class MainActivity extends ActionBarActivity {
         Button executeButton = (Button) findViewById(R.id.executebutton);
         Button cancelButton = (Button) findViewById(R.id.cancelbutton);
         final EditText et = (EditText) findViewById(R.id.editText);
+        final TextView tv = (TextView) findViewById(R.id.textView);
+
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 
@@ -49,33 +53,37 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 String command = et.getText().toString();
-                et.setText(""); //clean input
 
-                if(ce[0] == null) {
-                    ce[0] = new CommandExecutor(ma);
-                }
+                if (command.length() != 0) {
 
-                if(ce[0].getIsRunning()) {
-                    ce[0].write(command + "\r\n");
-                    //todo: add writing to terminal view to!!
-                }
-                else {
-                    try {
-                        ce[0].executeCommand(command, ma);
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (IllegalAccessException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
-                    } catch (InstantiationException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
+                    et.setText(""); //clean input
+                    tv.append(command + "\n");
+
+                    if (ce[0] == null) {
+                        ce[0] = new CommandExecutor(ma);
+                    }
+
+                    if (ce[0].getIsRunning()) {
+                        ce[0].write(command + "\r\n");
+                        //todo: add writing to terminal view to!!
+                    } else {
+                        try {
+                            ce[0].executeCommand(command, ma);
+                        } catch (NoSuchMethodException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
