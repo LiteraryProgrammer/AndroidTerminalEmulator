@@ -44,9 +44,13 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void changeWorkingDirectory(String newWorkingDirectory) {
-        //todo: just cd
-        //todo: check if new path is valid
-        newWorkingDirectory = newWorkingDirectory.split("cd ")[1];
+        String[] splitted = newWorkingDirectory.split("cd ");
+        if(splitted.length < 2) {
+            tv.append("usage: cd [path].\n");
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
+            return;
+        }
+        newWorkingDirectory = splitted[1];
         if (newWorkingDirectory.startsWith("/")) {
             setCurrentWorkingDirectory(newWorkingDirectory);
         }
