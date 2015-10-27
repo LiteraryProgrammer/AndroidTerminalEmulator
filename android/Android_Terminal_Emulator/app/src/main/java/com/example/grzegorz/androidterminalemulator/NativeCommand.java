@@ -37,6 +37,9 @@ public class NativeCommand extends Command {
 
     //todo: refactor arguments, move to upper class
     public boolean isRunning() {
+        if(process == null) {
+            return false;
+        }
         try {
             process.exitValue();
             return false;
@@ -73,12 +76,11 @@ public class NativeCommand extends Command {
             }
 
             process.waitFor(); //todo: check if necessary?
-        } catch (IOException e) {
-            es = new ByteArrayInputStream("No such command".getBytes());
-            is = new ByteArrayInputStream("".getBytes());
-            notify();
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
+//            es = new ByteArrayInputStream("No such command".getBytes());
+//            is = new ByteArrayInputStream("".getBytes());
+//            notify(); //todo?
+            publishProgress("No such command.");
             e.printStackTrace();
         }
         return null;
