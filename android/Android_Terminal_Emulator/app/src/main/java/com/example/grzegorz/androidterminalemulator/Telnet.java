@@ -37,12 +37,6 @@ public class Telnet extends ExtraCommand {
         this.sv = sv;
     }
 
-//    @Override
-//    protected OutputStream onPostExecute() {
-//        return os;
-//    }
-
-
     @Override
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
@@ -73,22 +67,46 @@ public class Telnet extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
-
+        //rainmaker.wunderground.com
         telnet = new TelnetClient();
 
+        String args[] = cmd.split(" ");
+
+        int port = 23;
+
+        if(args.length == 3) {
+            port = Integer.parseInt(args[2]);
+        }
+        else if (args.length != 2) {
+            publishProgress("usage: telnet ip [port]\n");
+            return null;
+        }
+
+        String address = args[1];
         try {
-//            telnet.connect("192.168.1.15", 23);
-            telnet.connect("rainmaker.wunderground.com", 23);
-        } catch (IOException e) {
+            telnet.setConnectTimeout(10);
+            telnet.connect(address, port);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         is = telnet.getInputStream();
         os = telnet.getOutputStream();
 
-        InputStreamReader isr = new InputStreamReader(is);
-        OutputStreamWriter osw = new OutputStreamWriter(os);
 
+        try {
+            InputStreamReader isr = new InputStreamReader(is);
+            OutputStreamWriter osw = new OutputStreamWriter(os);
+        }
+        catch(Exception e) {
+            publishProgress("Error: Connection refused.");
+            try {
+                telnet.disconnect();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            return null;
+        }
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
         istw.onPreExecute(tv, is);
