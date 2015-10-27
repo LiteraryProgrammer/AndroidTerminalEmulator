@@ -22,7 +22,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Telnet extends ExtraCommand {
 
-    private TextView tv = null; //todo: move to upper class
     private ScrollView sv = null; //todo: move to upper class
     private ArrayBlockingQueue queue; //todo: necessary?
     private TelnetClient telnet;

@@ -20,9 +20,10 @@ public class Netstat extends ExtraCommand {
         super(cmd);
     }
 
-    private TextView tv = null; //todo: move to upper class
     private ScrollView sv = null; //todo: move to upper class
 
+    //todo: --help
+    //todo: addreses
     @Override
     protected void onPreExecute(TextView view, ScrollView sv) {
         this.tv = view;
@@ -36,7 +37,7 @@ public class Netstat extends ExtraCommand {
 
     @Override
     public void cancel() {
-        
+
     }
 
     @Override

@@ -11,7 +11,6 @@ import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
 
 public class Nslookup extends ExtraCommand {
 
-    private TextView tv = null;
     private ScrollView sv = null;
 
     public Nslookup(String cmd) {

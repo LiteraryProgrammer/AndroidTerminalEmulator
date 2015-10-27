@@ -23,8 +23,6 @@ public class Whois extends ExtraCommand {
         super(cmd);
     }
 
-    private TextView tv = null; //todo: move to upper class
-
     @Override
     protected void onPreExecute(TextView view, ScrollView queue) {
         tv = view;
