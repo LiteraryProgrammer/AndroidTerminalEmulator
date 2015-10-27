@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -52,9 +53,9 @@ public class Whois extends ExtraCommand {
         }
 
         try {
-            //todo: validate if whois server is valid
             InetAddress serverAddr = InetAddress.getByName(whoisServer);
-            Socket socket = new Socket(serverAddr, 43);
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(serverAddr, 43), 5000);
 
             InputStream is = socket.getInputStream();
             OutputStream os = socket.getOutputStream();
@@ -69,6 +70,7 @@ public class Whois extends ExtraCommand {
             publishProgress(String.valueOf(buf));
 
         } catch (Exception e) {
+            publishProgress(e.toString());
             e.printStackTrace();
         }
         publishProgress("\n");

@@ -96,6 +96,7 @@ public class Telnet extends ExtraCommand {
         istw.onPreExecute(tv, is);
         istw.execute();
 
+        //todo: remove
         /*
         while(a == 5) {
             try {
