@@ -1,9 +1,11 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import android.database.CharArrayBuffer;
 import android.util.Log;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,6 +15,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.CharBuffer;
 
 
 /**
@@ -63,11 +66,18 @@ public class Whois extends ExtraCommand {
             OutputStreamWriter osw = new OutputStreamWriter(os);
             osw.write(domainName + "\r\n");
             osw.flush();
-            char[] buf = new char[4096]; //todo: refactor
-            isr.read(buf);
+
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuilder out = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.append(line);
+                out.append("\n");
+            }
+
             isr.close();
             osw.close();
-            publishProgress(String.valueOf(buf));
+            publishProgress(out.toString());
 
         } catch (Exception e) {
             publishProgress(e.toString());
