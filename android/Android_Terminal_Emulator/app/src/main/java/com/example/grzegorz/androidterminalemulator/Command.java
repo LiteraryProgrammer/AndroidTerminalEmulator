@@ -1,6 +1,8 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.os.AsyncTask;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +16,19 @@ public abstract class Command extends AsyncTask {
     String cmd;
     public Command(String cmd) {
         this.cmd = cmd;
+    }
+
+    protected TextView tv;
+    protected ScrollView sv;
+
+    @Override
+    //todo: refactor args types
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+        if (tv != null) {
+            tv.append((String) values[0]);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
+        }
     }
 
     protected InputStream is = null;

@@ -25,8 +25,6 @@ public class NativeCommand extends Command {
     }
 
     private Runtime runtime = null;
-    private TextView tv = null;
-    private ScrollView sv = null;
     private String currentWorkingDirectory;
     private Process process = null;
 
@@ -86,16 +84,6 @@ public class NativeCommand extends Command {
         return null;
     }
 
-
-    @Override
-    //todo: refactor args types
-    protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
-        if (tv != null) {
-            tv.append((String) values[0]);
-            sv.fullScroll(ScrollView.FOCUS_DOWN);
-        }
-    }
 
     @Override
     protected void onPostExecute(Object o) {
