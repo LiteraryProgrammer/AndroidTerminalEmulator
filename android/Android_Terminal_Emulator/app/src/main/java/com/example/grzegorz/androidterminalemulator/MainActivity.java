@@ -95,19 +95,7 @@ public class MainActivity extends ActionBarActivity {
                         } else {
                             try {
                                 ce[0].executeCommand(command, ma, currentWorkingDirectory);
-                            } catch (NoSuchMethodException e) {
-                                e.printStackTrace();
-                            } catch (IllegalAccessException e) {
-                                e.printStackTrace();
-                            } catch (InvocationTargetException e) {
-                                e.printStackTrace();
-                            } catch (InstantiationException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
+                            } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException | ExecutionException | IOException | InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }

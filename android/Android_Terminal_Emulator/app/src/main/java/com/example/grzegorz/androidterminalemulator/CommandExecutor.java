@@ -42,7 +42,9 @@ public class CommandExecutor {
     private OutputStreamWriter osw;
 
     public void cancelCommand() throws InterruptedException {
-        command.cancel();
+        if(getIsRunning()) {
+            command.cancel();
+        }
     }
 
     public Boolean getIsRunning() {
