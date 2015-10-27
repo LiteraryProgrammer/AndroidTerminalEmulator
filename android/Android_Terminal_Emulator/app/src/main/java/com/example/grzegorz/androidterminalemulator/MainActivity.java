@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.common.base.Joiner;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
@@ -20,25 +21,44 @@ import java.util.concurrent.ExecutionException;
 public class MainActivity extends ActionBarActivity {
 
 
+    Button executeButton;
+    Button cancelButton;
+    EditText et;
+    TextView tv;
+    ScrollView sv;
+
     private String currentWorkingDirectory = "/";
 
+    //todo: move to seperate class CD
+    private Boolean validatePath(String path) {
+        return new File(path).exists();
+    }
+
+    private void setCurrentWorkingDirectory(String path) {
+        if(validatePath(path)) {
+            this.currentWorkingDirectory = path;
+        } else {
+            tv.append("Error: no such path.\n");
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
+        }
+    }
+
     private void changeWorkingDirectory(String newWorkingDirectory) {
+        //todo: just cd
         //todo: check if new path is valid
         newWorkingDirectory = newWorkingDirectory.split("cd ")[1];
         if (newWorkingDirectory.startsWith("/")) {
-            this.currentWorkingDirectory = newWorkingDirectory;
+            setCurrentWorkingDirectory(newWorkingDirectory);
         }
         else if(newWorkingDirectory.equals("../") || newWorkingDirectory.equals("..")) {
             String[] splittedCWD = this.currentWorkingDirectory.split("/");
             String tmp= Joiner.on("/").join(Arrays.copyOf(splittedCWD, splittedCWD.length - 1)) + "/";
-            this.currentWorkingDirectory = tmp;
+            setCurrentWorkingDirectory(tmp);
         }
         else {
-            this.currentWorkingDirectory = this.currentWorkingDirectory + newWorkingDirectory + "/";
+            setCurrentWorkingDirectory(this.currentWorkingDirectory + newWorkingDirectory + "/");
         }
     }
-
-    //todo: display prompt with current with CWD
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +67,11 @@ public class MainActivity extends ActionBarActivity {
 
         final MainActivity ma = this;
 
-        Button executeButton = (Button) findViewById(R.id.executebutton);
-        Button cancelButton = (Button) findViewById(R.id.cancelbutton);
-        final EditText et = (EditText) findViewById(R.id.editText);
-        final TextView tv = (TextView) findViewById(R.id.textView);
-        final ScrollView sv = (ScrollView) findViewById(R.id.scrollView);
+        executeButton = (Button) findViewById(R.id.executebutton);
+        cancelButton = (Button) findViewById(R.id.cancelbutton);
+        et = (EditText) findViewById(R.id.editText);
+        tv = (TextView) findViewById(R.id.textView);
+        sv = (ScrollView) findViewById(R.id.scrollView);
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 

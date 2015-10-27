@@ -75,7 +75,7 @@ public class CommandExecutor {
                 command = ec;
                 ec.onPreExecute(tv, sv);
                 ec.execute();
-                isRunning = true; //todo: remove
+                isRunning = true;
                 try {
                     OutputStream outputStream = (OutputStream) ec.get();
                     if(outputStream != null) {

@@ -14,7 +14,6 @@ public abstract class ExtraCommand extends Command {
         super(cmd);
     }
 
-    //todo: refactor, move to upper class
     protected abstract void onPreExecute(TextView view, ScrollView queue);
 
 //    protected abstract OutputStream onPostExecute();
