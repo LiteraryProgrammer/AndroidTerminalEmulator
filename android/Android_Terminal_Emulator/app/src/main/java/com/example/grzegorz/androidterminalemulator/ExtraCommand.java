@@ -14,8 +14,6 @@ public abstract class ExtraCommand extends Command {
         super(cmd);
     }
 
-    protected abstract void onPreExecute(TextView view, ScrollView queue);
-
     public abstract Boolean finished();
 
     @Override

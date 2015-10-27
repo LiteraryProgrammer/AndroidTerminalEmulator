@@ -24,13 +24,6 @@ public class Whois extends ExtraCommand {
     }
 
     @Override
-    //todo: move to upper class
-    protected void onPreExecute(TextView view, ScrollView scrollView) {
-        tv = view;
-        sv = scrollView;
-    }
-
-    @Override
     public Boolean finished() {
         return true;
     }

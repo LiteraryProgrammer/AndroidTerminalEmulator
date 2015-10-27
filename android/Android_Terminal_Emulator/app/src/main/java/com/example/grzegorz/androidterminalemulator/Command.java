@@ -31,6 +31,11 @@ public abstract class Command extends AsyncTask {
         }
     }
 
+    protected void onPreExecute(TextView view, ScrollView scrollView) {
+        tv = view;
+        sv = scrollView;
+    }
+
     protected InputStream is = null;
     protected OutputStream os = null;
     protected InputStream es = null;

@@ -25,13 +25,6 @@ public class Nslookup extends ExtraCommand {
     }
 
     @Override
-    //todo: move to upper class
-    protected void onPreExecute(TextView view, ScrollView sv) {
-        this.tv = view;
-        this.sv = sv;
-    }
-
-    @Override
     protected Object doInBackground(Object[] params) {
         com.example.grzegorz.androidterminalemulator.dns.Nslookup nslookup = new com.example.grzegorz.androidterminalemulator.dns.Nslookup();
         //todo: refactor arguments

@@ -28,12 +28,6 @@ public class Telnet extends ExtraCommand {
         super(cmd);
     }
 
-    @Override
-    protected void onPreExecute(TextView view, ScrollView sv) {
-        this.tv = view;
-        this.sv = sv;
-    }
-
     public Boolean finished() {
         return !telnet.isConnected() && !telnet.isAvailable();
     }

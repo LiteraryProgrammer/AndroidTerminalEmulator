@@ -22,11 +22,6 @@ public class Netstat extends ExtraCommand {
 
     //todo: --help
     //todo: addreses
-    @Override
-    protected void onPreExecute(TextView view, ScrollView sv) {
-        this.tv = view;
-        this.sv = sv;
-    }
 
     @Override
     public Boolean finished() {
