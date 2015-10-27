@@ -29,6 +29,11 @@ public class Traceroute extends ExtraCommand {
         return true;
     }
 
+    @Override
+    public void cancel() {
+
+    }
+
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: add timeout
     //todo: extract timing
@@ -130,8 +135,10 @@ public class Traceroute extends ExtraCommand {
                     ip = finalResponseMatcher.group(1);
                 }
                 else {
-                    Log.d("ERROR", "INVALID RESPONSE");
-                    return null;
+                    publishProgress("invalid responsetra\n");
+                    continue;
+//                    Log.d("ERROR", "INVALID RESPONSE");
+//                    return null;
                 }
 
                 publishProgress(ip != null ?

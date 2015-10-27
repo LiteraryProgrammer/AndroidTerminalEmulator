@@ -27,5 +27,5 @@ public abstract class Command extends AsyncTask {
     public abstract Boolean finished();
 
     //todo: implement canceling
-    public void cancel() {};
+    public abstract void cancel();
 }

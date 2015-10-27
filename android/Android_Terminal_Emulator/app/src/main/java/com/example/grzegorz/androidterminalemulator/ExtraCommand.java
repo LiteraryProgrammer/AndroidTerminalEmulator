@@ -21,7 +21,6 @@ public abstract class ExtraCommand extends Command {
 
     public abstract Boolean finished();
 
-
     @Override
     protected abstract Object doInBackground(Object[] params);
 

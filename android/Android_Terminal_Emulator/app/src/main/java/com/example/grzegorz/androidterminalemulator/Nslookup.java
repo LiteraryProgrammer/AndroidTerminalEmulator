@@ -23,6 +23,11 @@ public class Nslookup extends ExtraCommand {
     }
 
     @Override
+    public void cancel() {
+
+    }
+
+    @Override
     protected void onPreExecute(TextView view, ScrollView sv) {
         this.tv = view;
         this.sv = sv;

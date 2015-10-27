@@ -24,7 +24,7 @@ public class Telnet extends ExtraCommand {
 
     private TextView tv = null; //todo: move to upper class
     private ScrollView sv = null; //todo: move to upper class
-    private ArrayBlockingQueue queue; //todo: if necessary?
+    private ArrayBlockingQueue queue; //todo: necessary?
     private TelnetClient telnet;
 
     public Telnet(String cmd) {
@@ -55,22 +55,33 @@ public class Telnet extends ExtraCommand {
     }
 
     @Override
+    public void cancel() {
+        publishProgress("\nTERMINATED\n");
+        try {
+            telnet.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            is.close();
+            os.close();
+            es.close();
+        } catch (IOException | NullPointerException e) {
+            e.printStackTrace();
+            }
+    }
+
+    @Override
     protected Object doInBackground(Object[] params) {
 
         telnet = new TelnetClient();
 
         try {
-            telnet.connect("192.168.1.15", 23);
-//            telnet.connect("rainmaker.wunderground.com", 23);
+//            telnet.connect("192.168.1.15", 23);
+            telnet.connect("rainmaker.wunderground.com", 23);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //todo: zrobic sink ktory bedzie pisal stad do istneiejaacego sink nizej
-        //todo: czyli bufor w command executorze oprozniany przez proces tu gdy bedzie gotowy
-
-//        Utils.readWrite(telnet.getInputStream(), telnet.getOutputStream(),
-//        System.in, System.out);
 
         is = telnet.getInputStream();
         os = telnet.getOutputStream();
@@ -91,7 +102,7 @@ public class Telnet extends ExtraCommand {
                 osw.flush();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException pine) {
                 e.printStackTrace();
             }
         }*/
@@ -112,6 +123,17 @@ public class Telnet extends ExtraCommand {
 //        {
 //            e.printStackTrace();
 //        }
+
+        //todo:
+
+//        w czesci teoretyczne
+//                uzyte narzedzia
+//                        opisac android
+//                                i polecenia ktore sa dostepna ktore nie
+//                i busybox
+//                        inne aplikacje
+//                                tekst na poczatek grudnia
+
 
         //todo: disconnecting
         //
