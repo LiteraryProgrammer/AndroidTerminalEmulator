@@ -26,43 +26,7 @@ public class MainActivity extends ActionBarActivity {
     EditText et;
     TextView tv;
     ScrollView sv;
-
-    private String currentWorkingDirectory = "/";
-
-    //todo: move to seperate class CD
-    private Boolean validatePath(String path) {
-        return new File(path).exists();
-    }
-
-    private void setCurrentWorkingDirectory(String path) {
-        if(validatePath(path)) {
-            this.currentWorkingDirectory = path;
-        } else {
-            tv.append("Error: no such path.\n");
-            sv.fullScroll(ScrollView.FOCUS_DOWN);
-        }
-    }
-
-    private void changeWorkingDirectory(String newWorkingDirectory) {
-        String[] splitted = newWorkingDirectory.split("cd ");
-        if(splitted.length < 2) {
-            tv.append("usage: cd [path].\n");
-            sv.fullScroll(ScrollView.FOCUS_DOWN);
-            return;
-        }
-        newWorkingDirectory = splitted[1];
-        if (newWorkingDirectory.startsWith("/")) {
-            setCurrentWorkingDirectory(newWorkingDirectory);
-        }
-        else if(newWorkingDirectory.equals("../") || newWorkingDirectory.equals("..")) {
-            String[] splittedCWD = this.currentWorkingDirectory.split("/");
-            String tmp= Joiner.on("/").join(Arrays.copyOf(splittedCWD, splittedCWD.length - 1)) + "/";
-            setCurrentWorkingDirectory(tmp);
-        }
-        else {
-            setCurrentWorkingDirectory(this.currentWorkingDirectory + newWorkingDirectory + "/");
-        }
-    }
+    ChangeDirectory cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +40,7 @@ public class MainActivity extends ActionBarActivity {
         et = (EditText) findViewById(R.id.editText);
         tv = (TextView) findViewById(R.id.textView);
         sv = (ScrollView) findViewById(R.id.scrollView);
+        cd = new ChangeDirectory(tv, sv);
 
         final CommandExecutor[] ce = new CommandExecutor[1];
 
@@ -108,7 +73,7 @@ public class MainActivity extends ActionBarActivity {
                     //todo: autoscorll
 
                     if (command.startsWith("cd")) {
-                        changeWorkingDirectory(command);
+                        cd.changeWorkingDirectory(command);
                     } else {
                         if (ce[0] == null) {
                             ce[0] = new CommandExecutor(ma);
@@ -119,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
                             //todo: add writing to terminal view to!!
                         } else {
                             try {
-                                ce[0].executeCommand(command, ma, currentWorkingDirectory);
+                                ce[0].executeCommand(command, ma, cd.getCurrentWorkingDirectory());
                             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException | ExecutionException | IOException | InterruptedException e) {
                                 e.printStackTrace();
                             }
