@@ -25,7 +25,7 @@ public abstract class Command extends AsyncTask {
     //todo: refactor args types
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
-        if (tv != null) {
+        if (tv != null && sv != null) {
             tv.append((String) values[0]);
             sv.fullScroll(ScrollView.FOCUS_DOWN);
         }

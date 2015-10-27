@@ -24,8 +24,10 @@ public class Whois extends ExtraCommand {
     }
 
     @Override
-    protected void onPreExecute(TextView view, ScrollView queue) {
+    //todo: move to upper class
+    protected void onPreExecute(TextView view, ScrollView scrollView) {
         tv = view;
+        sv = scrollView;
     }
 
     @Override
@@ -40,18 +42,25 @@ public class Whois extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        String domainName;
-        try {
-            //todo: refactor args
-            domainName = cmd.split(" ")[1];
+        String domainName = "";
+        String whoisServer = "193.59.201.49"; //default value
+        String[] args = cmd.split(" ");
+
+        if (args.length == 2) {
+            domainName = args[1];
+        } else if (args.length == 3) {
+            domainName = args[1];
+            whoisServer = args[2];
         }
-        catch (Exception e) {
-            publishProgress("No arguments specified\n");
+
+        if (args.length == 1 || args.length > 3) {
+            publishProgress("usage: whois domainname [whois server]");
             return null;
         }
 
         try {
-            InetAddress serverAddr = InetAddress.getByName("193.59.201.49"); //todo: make whois server as parameter
+            //todo: validate if whois server is valid
+            InetAddress serverAddr = InetAddress.getByName(whoisServer);
             Socket socket = new Socket(serverAddr, 43);
 
             InputStream is = socket.getInputStream();
@@ -64,12 +73,9 @@ public class Whois extends ExtraCommand {
             isr.read(buf);
             isr.close();
             osw.close();
-            Log.d("RESPONSE", String.valueOf(buf));
             publishProgress(String.valueOf(buf));
 
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         publishProgress("\n");
