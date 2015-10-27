@@ -34,13 +34,6 @@ public class Telnet extends ExtraCommand {
         this.sv = sv;
     }
 
-    @Override
-    protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
-        tv.append((String) values[0]);
-        sv.fullScroll(ScrollView.FOCUS_DOWN);
-    }
-
     public Boolean finished() {
         return !telnet.isConnected() && !telnet.isAvailable();
     }

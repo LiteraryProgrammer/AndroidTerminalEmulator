@@ -22,12 +22,6 @@ public class InputStreamTerminalWriter extends AsyncTask {
     }
 
     @Override
-    protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
-        tv.append((CharSequence) values[0]);
-    }
-
-    @Override
     protected Object doInBackground(Object[] params) {
 
         InputStreamReader isr = new InputStreamReader(is);

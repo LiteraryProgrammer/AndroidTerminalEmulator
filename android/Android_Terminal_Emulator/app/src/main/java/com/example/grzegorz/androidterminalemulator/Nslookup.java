@@ -62,10 +62,4 @@ public class Nslookup extends ExtraCommand {
         return null;
     }
 
-    @Override
-    protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
-        tv.append((String) values[0]);
-        sv.fullScroll(ScrollView.FOCUS_DOWN);
-    }
 }

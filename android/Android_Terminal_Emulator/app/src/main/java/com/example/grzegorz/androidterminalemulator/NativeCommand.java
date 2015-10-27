@@ -86,6 +86,7 @@ public class NativeCommand extends Command {
         return null;
     }
 
+
     @Override
     //todo: refactor args types
     protected void onProgressUpdate(Object[] values) {

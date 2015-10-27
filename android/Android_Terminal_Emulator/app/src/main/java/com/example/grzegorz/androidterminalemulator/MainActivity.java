@@ -99,12 +99,13 @@ public class MainActivity extends ActionBarActivity {
 
                 if (command.length() != 0) {
 
+                    //todo: live output for ping and traceroute
+
                     et.setText(""); //clean input
                     tv.append("\n" + command + "\n");
                     sv.fullScroll(ScrollView.FOCUS_DOWN);
 
                     //todo: autoscorll
-                    //todo: telnet, extract parameter
 
                     if (command.startsWith("cd")) {
                         changeWorkingDirectory(command);

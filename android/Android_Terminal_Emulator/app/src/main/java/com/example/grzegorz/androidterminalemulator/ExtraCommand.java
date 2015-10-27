@@ -17,6 +17,15 @@ public abstract class ExtraCommand extends Command {
     protected TextView tv;
     protected ScrollView sv;
 
+    @Override
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+        if(tv != null && sv != null) {
+            tv.append((String) values[0]);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
+        }
+    }
+
 
     protected abstract void onPreExecute(TextView view, ScrollView queue);
 
