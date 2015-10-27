@@ -1,6 +1,7 @@
 package com.example.grzegorz.androidterminalemulator;
 
 import android.os.AsyncTask;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -12,13 +13,14 @@ import java.io.InputStreamReader;
  */
 public class InputStreamTerminalWriter extends AsyncTask {
 
-    //todo: use this in all extra commands
-    private TextView tv = null; //todo: move to upper class
+    private TextView tv = null;
     private InputStream is = null;
+    private ScrollView sv = null;
 
-    protected void onPreExecute(TextView view, InputStream is) {
+    protected void onPreExecute(TextView view, ScrollView sv, InputStream is) {
         this.tv = view;
         this.is = is;
+        this.sv = sv;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class InputStreamTerminalWriter extends AsyncTask {
             if(c == '\uFFFF') break;
             String str = String.valueOf(c);
             publishProgress(str);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
 
         return null;

@@ -93,39 +93,8 @@ public class Telnet extends ExtraCommand {
         }
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(tv, is);
+        istw.onPreExecute(tv, sv , is);
         istw.execute();
-
-        //todo: remove
-        /*
-        while(a == 5) {
-            try {
-                String text = (String) queue.take();
-                osw.write(text);
-                osw.flush();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (IOException pine) {
-                e.printStackTrace();
-            }
-        }*/
-
-//        try {
-//            osw.write("\r\n");
-//            osw.flush();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        tu skonczylem, rozkminic to na ssh telnet i spr czy dziala!
-
-//        try
-//        {
-//            telnet.disconnect();
-//        }
-//        catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
 
         //todo:
 
@@ -138,8 +107,6 @@ public class Telnet extends ExtraCommand {
 //                                tekst na poczatek grudnia
 
 
-        //todo: disconnecting
-        //
-        return os; //todo: return both os and is and process then inside command executor
+        return os;
     }
 }
