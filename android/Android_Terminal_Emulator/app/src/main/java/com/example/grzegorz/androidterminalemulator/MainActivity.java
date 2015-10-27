@@ -95,8 +95,6 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    //todo: autoscrolling
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

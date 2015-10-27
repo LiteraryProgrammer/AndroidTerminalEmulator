@@ -27,7 +27,6 @@ public class Nslookup extends ExtraCommand {
     @Override
     protected Object doInBackground(Object[] params) {
         com.example.grzegorz.androidterminalemulator.dns.Nslookup nslookup = new com.example.grzegorz.androidterminalemulator.dns.Nslookup();
-        //todo: refactor arguments
         String args[] = cmd.split(" ");
         if(args.length == 3) {
             String domainName = args[1];
@@ -38,7 +37,7 @@ public class Nslookup extends ExtraCommand {
                 publishProgress("Invalid record type\n");
                 return null;
             }
-            String response = null;
+            String response;
             try {
                 response = nslookup.run(domainName, recordType);
             } catch (Exception e) {
@@ -51,7 +50,7 @@ public class Nslookup extends ExtraCommand {
             }
         }
         else {
-            publishProgress("Invalid arguments\n");
+            publishProgress("Usage: nslookup domainName recordType\n");
         }
         return null;
     }

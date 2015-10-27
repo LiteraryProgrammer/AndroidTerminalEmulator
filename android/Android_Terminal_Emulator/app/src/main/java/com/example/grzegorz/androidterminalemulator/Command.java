@@ -22,7 +22,6 @@ public abstract class Command extends AsyncTask {
     protected ScrollView sv;
 
     @Override
-    //todo: refactor args types
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
         if (tv != null && sv != null) {
