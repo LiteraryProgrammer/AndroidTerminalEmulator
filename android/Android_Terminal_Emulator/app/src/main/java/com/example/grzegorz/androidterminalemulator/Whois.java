@@ -42,6 +42,7 @@ public class Whois extends ExtraCommand {
     protected void onProgressUpdate(Object[] values) { //todo: move to upper class
         super.onProgressUpdate(values);
         tv.append((String) values[0]);
+        sv.fullScroll(ScrollView.FOCUS_DOWN);
     }
 
     @Override

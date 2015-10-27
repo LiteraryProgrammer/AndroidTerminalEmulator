@@ -20,8 +20,6 @@ public class Netstat extends ExtraCommand {
         super(cmd);
     }
 
-    private ScrollView sv = null; //todo: move to upper class
-
     //todo: --help
     //todo: addreses
     @Override

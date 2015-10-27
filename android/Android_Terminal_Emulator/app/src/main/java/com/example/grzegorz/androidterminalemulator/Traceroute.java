@@ -20,7 +20,6 @@ public class Traceroute extends ExtraCommand {
 
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64; //todo: verify
-    private ScrollView sv = null;
     private Runtime runtime;
     private Process process;
 
