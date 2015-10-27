@@ -25,7 +25,6 @@ public class CommandExecutor {
     }
 
     private MainActivity ma = null;
-    public ArrayBlockingQueue<String> queue; //todo necessary?
     public Boolean isRunning = false;
 
     public CommandExecutor(MainActivity ma) {
@@ -35,7 +34,6 @@ public class CommandExecutor {
         this.registerCommand(Telnet.class);
         this.registerCommand(Netstat.class);
         this.ma = ma;
-        this.queue = new ArrayBlockingQueue<String>(16); //todo: 16
     }
 
     public Command command;
