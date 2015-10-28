@@ -24,6 +24,15 @@ public class InputStreamTerminalWriter extends AsyncTask {
     }
 
     @Override
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+        if (tv != null && sv != null) {
+            tv.append((String) values[0]);
+            sv.fullScroll(ScrollView.FOCUS_DOWN);
+        }
+    }
+
+    @Override
     protected Object doInBackground(Object[] params) {
 
         InputStreamReader isr = new InputStreamReader(is);

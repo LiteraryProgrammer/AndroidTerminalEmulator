@@ -67,13 +67,14 @@ public class NativeCommand extends Command {
             if(tv != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(is);
                 //todo: add error stream?
-                while (inputStreamReader.ready() || isRunning()) {
-                    char c = (char) inputStreamReader.read();
-                    publishProgress(String.valueOf(c));
-                }
+
+                InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
+                istw.onPreExecute(tv, sv , is);
+                istw.execute();
+
             }
 
-            process.waitFor(); //todo: check if necessary?
+//            process.waitFor(); //todo: check if necessary?
         } catch (Exception e) {
 //            es = new ByteArrayInputStream("No such command".getBytes());
 //            is = new ByteArrayInputStream("".getBytes());
