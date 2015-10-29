@@ -9,13 +9,6 @@
         <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-645173aeba2bd158d3c8453fddb874fba4f6669b.jar" />
     </item>
     <item
-        jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/classes-529943fd253d054469785796e6469be47bf944f9.jar" />
-    </item>
-    <item
         jar="/Users/gpietrus/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -30,13 +23,6 @@
         <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/guava-18.0-0df7f0b67756b6e8936e202c55bdfe16cf567f91.jar" />
     </item>
     <item
-        jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/classes-c4723dd98909d7e7506cc77a552784ebc22e317e.jar" />
-    </item>
-    <item
         jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/src/main/java/com/example/grzegorz/androidterminalemulator/commons-cli-1.3.1.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -49,6 +35,27 @@
         revision="22.0.1"
         sha1="cd0d5510908225f76c5fe5a3f1df4fa44866f81e">
         <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/commons-net-3.3-397c6570dc4d3f9fa82564eddc73230319550e24.jar" />
+    </item>
+    <item
+        jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/src/main/java/com/example/grzegorz/androidterminalemulator/commons-io-2.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b1b6ea3b7e4aa4f492509a4952029cd8e48019ad">
+        <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/commons-io-2.4-44c871065a4fce1b59168dfbf1af2915d9975632.jar" />
+    </item>
+    <item
+        jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/classes-529943fd253d054469785796e6469be47bf944f9.jar" />
+    </item>
+    <item
+        jar="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/gpietrus/praca_inzynierska/AndroidTerminalEmulator/android/Android_Terminal_Emulator/app/build/intermediates/pre-dexed/debug/classes-c4723dd98909d7e7506cc77a552784ebc22e317e.jar" />
     </item>
 
 </items>

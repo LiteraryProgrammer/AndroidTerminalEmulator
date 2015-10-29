@@ -40,6 +40,7 @@ public class InputStreamTerminalWriter extends AsyncTask {
             char c = 0;
             try {
                 c = (char) isr.read();
+                //todo: system err?
             } catch (IOException e) {
                 e.printStackTrace();
             }
