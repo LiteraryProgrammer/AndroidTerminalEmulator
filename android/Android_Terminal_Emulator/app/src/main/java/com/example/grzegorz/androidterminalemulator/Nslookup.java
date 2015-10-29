@@ -25,6 +25,7 @@ public class Nslookup extends ExtraCommand {
     }
 
     @Override
+    //todo: add no answers case
     protected Object doInBackground(Object[] params) {
         com.example.grzegorz.androidterminalemulator.dns.Nslookup nslookup = new com.example.grzegorz.androidterminalemulator.dns.Nslookup();
         String args[] = cmd.split(" ");

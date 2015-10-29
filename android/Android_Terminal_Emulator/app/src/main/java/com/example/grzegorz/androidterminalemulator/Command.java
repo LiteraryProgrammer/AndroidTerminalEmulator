@@ -20,6 +20,7 @@ public abstract class Command extends AsyncTask {
 
     protected TextView tv;
     protected ScrollView sv;
+    protected OutputStream outputStream;
 
     @Override
     protected void onProgressUpdate(Object[] values) {
@@ -28,6 +29,13 @@ public abstract class Command extends AsyncTask {
             tv.append((String) values[0]);
             sv.fullScroll(ScrollView.FOCUS_DOWN);
         }
+        if(outputStream != null) {
+            try {
+                os.write(((String) values[0]).getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     protected void onPreExecute(TextView view, ScrollView scrollView) {
@@ -35,6 +43,12 @@ public abstract class Command extends AsyncTask {
         sv = scrollView;
     }
 
+    //used if output should be redirected somewhere else than screen
+    protected void onPreExecute(OutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    //todo: necessary?
     protected InputStream is = null;
     protected OutputStream os = null;
     protected InputStream es = null;

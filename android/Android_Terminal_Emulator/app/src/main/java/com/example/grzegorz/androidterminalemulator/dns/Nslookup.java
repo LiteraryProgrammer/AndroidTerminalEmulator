@@ -80,3 +80,7 @@ public class Nslookup {
         responseDnsFrame = new DnsFrame(responseBytes);
     }
 }
+
+//todo: implement reverse dns!
+//todo: move reverse from traceroute to dns? !!!
+//todo: important!!

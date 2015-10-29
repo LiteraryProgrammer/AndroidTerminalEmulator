@@ -12,7 +12,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.net.InetAddress;
 import java.util.Properties;
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,7 +22,6 @@ import java.util.regex.Pattern;
  * Created by grzegorz on 11.05.15.
  */
 
-//todo: live output
 public class Traceroute extends ExtraCommand {
 
     private class RTT {
@@ -46,6 +47,26 @@ public class Traceroute extends ExtraCommand {
             } else {
                 return new float[]{};
             }
+        }
+
+    }
+
+    private class Hostname {
+        String address;
+        //todo: parsing nslookup response may not work when nslookup response format got changed
+        public Hostname(String ip) throws IOException, ExecutionException, InterruptedException {
+            address = new StringBuilder(ip).reverse().toString() + ".in-addr.arpa";
+            Nslookup nslookup = new Nslookup("nslookup " + address + " PTR");
+
+            PipedInputStream in = new PipedInputStream();
+            final PipedOutputStream out = new PipedOutputStream(in);
+//            nslookup.onPreExecute(out);
+            nslookup.execute();
+            nslookup.get(); //? todo
+
+            String output = IOUtils.toString(in); //todo: when to finish
+            String a = "5";
+            todo tu skonczylem ,nie dziala cos
         }
 
     }
@@ -99,6 +120,8 @@ public class Traceroute extends ExtraCommand {
 
 
     //todo: what time does traceroute show? just 3 attemps of ping or any logic?
+    //todo: failing after traceroute end
+    //todo: fqdns as seperate argument?
     @Override
     protected Object doInBackground(Object[] params) {
 
@@ -165,6 +188,9 @@ public class Traceroute extends ExtraCommand {
                             continue;
                         }
 
+                        new Hostname(ip); //todo:
+
+
                         StringBuilder rrtsStrBuilder = new StringBuilder();
                         if (finalMeasureRTT) {
                             float rtts[] = new RTT(ip).getRTT();
@@ -184,6 +210,8 @@ public class Traceroute extends ExtraCommand {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
                 }
             }
         }).start();
@@ -195,7 +223,6 @@ public class Traceroute extends ExtraCommand {
         return null;
 
     }
-    //todo: time parsing
     //todo: support fqdns
     //todo: validate ip
     //todo: traceroute options
