@@ -27,22 +27,24 @@ public class Traceroute extends ExtraCommand {
         String ip;
         String pingRTTRegexp = "^PING .*\\n64 bytes from .* time=(.*) ms\\n64 bytes from .* time=(.*) ms\\n64 bytes from .* time=(.*) ms\\n\\n.*\\n.*\\n.*\\n$";
         Pattern pingRTTPattern = Pattern.compile(pingRTTRegexp);
+
         public RTT(String ip) {
             this.ip = ip;
         }
+
         public float[] getRTT() throws IOException, InterruptedException {
             Runtime runtime = Runtime.getRuntime();
             Process process = runtime.exec("ping -c 3 " + this.ip);
             process.waitFor();
             String response = IOUtils.toString(process.getInputStream());
             Matcher pingRTTMatcher = pingRTTPattern.matcher(response);
-            if(pingRTTMatcher.matches()){
+            if (pingRTTMatcher.matches()) {
                 float time1 = Float.parseFloat(pingRTTMatcher.group(1));
                 float time2 = Float.parseFloat(pingRTTMatcher.group(2));
                 float time3 = Float.parseFloat(pingRTTMatcher.group(3));
-                return new float[] {time1, time2, time3};
+                return new float[]{time1, time2, time3};
             } else {
-                return new float[] {};
+                return new float[]{};
             }
         }
 
@@ -96,7 +98,7 @@ public class Traceroute extends ExtraCommand {
     }
 
 
-    //notes:
+    //todo: what time does traceroute show? just 3 attemps of ping or any logic?
     @Override
     protected Object doInBackground(Object[] params) {
 
@@ -105,24 +107,23 @@ public class Traceroute extends ExtraCommand {
         String dstIP = null;
         String[] args = cmd.split(" ");
 
-        if(args.length < 2) {
-            publishProgress("usage: traceroute ip [-t]\n-t - prints rtts");
+        if (args.length < 2) {
+            publishProgress("usage: traceroute ip [-t]\n-t - prints rtts\n");
             return null;
         }
 
-        if(args.length < 3) {
+        if (args.length > 1) {
             dstIP = args[1];
         }
-        else if(args.length == 3 && args[2].equals("-t")) {
+
+        if (args.length == 3 && args[2].equals("-t")) {
             measureRTT = true;
         }
 
 
-        //todo: add mesasure rtt arg
-
         final String finalDstIP = dstIP;
         final Boolean finalMeasureRTT = measureRTT;
-        new Thread(new Runnable() { //todo: move to sepeerate class?
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -159,24 +160,22 @@ public class Traceroute extends ExtraCommand {
                             continue;
                         }
 
-                        if(ip == null) {
+                        if (ip == null) {
                             out.write("no response\n".getBytes());
                             continue;
                         }
 
                         StringBuilder rrtsStrBuilder = new StringBuilder();
-                        if(finalMeasureRTT) {
-                            if (ip != null) {
-                                float rtts[] = new RTT(ip).getRTT();
-                                for (int i = 0; i < rtts.length; i++) {
-                                    rrtsStrBuilder.append(rtts[i] + " ms\t");
-                                }
+                        if (finalMeasureRTT) {
+                            float rtts[] = new RTT(ip).getRTT();
+                            for (float rtt : rtts) {
+                                rrtsStrBuilder.append(rtt + " ms\t");
                             }
                         }
                         String rrtsStr = finalMeasureRTT ? rrtsStrBuilder.toString() : "";
                         out.write((ip + "\t" + (rrtsStr.length() > 0 ? rrtsStr : "") + "\n").getBytes());
 
-                        if (ip != null && ip.equals(finalDstIP)) {
+                        if (ip.equals(finalDstIP)) {
                             break;
                         }
 
@@ -196,15 +195,15 @@ public class Traceroute extends ExtraCommand {
         return null;
 
     }
-        //todo: time parsing
-        //todo: support fqdns
-        //todo: validate ip
-        //todo: traceroute options
-        //todo: convert ip to fqdn
-        //todo: use udp instead of ping?
-        //todo: timeout
-        //todo: ip validation
-        //todo: refactor to seperate methods
-        //todo: crash after traceroute
+    //todo: time parsing
+    //todo: support fqdns
+    //todo: validate ip
+    //todo: traceroute options
+    //todo: convert ip to fqdn
+    //todo: use udp instead of ping?
+    //todo: timeout
+    //todo: ip validation
+    //todo: refactor to seperate methods
+    //todo: crash after traceroute
 
 }
