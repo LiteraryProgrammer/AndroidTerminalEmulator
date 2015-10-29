@@ -22,34 +22,10 @@ import java.util.regex.Pattern;
 //todo: live output
 public class Traceroute extends ExtraCommand {
 
-    private class SequenceOfPings extends AsyncTask {
-
-        OutputStream os;
-
-        protected void onPreExecute(OutputStream os) throws IOException {
-            super.onPreExecute();
-            this.os = os;
-            os.write("Asdf".getBytes());
-        }
-
-        @Override
-        protected Object doInBackground(Object[] params) {
-            try {
-                os.write("asdF".getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //todo: add writing and thread.sleep several times
-
-            return null;
-        }
-    }
-
-
     private Boolean finishedFlag = false;
-    private int PING_MAX_TTL = 64; //todo: verify
-    private Process process;
+    private int PING_MAX_TTL = 64;
+    Process process; //todo: refactor
+
 
     public Boolean finished() {
         return true;
@@ -96,16 +72,16 @@ public class Traceroute extends ExtraCommand {
     @Override
     protected Object doInBackground(Object[] params) {
 
-        PipedInputStream totalIs = new PipedInputStream();
-        PipedOutputStream out = null;
-
-        try {
-            out = new PipedOutputStream(totalIs);
-        } catch (IOException e) {
-            e.printStackTrace();
+        final PipedInputStream totalIs = new PipedInputStream();
+        String dstIP = null;
+        String[] args = cmd.split(" ");
+        if(args.length == 2) {
+            dstIP = args[1];
+        } else {
+            publishProgress("usage: traceroute ip");
+            return null;
         }
-
-        final PipedOutputStream finalOut = out; //todo: refactor, move inside new thread?
+        final String finalDstIP = dstIP;
         new Thread(new Runnable() { //todo: move to sepeerate class?
             @Override
             public void run() {
@@ -113,13 +89,13 @@ public class Traceroute extends ExtraCommand {
 
                     Runtime runtime = Runtime.getRuntime();
                     Process process;
-                    String dstIP = "46.4.242.141"; //todo: temporary
+                    PipedOutputStream out = new PipedOutputStream(totalIs);
 
-                    for (int j = 1; j < PING_MAX_TTL; j++) { //todo: max ttl?
+                    for (int j = 1; j < PING_MAX_TTL; j++) {
 
-                        finalOut.write((j + ": ").getBytes());
+                        out.write((j + ": ").getBytes());
 
-                        process = runtime.exec(("ping -c 1 " + "-t " + j + " " + dstIP).split(" "));
+                        process = runtime.exec(("ping -c 1 " + "-t " + j + " " + finalDstIP).split(" "));
                         process.waitFor();
 
                         is = process.getInputStream();
@@ -140,13 +116,13 @@ public class Traceroute extends ExtraCommand {
                         } else if (finalResponseMatcher.matches()) {
                             ip = finalResponseMatcher.group(1);
                         } else {
-                            finalOut.write("invalid response\n".getBytes());
+                            out.write("invalid response\n".getBytes());
                             continue;
                         }
 
-                        finalOut.write((ip != null ? ip + "\n" : "no response\n").getBytes());
+                        out.write((ip != null ? ip + "\n" : "no response\n").getBytes());
 
-                        if (ip != null && ip.equals(dstIP)) {
+                        if (ip != null && ip.equals(finalDstIP)) {
                             break;
                         }
 
@@ -183,39 +159,6 @@ public class Traceroute extends ExtraCommand {
 
         istr.onPreExecute(tv, sv, totalIs);
         istr.execute();
-
-//        SequenceOfPings sequenceOfPings = new SequenceOfPings();
-//        try {
-//            sequenceOfPings.onPreExecute(out);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        try {
-            out.write("asdF".getBytes());
-            Thread.sleep(1000);
-            out.write("asdF".getBytes());
-            Thread.sleep(1000);
-            out.write("asdF".getBytes());
-            Thread.sleep(1000);
-            out.write("asdF".getBytes());
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-//        istr.onPreExecute(tv, sv, totalIs);
-//        istr.execute();
-
-
-//        while(read != -1) {
-//            try {
-//                read = totalIs.read();
-//                publishProgress((char) read);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
 
 
         //todo: global notification - running
