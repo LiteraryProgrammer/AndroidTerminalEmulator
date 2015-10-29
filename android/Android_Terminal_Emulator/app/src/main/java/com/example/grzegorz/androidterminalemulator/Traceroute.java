@@ -142,26 +142,7 @@ public class Traceroute extends ExtraCommand {
         return null;
 
     }
-
-    protected Object depdoInBackground(Object[] params) {
-
-
-        InputStreamTerminalWriter istr = new InputStreamTerminalWriter();
-
-        PipedInputStream totalIs = new PipedInputStream();
-        PipedOutputStream out = null;
-
-        try {
-            out = new PipedOutputStream(totalIs);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        istr.onPreExecute(tv, sv, totalIs);
-        istr.execute();
-
-
-        //todo: global notification - running
+        //todo: time parsing
         //todo: support fqdns
         //todo: validate ip
         //todo: traceroute options
@@ -170,78 +151,6 @@ public class Traceroute extends ExtraCommand {
         //todo: timeout
         //todo: ip validation
         //todo: refactor to seperate methods
+        //todo: crash after traceroute
 
-        String dstIP;
-        try {
-            //todo: refactor args
-            dstIP = cmd.split(" ")[1];
-        } catch (Exception e) {
-            publishProgress("No arguments specified\n");
-            return null;
-        }
-
-
-        for (int j = 1; j < 1; j++) { //todo: temporrary disabled
-//        for(int j = 1; j < PING_MAX_TTL; j++) {
-//            runtime = Runtime.getRuntime();
-            try {
-//                process = runtime.exec(("ping -c 3 " + "-t " + j + " " + dstIP).split(" "));
-//                process = runtime.exec(("ping -c 1 " + "-t " + j + " " + dstIP).split(" "));
-                //todo: support all streams
-                //todo: shorter timeout ?
-                //todo: extra ? arguments for traceroute
-                //todo: add argument that convert to fqdn
-                //todo: use process builder
-                //todo: redirect error to stdout
-                //.redirectErrorStream(true)
-                //todo: live output
-//                is = process.getInputStream();
-//                es = process.getErrorStream();
-//                os = process.getOutputStream();
-
-//                process.waitFor();
-//                String response = IOUtils.toString(is);
-
-                String response = "asdf";
-                out.write(response.getBytes());
-
-                if (5 < 6)
-                    continue;
-
-                //todo: temporary, create general inputtrac stream to stream all responses converted to traceroute response
-//                InputStreamTerminalWriter istr = new InputStreamTerminalWriter();
-//                istr.onPreExecute(tv, sv, is);
-//                istr.execute();
-
-                String ip;
-
-                Matcher ttlExceededMatcher = ttlExceededPattern.matcher(response);
-                Matcher noResponseMatcher = noResponsePattern.matcher(response);
-                Matcher finalResponseMatcher = finalResponsePattern.matcher(response);
-
-                if (ttlExceededMatcher.matches()) {
-                    ip = ttlExceededMatcher.group(1); // first group = ip
-                } else if (noResponseMatcher.matches()) {
-                    ip = null;
-                } else if (finalResponseMatcher.matches()) {
-                    ip = finalResponseMatcher.group(1);
-                } else {
-                    publishProgress("invalid responsetra\n");
-                    continue;
-//                    Log.d("ERROR", "INVALID RESPONSE");
-//                    return null;
-                }
-
-                publishProgress(ip != null ?
-                        j + ": " + ip + "\n" :
-                        j + ": " + "no response\n");
-
-                if (ip != null && ip.equals(dstIP)) break;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
 }
