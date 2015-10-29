@@ -65,11 +65,11 @@ public class Traceroute extends ExtraCommand {
     //todo: extract timing
     private String pingTtlExceededResponseRegexp =
             "PING .*\\n" +
-            "From ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}).*\n" +
-            "\n" +
-            ".*\n" +
-            ".*\n" +
-            ".*\n";
+                    "From ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}).*\n" +
+                    "\n" +
+                    ".*\n" +
+                    ".*\n" +
+                    ".*\n";
 
     private String pingFinalResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*\\n.*1 received, 0% packet loss.*\\n.*\\n";
     private String pingNoResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*100% packet loss.*\\n\\n";
@@ -105,7 +105,7 @@ public class Traceroute extends ExtraCommand {
             e.printStackTrace();
         }
 
-        final PipedOutputStream finalOut = out;
+        final PipedOutputStream finalOut = out; //todo: refactor, move inside new thread?
         new Thread(new Runnable() { //todo: move to sepeerate class?
             @Override
             public void run() {
@@ -115,7 +115,10 @@ public class Traceroute extends ExtraCommand {
                     Process process;
                     String dstIP = "46.4.242.141"; //todo: temporary
 
-                    for(int j = 1; j < PING_MAX_TTL; j++) { //todo: max ttl?
+                    for (int j = 1; j < PING_MAX_TTL; j++) { //todo: max ttl?
+
+                        finalOut.write((j + ": ").getBytes());
+
                         process = runtime.exec(("ping -c 1 " + "-t " + j + " " + dstIP).split(" "));
                         process.waitFor();
 
@@ -123,7 +126,29 @@ public class Traceroute extends ExtraCommand {
                         //todo: rest of streams?
 
                         String response = IOUtils.toString(is);
-                        finalOut.write(response.getBytes());
+                        String ip;
+
+                        Matcher ttlExceededMatcher = ttlExceededPattern.matcher(response);
+                        Matcher noResponseMatcher = noResponsePattern.matcher(response);
+                        Matcher finalResponseMatcher = finalResponsePattern.matcher(response);
+
+
+                        if (ttlExceededMatcher.matches()) {
+                            ip = ttlExceededMatcher.group(1); // first group = ip
+                        } else if (noResponseMatcher.matches()) {
+                            ip = null;
+                        } else if (finalResponseMatcher.matches()) {
+                            ip = finalResponseMatcher.group(1);
+                        } else {
+                            finalOut.write("invalid response\n".getBytes());
+                            continue;
+                        }
+
+                        finalOut.write((ip != null ? ip + "\n" : "no response\n").getBytes());
+
+                        if (ip != null && ip.equals(dstIP)) {
+                            break;
+                        }
 
                     }
                 } catch (IOException e) {
@@ -156,7 +181,7 @@ public class Traceroute extends ExtraCommand {
             e.printStackTrace();
         }
 
-        istr.onPreExecute(tv,sv,totalIs);
+        istr.onPreExecute(tv, sv, totalIs);
         istr.execute();
 
 //        SequenceOfPings sequenceOfPings = new SequenceOfPings();
@@ -183,8 +208,6 @@ public class Traceroute extends ExtraCommand {
 //        istr.execute();
 
 
-
-
 //        while(read != -1) {
 //            try {
 //                read = totalIs.read();
@@ -209,15 +232,13 @@ public class Traceroute extends ExtraCommand {
         try {
             //todo: refactor args
             dstIP = cmd.split(" ")[1];
+        } catch (Exception e) {
+            publishProgress("No arguments specified\n");
+            return null;
         }
-            catch (Exception e) {
-                publishProgress("No arguments specified\n");
-                return null;
-            }
 
 
-
-        for(int j = 1; j < 1; j++) { //todo: temporrary disabled
+        for (int j = 1; j < 1; j++) { //todo: temporrary disabled
 //        for(int j = 1; j < PING_MAX_TTL; j++) {
 //            runtime = Runtime.getRuntime();
             try {
@@ -241,8 +262,8 @@ public class Traceroute extends ExtraCommand {
                 String response = "asdf";
                 out.write(response.getBytes());
 
-                if(5<6)
-                continue;
+                if (5 < 6)
+                    continue;
 
                 //todo: temporary, create general inputtrac stream to stream all responses converted to traceroute response
 //                InputStreamTerminalWriter istr = new InputStreamTerminalWriter();
@@ -255,16 +276,13 @@ public class Traceroute extends ExtraCommand {
                 Matcher noResponseMatcher = noResponsePattern.matcher(response);
                 Matcher finalResponseMatcher = finalResponsePattern.matcher(response);
 
-                if(ttlExceededMatcher.matches()) {
+                if (ttlExceededMatcher.matches()) {
                     ip = ttlExceededMatcher.group(1); // first group = ip
-                }
-                else if(noResponseMatcher.matches()) {
+                } else if (noResponseMatcher.matches()) {
                     ip = null;
-                }
-                else if (finalResponseMatcher.matches()) {
+                } else if (finalResponseMatcher.matches()) {
                     ip = finalResponseMatcher.group(1);
-                }
-                else {
+                } else {
                     publishProgress("invalid responsetra\n");
                     continue;
 //                    Log.d("ERROR", "INVALID RESPONSE");
