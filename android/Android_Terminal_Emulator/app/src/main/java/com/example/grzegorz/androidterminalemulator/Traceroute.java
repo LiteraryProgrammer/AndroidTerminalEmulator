@@ -142,13 +142,9 @@ public class Traceroute extends ExtraCommand {
     }
 
 
-    //todo: what time does traceroute show? just 3 attemps of ping or any logic?
-    //todo: fqdns as seperate argument?
     //todo: traceroute nie zawsze podjae domene hostname
     @Override
     protected Object doInBackground(Object[] params) {
-
-        //todo: refactor arguments to DefaultParser
 
         final PipedInputStream totalIs = new PipedInputStream();
         Boolean measureRTT = false;
@@ -237,10 +233,10 @@ public class Traceroute extends ExtraCommand {
                             out.write("no response\n".getBytes());
                             continue;
                         }
-
-                        //todo: check if already is not hostname
-                        String hostname = new Hostname(responseAddr).getMatchedHostname();
-                        //todo: add hostname as parameter / fqdn
+                        String hostname = null;
+                        if(finalFindHostname) {
+                            hostname = new Hostname(responseAddr).getMatchedHostname();
+                        }
 
                         StringBuilder rrtsStrBuilder = new StringBuilder();
                         if (finalMeasureRTT) {
@@ -284,14 +280,4 @@ public class Traceroute extends ExtraCommand {
         return null;
 
     }
-    //todo: support fqdns
-    //todo: validate ip
-    //todo: traceroute options
-    //todo: convert ip to fqdn
-    //todo: use udp instead of ping?
-    //todo: timeout
-    //todo: ip validation
-    //todo: refactor to seperate methods
-    //todo: crash after traceroute
-
 }
