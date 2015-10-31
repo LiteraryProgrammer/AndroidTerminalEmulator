@@ -140,6 +140,7 @@ public class Traceroute extends ExtraCommand {
     //todo: what time does traceroute show? just 3 attemps of ping or any logic?
     //todo: failing after traceroute end
     //todo: fqdns as seperate argument?
+    //todo: traceroute nie zawsze podjae domene hostname
     @Override
     protected Object doInBackground(Object[] params) {
 

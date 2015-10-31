@@ -36,20 +36,25 @@ public class InputStreamTerminalWriter extends AsyncTask {
     protected Object doInBackground(Object[] params) {
 
         InputStreamReader isr = new InputStreamReader(is);
-        while(true) {
-            char c = 0;
-            try {
-                c = (char) isr.read();
-                //todo: system err?
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            while (true) {
+                char c = 0;
+                try {
+                    c = (char) isr.read();
+                    //todo: system err?
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (c == '\uFFFF') break;
+                String str = String.valueOf(c);
+                publishProgress(str);
+                sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
-            if(c == '\uFFFF') break;
-            String str = String.valueOf(c);
-            publishProgress(str);
-            sv.fullScroll(ScrollView.FOCUS_DOWN);
-            }
-
+        }
+        catch (Exception e) {
+            //todo: print stack trace?
+            return null;
+        }
         return null;
     }
 }
