@@ -2,6 +2,10 @@ package com.example.grzegorz.androidterminalemulator;
 
 import com.google.common.base.Joiner;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -11,6 +15,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,6 +103,8 @@ public class Traceroute extends ExtraCommand {
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64;
     Process process; //todo: refactor
+    private String usage = "usage: traceroute ip [-t] [-f]\n-t - prints rtts\n-f - prints in fqdn format if possible\n"; //todo: refactor help
+
 
 
     public Boolean finished() {
@@ -109,9 +116,7 @@ public class Traceroute extends ExtraCommand {
 
     }
 
-    //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: add timeout
-    //todo: extract timing
 
     private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*(\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b).*: .* Time to live exceeded(.*\\n)+";
 
@@ -138,37 +143,59 @@ public class Traceroute extends ExtraCommand {
 
 
     //todo: what time does traceroute show? just 3 attemps of ping or any logic?
-    //todo: failing after traceroute end
     //todo: fqdns as seperate argument?
     //todo: traceroute nie zawsze podjae domene hostname
     @Override
     protected Object doInBackground(Object[] params) {
 
+        //todo: refactor arguments to DefaultParser
+
         final PipedInputStream totalIs = new PipedInputStream();
         Boolean measureRTT = false;
+        Boolean findHostname = false;
         String dstIP = null;
         String[] args = cmd.split(" ");
 
+        DefaultParser parser = new DefaultParser();
+        Options options = new Options();
+        options.addOption("t",false,"print rtts");
+        options.addOption("f",false,"convert to fqdns");
+
         if (args.length < 2) {
-            publishProgress("usage: traceroute ip [-t]\n-t - prints rtts\n");
+            publishProgress(usage);
             return null;
         }
+        CommandLine commandLine = null;
+        try {
+            commandLine = parser.parse(options, args);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        if (commandLine.hasOption("t")) {
+            measureRTT = true;
+        }
+
+        if (commandLine.hasOption("f")) {
+            findHostname = true;
+        }
+
 
         if (args.length > 1) {
             try {
                 dstIP = InetAddress.getByName(args[1]).getHostAddress(); //convert to ip if got fqdn
             } catch (UnknownHostException e) {
+                publishProgress(usage);
                 e.printStackTrace();
+                return null;
             }
-        }
-
-        if (args.length == 3 && args[2].equals("-t")) {
-            measureRTT = true;
         }
 
 
         final String finalDstIP = dstIP;
         final Boolean finalMeasureRTT = measureRTT;
+        final Boolean finalFindHostname = findHostname;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -202,7 +229,7 @@ public class Traceroute extends ExtraCommand {
                         } else if (finalResponseMatcher.matches()) {
                             responseAddr = finalResponseMatcher.group(1);
                         } else {
-                            out.write("invalid response\n".getBytes()); //todo? when?
+                            out.write("invalid response\n".getBytes());
                             continue;
                         }
 
@@ -210,7 +237,7 @@ public class Traceroute extends ExtraCommand {
                             out.write("no response\n".getBytes());
                             continue;
                         }
-                        Boolean findHostname = true; //todo as argument
+
                         //todo: check if already is not hostname
                         String hostname = new Hostname(responseAddr).getMatchedHostname();
                         //todo: add hostname as parameter / fqdn
@@ -224,7 +251,7 @@ public class Traceroute extends ExtraCommand {
                         }
 
                         String entryName;
-                        if(findHostname && hostname != null) {
+                        if(finalFindHostname && hostname != null) {
                             entryName = hostname;
                         } else {
                             entryName = responseAddr;
