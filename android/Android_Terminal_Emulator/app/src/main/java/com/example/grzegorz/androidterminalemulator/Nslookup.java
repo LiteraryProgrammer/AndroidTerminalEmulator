@@ -53,6 +53,9 @@ public class Nslookup extends ExtraCommand {
         else {
             publishProgress("Usage: nslookup domainName recordType\n");
         }
+
+//        publishProgress((char) 256); //todo: temporary as end of stream?
+
         return null;
     }
 

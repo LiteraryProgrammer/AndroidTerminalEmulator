@@ -86,6 +86,8 @@ public class NativeCommand extends Command {
     }
 
 
+    //todo: error stream that gives manual!! very importatnt
+
     @Override
     protected void onPostExecute(Object o) {
         super.onPostExecute(o);

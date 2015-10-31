@@ -20,7 +20,6 @@ public class Nslookup {
     private byte responseBytes[];
     private String dnsServer = "8.8.8.8"; //todo: make it an argument
     private int port = 53;
-
     public String run(String domainName, DnsPayload.RecordType recordType) throws Exception {
 
         DnsFrame queryDnsFrame = new DnsFrame(domainName, recordType);

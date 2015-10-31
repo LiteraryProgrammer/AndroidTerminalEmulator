@@ -1,19 +1,16 @@
 package com.example.grzegorz.androidterminalemulator;
 
-import android.os.AsyncTask;
-import android.util.Log;
+import com.google.common.base.Joiner;
 
 import org.apache.commons.io.IOUtils;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.InetAddress;
-import java.util.Properties;
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,26 +49,51 @@ public class Traceroute extends ExtraCommand {
     }
 
     private class Hostname {
+
+        private String PTRResponseRegexp = "^(.*\\n)+(Payload:\\tDomain:\\t(.*)\\n)(.*\\n)+$";
+        Pattern PTRResponsePattern = Pattern.compile(PTRResponseRegexp);
+        String matchedHostname = null;
+
         String address;
         //todo: parsing nslookup response may not work when nslookup response format got changed
-        public Hostname(String ip) throws IOException, ExecutionException, InterruptedException {
-            address = new StringBuilder(ip).reverse().toString() + ".in-addr.arpa";
+        //todo: don't nslookup private ips
+        public Hostname(String ip) throws Exception {
+            String splittedAddress[] = ip.split("\\.");
+            if(splittedAddress.length != 4) {
+                throw new Exception("invalid address");
+            }
+
+            Collections.reverse(Arrays.asList(splittedAddress));
+            address = Joiner.on(".").join(splittedAddress).concat(".in-addr.arpa");
             Nslookup nslookup = new Nslookup("nslookup " + address + " PTR");
 
             PipedInputStream in = new PipedInputStream();
             final PipedOutputStream out = new PipedOutputStream(in);
-//            nslookup.onPreExecute(out);
-            nslookup.execute();
-            nslookup.get(); //? todo
+            StringBuilder stringBuilder = new StringBuilder();
+            nslookup.onPreExecute(stringBuilder);
+            nslookup.doInBackground(null); //todo: why execute() doesn't work, todo: null?
 
-            String output = IOUtils.toString(in); //todo: when to finish
-            String a = "5";
-            todo tu skonczylem ,nie dziala cos
+
+            String responseString = stringBuilder.toString();
+            Matcher matcher = PTRResponsePattern.matcher(responseString);
+
+            if(responseString.contains("Domain")) { //todo: temporary, merge
+
+                if (matcher.matches()) {
+                    matchedHostname = matcher.group(3);
+                }
+            }
         }
 
+        public String getMatchedHostname() {
+            return matchedHostname;
+        }
+
+        //todo: validate if good results
     }
 
-    //todo: allow fqdn as input ip
+
+    //todo: allow fqdn as input ip®
 
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64;
@@ -90,14 +112,10 @@ public class Traceroute extends ExtraCommand {
     //todo: add to pingTtlExceededResponseRegexp  - time to live exceeded
     //todo: add timeout
     //todo: extract timing
-    private String pingTtlExceededResponseRegexp =
-            "PING .*\\n" +
-                    "From ([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}).*\n" +
-                    "\n" +
-                    ".*\n" +
-                    ".*\n" +
-                    ".*\n";
 
+    private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*(\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b).*: .* Time to live exceeded(.*\\n)+";
+
+//    private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*: .* Time to live exceeded(.*\\n)+";
     private String pingFinalResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*\\n.*1 received, 0% packet loss.*\\n.*\\n";
     private String pingNoResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*100% packet loss.*\\n\\n";
 
@@ -136,7 +154,11 @@ public class Traceroute extends ExtraCommand {
         }
 
         if (args.length > 1) {
-            dstIP = args[1];
+            try {
+                dstIP = InetAddress.getByName(args[1]).getHostAddress(); //convert to ip if got fqdn
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+            }
         }
 
         if (args.length == 3 && args[2].equals("-t")) {
@@ -165,7 +187,7 @@ public class Traceroute extends ExtraCommand {
                         is = process.getInputStream();
 
                         String response = IOUtils.toString(is);
-                        String ip;
+                        String responseAddr;
 
                         Matcher ttlExceededMatcher = ttlExceededPattern.matcher(response);
                         Matcher noResponseMatcher = noResponsePattern.matcher(response);
@@ -173,35 +195,44 @@ public class Traceroute extends ExtraCommand {
 
 
                         if (ttlExceededMatcher.matches()) {
-                            ip = ttlExceededMatcher.group(1); // first group = ip
+                            responseAddr = ttlExceededMatcher.group(1); // first group = ip
                         } else if (noResponseMatcher.matches()) {
-                            ip = null;
+                            responseAddr = null;
                         } else if (finalResponseMatcher.matches()) {
-                            ip = finalResponseMatcher.group(1);
+                            responseAddr = finalResponseMatcher.group(1);
                         } else {
                             out.write("invalid response\n".getBytes()); //todo? when?
                             continue;
                         }
 
-                        if (ip == null) {
+                        if (responseAddr == null) {
                             out.write("no response\n".getBytes());
                             continue;
                         }
-
-                        new Hostname(ip); //todo:
-
+                        Boolean findHostname = true; //todo as argument
+                        //todo: check if already is not hostname
+                        String hostname = new Hostname(responseAddr).getMatchedHostname();
+                        //todo: add hostname as parameter / fqdn
 
                         StringBuilder rrtsStrBuilder = new StringBuilder();
                         if (finalMeasureRTT) {
-                            float rtts[] = new RTT(ip).getRTT();
+                            float rtts[] = new RTT(responseAddr).getRTT();
                             for (float rtt : rtts) {
                                 rrtsStrBuilder.append(rtt + " ms\t");
                             }
                         }
-                        String rrtsStr = finalMeasureRTT ? rrtsStrBuilder.toString() : "";
-                        out.write((ip + "\t" + (rrtsStr.length() > 0 ? rrtsStr : "") + "\n").getBytes());
 
-                        if (ip.equals(finalDstIP)) {
+                        String entryName;
+                        if(findHostname && hostname != null) {
+                            entryName = hostname;
+                        } else {
+                            entryName = responseAddr;
+                        }
+
+                        String rrtsStr = finalMeasureRTT ? rrtsStrBuilder.toString() : "";
+                        out.write((entryName + "\t" + (rrtsStr.length() > 0 ? rrtsStr : "") + "\n").getBytes());
+
+                        if (responseAddr.equals(finalDstIP)) {
                             break;
                         }
 
@@ -211,6 +242,8 @@ public class Traceroute extends ExtraCommand {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
