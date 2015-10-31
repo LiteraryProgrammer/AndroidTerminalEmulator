@@ -60,11 +60,11 @@ public class Traceroute extends ExtraCommand {
         String matchedHostname = null;
 
         String address;
-        //todo: parsing nslookup response may not work when nslookup response format got changed
-        //todo: don't nslookup private ips
+
+        //note: parsing nslookup response may not work when nslookup response format got changed
         public Hostname(String ip) throws Exception {
             String splittedAddress[] = ip.split("\\.");
-            if(splittedAddress.length != 4) {
+            if (splittedAddress.length != 4) {
                 throw new Exception("invalid address");
             }
 
@@ -76,17 +76,14 @@ public class Traceroute extends ExtraCommand {
             final PipedOutputStream out = new PipedOutputStream(in);
             StringBuilder stringBuilder = new StringBuilder();
             nslookup.onPreExecute(stringBuilder);
-            nslookup.doInBackground(null); //todo: why execute() doesn't work, todo: null?
+            nslookup.doInBackground(null); //note: why execute() doesn't work
 
 
             String responseString = stringBuilder.toString();
             Matcher matcher = PTRResponsePattern.matcher(responseString);
 
-            if(responseString.contains("Domain")) { //todo: temporary, merge
-
-                if (matcher.matches()) {
-                    matchedHostname = matcher.group(3);
-                }
+            if (responseString.contains("Domain") && matcher.matches()) {
+                matchedHostname = matcher.group(3);
             }
         }
 
@@ -94,17 +91,12 @@ public class Traceroute extends ExtraCommand {
             return matchedHostname;
         }
 
-        //todo: validate if good results
     }
-
-
-    //todo: allow fqdn as input ip®
 
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64;
-    Process process; //todo: refactor
-    private String usage = "usage: traceroute ip [-t] [-f]\n-t - prints rtts\n-f - prints in fqdn format if possible\n"; //todo: refactor help
-
+    Process process;
+    private String usage = "usage: traceroute ip [-t] [-f]\n-t - prints rtts\n-f - prints in fqdn format if possible\n";
 
 
     public Boolean finished() {
@@ -116,11 +108,9 @@ public class Traceroute extends ExtraCommand {
 
     }
 
-    //todo: add timeout
-
     private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*(\\b(?:[0-9]{1,3}\\.){3}[0-9]{1,3}\\b).*: .* Time to live exceeded(.*\\n)+";
 
-//    private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*: .* Time to live exceeded(.*\\n)+";
+    //    private String pingTtlExceededResponseRegexp = "PING .*\\nFrom .*: .* Time to live exceeded(.*\\n)+";
     private String pingFinalResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*\\n.*1 received, 0% packet loss.*\\n.*\\n";
     private String pingNoResponseRegexp = "PING .* \\(([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})\\) .*\\n.*\\n.*\\n.*100% packet loss.*\\n\\n";
 
@@ -154,8 +144,8 @@ public class Traceroute extends ExtraCommand {
 
         DefaultParser parser = new DefaultParser();
         Options options = new Options();
-        options.addOption("t",false,"print rtts");
-        options.addOption("f",false,"convert to fqdns");
+        options.addOption("t", false, "print rtts");
+        options.addOption("f", false, "convert to fqdns");
 
         if (args.length < 2) {
             publishProgress(usage);
@@ -234,7 +224,7 @@ public class Traceroute extends ExtraCommand {
                             continue;
                         }
                         String hostname = null;
-                        if(finalFindHostname) {
+                        if (finalFindHostname) {
                             hostname = new Hostname(responseAddr).getMatchedHostname();
                         }
 
@@ -247,7 +237,7 @@ public class Traceroute extends ExtraCommand {
                         }
 
                         String entryName;
-                        if(finalFindHostname && hostname != null) {
+                        if (finalFindHostname && hostname != null) {
                             entryName = hostname;
                         } else {
                             entryName = responseAddr;
