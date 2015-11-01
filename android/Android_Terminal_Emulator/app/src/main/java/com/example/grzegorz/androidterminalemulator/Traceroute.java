@@ -12,12 +12,10 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
-import java.lang.reflect.Constructor;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,7 +70,7 @@ public class Traceroute extends ExtraCommand {
 
             Collections.reverse(Arrays.asList(splittedAddress));
             address = Joiner.on(".").join(splittedAddress).concat(".in-addr.arpa");
-            String responseString = new com.example.grzegorz.androidterminalemulator.dns.Nslookup().run(address, DnsPayload.RecordType.PTR);
+            String responseString = new com.example.grzegorz.androidterminalemulator.dns.Nslookup().run(address, DnsPayload.RecordType.PTR, null);
             Matcher matcher = PTRResponsePattern.matcher(responseString);
 
             if (responseString.contains("Domain") && matcher.matches()) {

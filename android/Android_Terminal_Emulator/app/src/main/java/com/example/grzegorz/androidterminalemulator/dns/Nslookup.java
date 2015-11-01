@@ -18,15 +18,16 @@ public class Nslookup {
     private DatagramPacket recvPacket;
     private DnsFrame responseDnsFrame;
     private byte responseBytes[];
-    private String dnsServer = "8.8.8.8"; //todo: make it an argument IMPORTANT!!!
+    private String defaultDnsServer = "8.8.8.8"; //todo: make it an argument IMPORTANT!!!
     private int port = 53;
 
-    public String run(String domainName, DnsPayload.RecordType recordType) throws Exception {
+    public String run(String domainName, DnsPayload.RecordType recordType, String dnsServer) throws Exception {
 
         DnsFrame queryDnsFrame = new DnsFrame(domainName, recordType);
-
         datagramSocket = new DatagramSocket();
-        address = InetAddress.getByName(dnsServer);
+
+        address = InetAddress.getByName(dnsServer != null ? dnsServer : defaultDnsServer);
+        //todo: socket error print sth
 
         //todo: check if received frame serial number is the same as sent
         send(queryDnsFrame);
@@ -80,6 +81,7 @@ public class Nslookup {
     public void recv() throws Exception {
         byte[] responseBuf = new byte[2048]; //todo: max of udp?
         DatagramPacket responseDatagramPacket = new DatagramPacket(responseBuf, responseBuf.length);
+        datagramSocket.setSoTimeout(5000); //5seconds timeout
         datagramSocket.receive(responseDatagramPacket);
         int receivedLength = responseDatagramPacket.getLength();
 
