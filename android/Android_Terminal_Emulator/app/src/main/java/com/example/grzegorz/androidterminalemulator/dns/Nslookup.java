@@ -1,11 +1,16 @@
 package com.example.grzegorz.androidterminalemulator.dns;
 
+import com.google.common.base.Joiner;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by gpietrus on 01.08.15.
@@ -20,8 +25,28 @@ public class Nslookup {
     private byte responseBytes[];
     private String defaultDnsServer = "8.8.8.8";
     private int port = 53;
+    private String ipRegexp =
+            "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)";
+
+
+    public static String ipToFqdn(String ip) throws Exception {
+        String splittedAddress[] = ip.split("\\.");
+        if (splittedAddress.length != 4) {
+            throw new Exception("invalid address");
+        }
+
+        Collections.reverse(Arrays.asList(splittedAddress));
+        return Joiner.on(".").join(splittedAddress).concat(".in-addr.arpa");
+    }
 
     public String run(String domainName, DnsPayload.RecordType recordType, String dnsServer) throws Exception {
+
+        Pattern ipPattern = Pattern.compile(ipRegexp);
+        Matcher ipMatcher = ipPattern.matcher(domainName);
+
+        if(ipMatcher.matches()) {
+            domainName = ipToFqdn(domainName);
+        }
 
         DnsFrame queryDnsFrame = new DnsFrame(domainName, recordType);
         datagramSocket = new DatagramSocket();
@@ -89,6 +114,3 @@ public class Nslookup {
     }
 }
 
-//todo: implement reverse dns in general
-//todo: move reverse from traceroute to dns? !!!
-//todo: important!!

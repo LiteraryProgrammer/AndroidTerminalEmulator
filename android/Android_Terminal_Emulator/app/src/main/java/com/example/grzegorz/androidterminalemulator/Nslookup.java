@@ -4,6 +4,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
+import com.google.common.base.Joiner;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by grzegorz on 12.05.15.
@@ -24,8 +30,8 @@ public class Nslookup extends ExtraCommand {
 
     }
 
+
     @Override
-    //todo: add no answers case
     protected Object doInBackground(Object[] params) {
         com.example.grzegorz.androidterminalemulator.dns.Nslookup nslookup = new com.example.grzegorz.androidterminalemulator.dns.Nslookup();
         String args[] = cmd.split(" ");

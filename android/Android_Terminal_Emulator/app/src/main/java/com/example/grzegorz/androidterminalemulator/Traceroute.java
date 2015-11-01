@@ -53,37 +53,6 @@ public class Traceroute extends ExtraCommand {
 
     }
 
-    private class Hostname {
-
-        private String PTRResponseRegexp = "^(.*\\n)+(Payload:\\tDomain:\\t(.*)\\n)(.*\\n)+$";
-        Pattern PTRResponsePattern = Pattern.compile(PTRResponseRegexp);
-        String matchedHostname = null;
-
-        String address;
-
-        //note: parsing nslookup response may not work when nslookup response format got changed
-        public Hostname(String ip) throws Exception {
-            String splittedAddress[] = ip.split("\\.");
-            if (splittedAddress.length != 4) {
-                throw new Exception("invalid address");
-            }
-
-            Collections.reverse(Arrays.asList(splittedAddress));
-            address = Joiner.on(".").join(splittedAddress).concat(".in-addr.arpa");
-            String responseString = new com.example.grzegorz.androidterminalemulator.dns.Nslookup().run(address, DnsPayload.RecordType.PTR, null);
-            Matcher matcher = PTRResponsePattern.matcher(responseString);
-
-            if (responseString.contains("Domain") && matcher.matches()) {
-                matchedHostname = matcher.group(3);
-            }
-        }
-
-        public String getMatchedHostname() {
-            return matchedHostname;
-        }
-
-    }
-
     private Boolean finishedFlag = false;
     private int PING_MAX_TTL = 64;
     Process process;
