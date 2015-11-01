@@ -125,8 +125,6 @@ public class Traceroute extends ExtraCommand {
     }
 
 
-    //todo: traceroute nie zawsze podjae domene hostname
-    //todo: traceoute sometimes hangs
     @Override
     protected Object doInBackground(Object[] params) {
 

@@ -96,17 +96,6 @@ public class Telnet extends ExtraCommand {
         istw.onPreExecute(tv, sv , is);
         istw.execute();
 
-        //todo:
-
-//        w czesci teoretyczne
-//                uzyte narzedzia
-//                        opisac android
-//                                i polecenia ktore sa dostepna ktore nie
-//                i busybox
-//                        inne aplikacje
-//                                tekst na poczatek grudnia
-
-
         return os;
     }
 }
