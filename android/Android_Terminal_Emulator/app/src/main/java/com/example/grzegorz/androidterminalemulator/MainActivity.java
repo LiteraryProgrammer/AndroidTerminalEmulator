@@ -28,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
     ScrollView sv;
     ChangeDirectory cd;
 
+    //todo: indicator that command is running
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
