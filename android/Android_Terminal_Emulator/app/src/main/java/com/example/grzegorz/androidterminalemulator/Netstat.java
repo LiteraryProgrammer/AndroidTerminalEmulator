@@ -20,13 +20,12 @@ public class Netstat extends ExtraCommand {
         super(cmd);
     }
 
-    //todo: --help
-    //todo: addreses
+    private String usage = "netstat [options]\n-h - prints this help\n-t - prints tcp\n-u - prints udp\n-6 - prints ipv6\n-r - prints routing\n";
 
     @Override
     public Boolean finished() {
         return true;
-    } //todo: refactor
+    }
 
     @Override
     public void cancel() {
@@ -36,20 +35,28 @@ public class Netstat extends ExtraCommand {
     @Override
     protected Object doInBackground(Object[] params) {
 
-        //todo: add --help
-        DefaultParser parser = new DefaultParser(); //todo: move to upper class or seperate function
+        DefaultParser parser = new DefaultParser();
         Options options = new Options();
         options.addOption("t",false,"tcp");
         options.addOption("u",false,"udp");
         options.addOption("r", false, "route");
         options.addOption("6",false,"ipv6");
+        options.addOption("h",false,"help");
 
         CommandLine commandLine = null;
 
+        String splittedCmd[] = cmd.split(" ");
+
         try {
-            commandLine = parser.parse(options, cmd.split(" "));
+            commandLine = parser.parse(options, splittedCmd);
         } catch (ParseException e) {
             e.printStackTrace();
+            return null;
+        }
+
+        if(commandLine.hasOption("h") || splittedCmd.length < 2) {
+            publishProgress(usage);
+            return null;
         }
 
         char ipVersion;
