@@ -131,4 +131,8 @@ public class DnsHeader extends FrameHeader {
         listOfFields.add(nscount);
         listOfFields.add(arcount);
     }
+
+    public BitField getRcode() {
+        return rcode;
+    }
 }

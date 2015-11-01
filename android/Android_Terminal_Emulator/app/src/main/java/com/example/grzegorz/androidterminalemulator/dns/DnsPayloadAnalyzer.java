@@ -49,6 +49,7 @@ public class DnsPayloadAnalyzer {
             dnsResponseList.add(analyzeDnsAnswerPayload(Arrays.copyOfRange(payloadBytes, globalIterator, payloadBytes.length)));
         }
 
+        //todo: invalid nscount?
         for(int i = 0; i < nscount; i++) {
             dnsAuthorityResponseList.add(analyzeDnsAnswerPayload(Arrays.copyOfRange(payloadBytes,globalIterator,payloadBytes.length)));
         }

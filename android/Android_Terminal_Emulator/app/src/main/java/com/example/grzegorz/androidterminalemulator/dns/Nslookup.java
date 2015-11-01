@@ -18,8 +18,9 @@ public class Nslookup {
     private DatagramPacket recvPacket;
     private DnsFrame responseDnsFrame;
     private byte responseBytes[];
-    private String dnsServer = "8.8.8.8"; //todo: make it an argument
+    private String dnsServer = "8.8.8.8"; //todo: make it an argument IMPORTANT!!!
     private int port = 53;
+
     public String run(String domainName, DnsPayload.RecordType recordType) throws Exception {
 
         DnsFrame queryDnsFrame = new DnsFrame(domainName, recordType);
@@ -47,23 +48,30 @@ public class Nslookup {
 
     public String buildConsoleResponse(DnsFrame responseDnsFrame, byte[] bytes) {
         StringBuilder stringBuilder = new StringBuilder();
+        if(!responseDnsFrame.getFrameHeader().getRcode().toString().equals("0011")) { //error code
 
-        //get all response payloads
-        List<DnsResponsePayload> dnsResponseList = responseDnsFrame.getDnsResponseList();
-        List<DnsResponsePayload> dnsAuthorityResponseList = responseDnsFrame.getDnsAuthorityResponseList();
-        List<DnsResponsePayload> dnsAdditionalResponseList = responseDnsFrame.getDnsAdditionalResponseList();
+            //get all response payloads
+            List<DnsResponsePayload> dnsResponseList = responseDnsFrame.getDnsResponseList();
+            List<DnsResponsePayload> dnsAuthorityResponseList = responseDnsFrame.getDnsAuthorityResponseList();
+            List<DnsResponsePayload> dnsAdditionalResponseList = responseDnsFrame.getDnsAdditionalResponseList();
 
-        stringBuilder.append("Non-authoritative response:\n");
-        for (DnsResponsePayload dnsResponsePayload : dnsResponseList) {
-            stringBuilder.append(dnsResponsePayload.toConsoleString(bytes));
+            stringBuilder.append("Non-authoritative response:\n");
+            for (DnsResponsePayload dnsResponsePayload : dnsResponseList) {
+                stringBuilder.append(dnsResponsePayload.toConsoleString(bytes));
+            }
+
+            stringBuilder.append("Authoritative response:\n");
+            for (DnsResponsePayload dnsAuthorityResponsePayload : dnsAuthorityResponseList) {
+                stringBuilder.append(dnsAuthorityResponsePayload.toConsoleString(bytes));
+            }
+
+            stringBuilder.append("Additional response:\n");
+            for (DnsResponsePayload dnsAdditionalResponsePayload : dnsAdditionalResponseList) {
+                stringBuilder.append(dnsAdditionalResponsePayload.toConsoleString(bytes));
+            }
         }
-        stringBuilder.append("Authoritative response:\n");
-        for (DnsResponsePayload dnsAuthorityResponsePayload : dnsAuthorityResponseList) {
-            stringBuilder.append(dnsAuthorityResponsePayload.toConsoleString(bytes));
-        }
-        stringBuilder.append("Additional response:\n");
-        for (DnsResponsePayload dnsAdditionalResponsePayload : dnsAdditionalResponseList) {
-            stringBuilder.append(dnsAdditionalResponsePayload.toConsoleString(bytes));
+        else {
+            stringBuilder.append("No such domain.\n");
         }
 
         return stringBuilder.toString();
@@ -80,6 +88,6 @@ public class Nslookup {
     }
 }
 
-//todo: implement reverse dns!
+//todo: implement reverse dns in general
 //todo: move reverse from traceroute to dns? !!!
 //todo: important!!
