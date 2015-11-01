@@ -1,5 +1,6 @@
 package com.example.grzegorz.androidterminalemulator;
 
+import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
 import com.google.common.base.Joiner;
 
 import org.apache.commons.cli.CommandLine;
@@ -11,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.lang.reflect.Constructor;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -70,16 +72,7 @@ public class Traceroute extends ExtraCommand {
 
             Collections.reverse(Arrays.asList(splittedAddress));
             address = Joiner.on(".").join(splittedAddress).concat(".in-addr.arpa");
-            Nslookup nslookup = new Nslookup("nslookup " + address + " PTR");
-
-            PipedInputStream in = new PipedInputStream();
-            final PipedOutputStream out = new PipedOutputStream(in);
-            StringBuilder stringBuilder = new StringBuilder();
-            nslookup.onPreExecute(stringBuilder);
-            nslookup.doInBackground(null); //note: why execute() doesn't work
-
-
-            String responseString = stringBuilder.toString();
+            String responseString = new com.example.grzegorz.androidterminalemulator.dns.Nslookup().run(address, DnsPayload.RecordType.PTR);
             Matcher matcher = PTRResponsePattern.matcher(responseString);
 
             if (responseString.contains("Domain") && matcher.matches()) {
@@ -133,6 +126,7 @@ public class Traceroute extends ExtraCommand {
 
 
     //todo: traceroute nie zawsze podjae domene hostname
+    //todo: traceoute sometimes hangs
     @Override
     protected Object doInBackground(Object[] params) {
 

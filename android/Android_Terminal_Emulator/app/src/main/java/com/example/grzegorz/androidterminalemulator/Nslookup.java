@@ -56,6 +56,8 @@ public class Nslookup extends ExtraCommand {
 
 //        publishProgress((char) 256); //todo: temporary as end of stream?
 
+
+
         return null;
     }
 
