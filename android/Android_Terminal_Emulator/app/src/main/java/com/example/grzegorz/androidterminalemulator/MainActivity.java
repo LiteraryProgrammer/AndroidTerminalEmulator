@@ -72,9 +72,15 @@ public class MainActivity extends ActionBarActivity {
 
                     //todo: autoscorll
 
+                    //todo: refactor to switch case?
                     if (command.startsWith("cd")) {
                         cd.changeWorkingDirectory(command);
-                    } else {
+                    }
+                    else if(command.equals("clear")) {
+                        tv.setText(""); //clear terminal
+                        sv.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                    else {
                         if (ce[0] == null) {
                             ce[0] = new CommandExecutor(ma);
                         }
