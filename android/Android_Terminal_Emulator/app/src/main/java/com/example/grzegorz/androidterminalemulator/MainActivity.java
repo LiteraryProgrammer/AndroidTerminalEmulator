@@ -44,15 +44,14 @@ public class MainActivity extends ActionBarActivity {
         sv = (ScrollView) findViewById(R.id.scrollView);
         cd = new ChangeDirectory(tv, sv);
 
-        final CommandExecutor[] ce = new CommandExecutor[1];
-
+        final CommandExecutor ce = new CommandExecutor(ma);
         cancelButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
                 try {
-                    ce[0].cancelCommand(); //refactor?
+                    ce.cancelCommand(); //refactor?
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -81,16 +80,12 @@ public class MainActivity extends ActionBarActivity {
                         sv.fullScroll(ScrollView.FOCUS_DOWN);
                     }
                     else {
-                        if (ce[0] == null) {
-                            ce[0] = new CommandExecutor(ma);
-                        }
-
-                        if (ce[0].getIsRunning()) {
-                            ce[0].write(command + "\r\n");
+                        if (ce.getIsRunning()) {
+                            ce.write(command + "\r\n");
                             //todo: add writing to terminal view to!!
                         } else {
                             try {
-                                ce[0].executeCommand(command, ma, cd.getCurrentWorkingDirectory());
+                                ce.executeCommand(command, ma, cd.getCurrentWorkingDirectory());
                             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException | ExecutionException | IOException | InterruptedException e) {
                                 e.printStackTrace();
                             }
