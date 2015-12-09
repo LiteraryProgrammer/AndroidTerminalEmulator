@@ -80,19 +80,25 @@ public class Nslookup {
             List<DnsResponsePayload> dnsAuthorityResponseList = responseDnsFrame.getDnsAuthorityResponseList();
             List<DnsResponsePayload> dnsAdditionalResponseList = responseDnsFrame.getDnsAdditionalResponseList();
 
-            stringBuilder.append("Non-authoritative response:\n");
-            for (DnsResponsePayload dnsResponsePayload : dnsResponseList) {
-                stringBuilder.append(dnsResponsePayload.toConsoleString(bytes));
+            if(dnsResponseList.size() > 0) {
+                stringBuilder.append("Non-authoritative response:\n");
+                for (DnsResponsePayload dnsResponsePayload : dnsResponseList) {
+                    stringBuilder.append(dnsResponsePayload.toConsoleString(bytes));
+                }
             }
 
-            stringBuilder.append("Authoritative response:\n");
-            for (DnsResponsePayload dnsAuthorityResponsePayload : dnsAuthorityResponseList) {
-                stringBuilder.append(dnsAuthorityResponsePayload.toConsoleString(bytes));
+            if(dnsAuthorityResponseList.size() > 0) {
+                stringBuilder.append("Authoritative response:\n");
+                for (DnsResponsePayload dnsAuthorityResponsePayload : dnsAuthorityResponseList) {
+                    stringBuilder.append(dnsAuthorityResponsePayload.toConsoleString(bytes));
+                }
             }
 
-            stringBuilder.append("Additional response:\n");
-            for (DnsResponsePayload dnsAdditionalResponsePayload : dnsAdditionalResponseList) {
-                stringBuilder.append(dnsAdditionalResponsePayload.toConsoleString(bytes));
+            if(dnsAdditionalResponseList.size() > 0) {
+                stringBuilder.append("Additional response:\n");
+                for (DnsResponsePayload dnsAdditionalResponsePayload : dnsAdditionalResponseList) {
+                    stringBuilder.append(dnsAdditionalResponsePayload.toConsoleString(bytes));
+                }
             }
         }
         else {
