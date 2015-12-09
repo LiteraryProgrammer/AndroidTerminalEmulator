@@ -90,13 +90,15 @@ public class CommandExecutor {
         }
 
         //if not extra command found use native
-
         NativeCommand nativeCommand = new NativeCommand(cmd);
         command = nativeCommand;
         isRunning = true;
         nativeCommand.onPreExecute(tv, sv, currentWorkingDirectory);
         nativeCommand.execute();
-        nativeCommand.get();
+        OutputStream outputStream = (OutputStream) nativeCommand.get();
+        if(outputStream != null) {
+            osw = new OutputStreamWriter(outputStream);
+        }
         isRunning = false;
     }
 }
