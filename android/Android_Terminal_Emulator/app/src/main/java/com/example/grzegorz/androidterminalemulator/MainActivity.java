@@ -10,12 +10,8 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.google.common.base.Joiner;
-
-import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends ActionBarActivity {
@@ -29,6 +25,7 @@ public class MainActivity extends ActionBarActivity {
     ChangeDirectory cd;
 
     //todo: indicator that command is running
+    //todo: autoscroll
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 
                 try {
-                    ce.cancelCommand(); //refactor?
+                    ce.cancelCommand();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -69,9 +66,6 @@ public class MainActivity extends ActionBarActivity {
                     tv.append("\n" + command + "\n");
                     sv.fullScroll(ScrollView.FOCUS_DOWN);
 
-                    //todo: autoscorll
-
-                    //todo: refactor to switch case?
                     if (command.startsWith("cd")) {
                         cd.changeWorkingDirectory(command);
                     }
@@ -82,7 +76,6 @@ public class MainActivity extends ActionBarActivity {
                     else {
                         if (ce.getIsRunning()) {
                             ce.write(command + "\r\n");
-                            //todo: add writing to terminal view to!!
                         } else {
                             try {
                                 ce.executeCommand(command, ma, cd.getCurrentWorkingDirectory());
@@ -98,23 +91,13 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 }
