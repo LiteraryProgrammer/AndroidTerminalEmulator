@@ -156,9 +156,5 @@ public class DnsPayloadAnalyzer {
         globalIterator += iter;
 
         return new DnsResponsePayload(domainNameLabels, type, dnsClass, ttl, dataLength, dnsResponsePayloadRdata);
-
     }
-
-
-
 }

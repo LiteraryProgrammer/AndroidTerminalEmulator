@@ -28,6 +28,7 @@ public class NativeCommand extends Command {
     private String currentWorkingDirectory;
     private Process process = null;
 
+
     @Override
     public void cancel() {
         process.destroy();
@@ -39,7 +40,7 @@ public class NativeCommand extends Command {
             return false;
         }
         try {
-            process.exitValue();
+            int i = process.exitValue();
             return false;
         } catch (Exception e) {
             return true;
@@ -65,8 +66,13 @@ public class NativeCommand extends Command {
             os = process.getOutputStream();
 
             if(tv != null) {
-                InputStreamReader inputStreamReader = new InputStreamReader(is);
+//                InputStreamReader inputStreamReader = new InputStreamReader(is);
                 //todo: add error stream?
+
+                //todo: for error stream: refactor?
+                InputStreamTerminalWriter estw = new InputStreamTerminalWriter();
+                estw.onPreExecute(tv, sv , es);
+                estw.execute();
 
                 InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
                 istw.onPreExecute(tv, sv , is);
@@ -82,7 +88,7 @@ public class NativeCommand extends Command {
             publishProgress("No such command.");
             e.printStackTrace();
         }
-        return null;
+        return os;
     }
 
 

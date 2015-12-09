@@ -3,7 +3,8 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="#ff000000">
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -26,7 +27,8 @@
             android:layout_alignParentStart="true"
             android:layout_alignBottom="@+id/scrollView"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:textColor="#ff2fff00" />
     </ScrollView>
 
     <EditText
@@ -36,8 +38,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/cancelbutton"
-        android:layout_toStartOf="@+id/cancelbutton" />
+        android:layout_toStartOf="@+id/cancelbutton"
+        android:background="#ed464646"
+        android:textColor="#ff2fff00"
+        android:layout_below="@+id/scrollView"
+        android:layout_toLeftOf="@+id/cancelbutton" />
 
     <Button
         android:layout_width="wrap_content"
