@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ScrollView;
@@ -42,7 +43,7 @@ public class MainActivity extends ActionBarActivity {
         cd = new ChangeDirectory(tv, sv);
 
         final CommandExecutor ce = new CommandExecutor(ma);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        cancelButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -55,7 +56,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        executeButton.setOnClickListener(new View.OnClickListener() {
+        executeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 String command = et.getText().toString();
@@ -63,10 +64,9 @@ public class MainActivity extends ActionBarActivity {
                 if (command.length() != 0) {
 
                     et.setText(""); //clean input
-                    tv.append("\n" + command + "\n");
-                    sv.fullScroll(ScrollView.FOCUS_DOWN);
 
-                    if (command.startsWith("cd")) {
+
+                    if (command.startsWith("cd") && !ce.getIsRunning()) {
                         cd.changeWorkingDirectory(command);
                     }
                     else if(command.equals("clear")) {
@@ -78,6 +78,8 @@ public class MainActivity extends ActionBarActivity {
                             ce.write(command + "\r\n");
                         } else {
                             try {
+                                tv.append("\n" + command + "\n");
+                                sv.fullScroll(ScrollView.FOCUS_DOWN);
                                 ce.executeCommand(command, ma, cd.getCurrentWorkingDirectory());
                             } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException | ExecutionException | IOException | InterruptedException e) {
                                 e.printStackTrace();
