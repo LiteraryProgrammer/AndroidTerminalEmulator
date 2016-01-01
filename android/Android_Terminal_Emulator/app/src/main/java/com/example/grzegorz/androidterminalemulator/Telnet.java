@@ -43,7 +43,7 @@ public class Telnet extends ExtraCommand {
             es.close();
         } catch (IOException | NullPointerException e) {
             e.printStackTrace();
-            }
+        }
     }
 
     @Override
@@ -54,10 +54,9 @@ public class Telnet extends ExtraCommand {
 
         int port = 23;
 
-        if(args.length == 3) {
+        if (args.length == 3) {
             port = Integer.parseInt(args[2]);
-        }
-        else if (args.length != 2) {
+        } else if (args.length != 2) {
             publishProgress("usage: telnet ip [port]\n");
             return null;
         }
@@ -70,16 +69,16 @@ public class Telnet extends ExtraCommand {
             e.printStackTrace();
         }
 
-        is = telnet.getInputStream();
-        os = telnet.getOutputStream();
-
-        if(!telnet.isConnected()) {
+        if (!telnet.isConnected()) {
             publishProgress("Error: Connection refused.");
             return null;
         }
 
+        is = telnet.getInputStream();
+        os = telnet.getOutputStream();
+
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(tv, sv , is);
+        istw.onPreExecute(tv, sv, is);
         istw.execute();
 
         return os;
