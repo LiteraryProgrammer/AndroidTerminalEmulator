@@ -26,11 +26,11 @@ public abstract class Command extends AsyncTask {
     protected void onProgressUpdate(Object[] values) {
         for (Object value : values) {
             if (tv != null && sv != null) {
-                tv.append((String) values[0]);
+                tv.append((String) value);
                 sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
             if (outputStringBuilder != null) {
-                outputStringBuilder.append((String) values[0]);
+                outputStringBuilder.append((String) value);
             }
         }
     }
