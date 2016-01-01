@@ -32,15 +32,11 @@ public class Telnet extends ExtraCommand {
         publishProgress("\nTERMINATED\n");
         try {
             telnet.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
             is.close();
             os.close();
             es.close();
-        } catch (IOException | NullPointerException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            publishProgress(e.getMessage());
         }
     }
 
@@ -64,11 +60,11 @@ public class Telnet extends ExtraCommand {
             telnet.setConnectTimeout(connectTimeout);
             telnet.connect(address, port);
         } catch (Exception e) {
-            e.printStackTrace();
+            publishProgress(e.getMessage());
         }
 
         if (!telnet.isConnected()) {
-            publishProgress("Error: Connection refused.");
+            publishProgress("\nError: Connection refused.");
             return null;
         }
 
