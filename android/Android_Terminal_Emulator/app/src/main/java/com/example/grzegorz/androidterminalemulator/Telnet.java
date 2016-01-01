@@ -1,14 +1,10 @@
 package com.example.grzegorz.androidterminalemulator;
 
-import android.widget.ScrollView;
-import android.widget.TextView;
-
 import org.apache.commons.net.telnet.TelnetClient;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by gpietrus on 20.10.15.
@@ -23,6 +19,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Telnet extends ExtraCommand {
 
     private TelnetClient telnet;
+    private final int connectTimeout = 10000;
 
     public Telnet(String cmd) {
         super(cmd);
@@ -51,7 +48,6 @@ public class Telnet extends ExtraCommand {
 
     @Override
     protected Object doInBackground(Object[] params) {
-        //rainmaker.wunderground.com
         telnet = new TelnetClient();
 
         String args[] = cmd.split(" ");
@@ -68,7 +64,7 @@ public class Telnet extends ExtraCommand {
 
         String address = args[1];
         try {
-            telnet.setConnectTimeout(10);
+            telnet.setConnectTimeout(connectTimeout);
             telnet.connect(address, port);
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,18 +73,8 @@ public class Telnet extends ExtraCommand {
         is = telnet.getInputStream();
         os = telnet.getOutputStream();
 
-
-        try {
-            InputStreamReader isr = new InputStreamReader(is);
-            OutputStreamWriter osw = new OutputStreamWriter(os);
-        }
-        catch(Exception e) {
+        if(!telnet.isConnected()) {
             publishProgress("Error: Connection refused.");
-            try {
-                telnet.disconnect();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
             return null;
         }
 
