@@ -4,7 +4,6 @@ import android.os.AsyncTask;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -14,6 +13,7 @@ import java.io.OutputStream;
 public abstract class Command extends AsyncTask {
 
     String cmd;
+
     public Command(String cmd) {
         this.cmd = cmd;
     }
@@ -24,13 +24,14 @@ public abstract class Command extends AsyncTask {
 
     @Override
     protected void onProgressUpdate(Object[] values) {
-        super.onProgressUpdate(values);
-        if (tv != null && sv != null) {
-            tv.append((String) values[0]);
-            sv.fullScroll(ScrollView.FOCUS_DOWN);
-        }
-        if(outputStringBuilder != null) {
-            outputStringBuilder.append((String) values[0]);
+        for (int i = 0; i < values.length; i++) {
+            if (tv != null && sv != null) {
+                tv.append((String) values[0]);
+                sv.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+            if (outputStringBuilder != null) {
+                outputStringBuilder.append((String) values[0]);
+            }
         }
     }
 
@@ -39,12 +40,10 @@ public abstract class Command extends AsyncTask {
         sv = scrollView;
     }
 
-    //used if output should be redirected somewhere else than screen
     protected void onPreExecute(StringBuilder outputStringBuilder) {
         this.outputStringBuilder = outputStringBuilder;
     }
 
-    //todo: necessary?
     protected InputStream is = null;
     protected OutputStream os = null;
     protected InputStream es = null;
