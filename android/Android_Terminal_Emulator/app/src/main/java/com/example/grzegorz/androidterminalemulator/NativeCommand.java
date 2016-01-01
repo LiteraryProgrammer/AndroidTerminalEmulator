@@ -1,15 +1,9 @@
 package com.example.grzegorz.androidterminalemulator;
 
-import android.util.Log;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 /**
  * Created by grzegorz on 11.05.15.
@@ -49,8 +43,8 @@ public class NativeCommand extends Command {
 
     protected void onPreExecute(TextView view, ScrollView sv, String currentWorkingDirectory) {
         super.onPreExecute();
-        this.tv = view;
-        this.sv = sv;
+        this.textView = view;
+        this.scrollView = sv;
         this.currentWorkingDirectory = currentWorkingDirectory;
     }
 
@@ -61,34 +55,34 @@ public class NativeCommand extends Command {
             String[] envp = null;
 
             process = runtime.exec(cmd, envp, new File(currentWorkingDirectory));
-            is = process.getInputStream();
-            es = process.getErrorStream();
-            os = process.getOutputStream();
+            inputStream = process.getInputStream();
+            errorStream = process.getErrorStream();
+            outputStream = process.getOutputStream();
 
-            if(tv != null) {
-//                InputStreamReader inputStreamReader = new InputStreamReader(is);
+            if(textView != null) {
+//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 //todo: add error stream?
 
                 //todo: for error stream: refactor?
                 InputStreamTerminalWriter estw = new InputStreamTerminalWriter();
-                estw.onPreExecute(tv, sv , es);
+                estw.onPreExecute(textView, scrollView, errorStream);
                 estw.execute();
 
                 InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-                istw.onPreExecute(tv, sv , is);
+                istw.onPreExecute(textView, scrollView, inputStream);
                 istw.execute();
 
             }
 
 //            process.waitFor(); //todo: check if necessary?
         } catch (Exception e) {
-//            es = new ByteArrayInputStream("No such command".getBytes());
-//            is = new ByteArrayInputStream("".getBytes());
+//            errorStream = new ByteArrayInputStream("No such command".getBytes());
+//            inputStream = new ByteArrayInputStream("".getBytes());
 //            notify(); //todo?
             publishProgress("No such command.");
             e.printStackTrace();
         }
-        return os;
+        return outputStream;
     }
 
 

@@ -32,9 +32,9 @@ public class Telnet extends ExtraCommand {
         publishProgress("\nTERMINATED\n");
         try {
             telnet.disconnect();
-            is.close();
-            os.close();
-            es.close();
+            inputStream.close();
+            outputStream.close();
+            errorStream.close();
         } catch (IOException e) {
             publishProgress(e.getMessage());
         }
@@ -68,13 +68,13 @@ public class Telnet extends ExtraCommand {
             return null;
         }
 
-        is = telnet.getInputStream();
-        os = telnet.getOutputStream();
+        inputStream = telnet.getInputStream();
+        outputStream = telnet.getOutputStream();
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(tv, sv, is);
+        istw.onPreExecute(textView, scrollView, inputStream);
         istw.execute();
 
-        return os;
+        return outputStream;
     }
 }

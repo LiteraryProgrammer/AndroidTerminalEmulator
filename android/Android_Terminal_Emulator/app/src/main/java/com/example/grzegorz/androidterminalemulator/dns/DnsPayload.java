@@ -37,7 +37,7 @@ public class DnsPayload extends FramePayload {
         SEQ_OF_LABELS, POINTER
     }
 
-    public static NameType dnsNameType(byte[] bytes) { //determine if name is a sequence of labels or a pointer
+    public static NameType dnsNameType(byte[] bytes) { //determine if name inputStream a sequence of labels or a pointer
         //check first byte, if starts with 11... - pointer
         if(Utils.byteArraytoBinaryString(new byte[]{bytes[0]}).substring(0,2).equals("11")) {
             return NameType.POINTER;

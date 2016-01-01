@@ -1,8 +1,5 @@
 package com.example.grzegorz.androidterminalemulator;
 
-import com.example.grzegorz.androidterminalemulator.dns.DnsPayload;
-import com.google.common.base.Joiner;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -14,8 +11,6 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -157,9 +152,9 @@ public class Traceroute extends ExtraCommand {
                         process = runtime.exec(("ping -c 1 " + "-t " + j + " " + finalDstIP).split(" "));
                         process.waitFor();
 
-                        is = process.getInputStream();
+                        inputStream = process.getInputStream();
 
-                        String response = IOUtils.toString(is);
+                        String response = IOUtils.toString(inputStream);
                         String responseAddr;
 
                         Matcher ttlExceededMatcher = ttlExceededPattern.matcher(response);
@@ -223,7 +218,7 @@ public class Traceroute extends ExtraCommand {
         }).start();
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(tv, sv, totalIs);
+        istw.onPreExecute(textView, scrollView, totalIs);
         istw.execute();
 
         return null;

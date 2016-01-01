@@ -70,7 +70,7 @@ public class Utils {
 
         String binaryStr = Utils.byteArraytoBinaryString(bytes);
         Utils.printBinaryString(binaryStr);
-                // A pointer is an unsigned 16-bit value with the following format (the top two bits of 11 indicate the pointer format):
+                // A pointer inputStream an unsigned 16-bit value with the following format (the top two bits of 11 indicate the pointer format):
                 //http://www.zytrax.com/books/dns/ch15/#answer
     }
 

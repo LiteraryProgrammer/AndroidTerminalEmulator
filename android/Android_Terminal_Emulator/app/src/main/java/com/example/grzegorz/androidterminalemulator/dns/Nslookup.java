@@ -53,7 +53,7 @@ public class Nslookup {
 
         address = InetAddress.getByName(dnsServer != null ? dnsServer : defaultDnsServer);
 
-        //todo: check if received frame serial number is the same as sent
+        //todo: check if received frame serial number inputStream the same as sent
         send(queryDnsFrame);
         recv();
         return printResponse();

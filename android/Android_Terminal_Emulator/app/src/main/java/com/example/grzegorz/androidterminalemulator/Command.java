@@ -18,16 +18,19 @@ public abstract class Command extends AsyncTask {
         this.cmd = cmd;
     }
 
-    protected TextView tv;
-    protected ScrollView sv;
+    protected TextView textView;
+    protected ScrollView scrollView;
     protected StringBuilder outputStringBuilder;
+    protected InputStream inputStream = null;
+    protected OutputStream outputStream = null;
+    protected InputStream errorStream = null;
 
     @Override
     protected void onProgressUpdate(Object[] values) {
         for (Object value : values) {
-            if (tv != null && sv != null) {
-                tv.append((String) value);
-                sv.fullScroll(ScrollView.FOCUS_DOWN);
+            if (textView != null && scrollView != null) {
+                textView.append((String) value);
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
             }
             if (outputStringBuilder != null) {
                 outputStringBuilder.append((String) value);
@@ -36,20 +39,16 @@ public abstract class Command extends AsyncTask {
     }
 
     protected void onPreExecute(TextView view, ScrollView scrollView) {
-        tv = view;
-        sv = scrollView;
+        textView = view;
+        this.scrollView = scrollView;
     }
 
     protected void onPreExecute(StringBuilder outputStringBuilder) {
         this.outputStringBuilder = outputStringBuilder;
     }
 
-    protected InputStream is = null;
-    protected OutputStream os = null;
-    protected InputStream es = null;
-
     public OutputStream getOutputStream() {
-        return os;
+        return outputStream;
     }
 
     public abstract Boolean finished();

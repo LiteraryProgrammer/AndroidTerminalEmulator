@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
     ScrollView sv;
     ChangeDirectory cd;
 
-    //todo: indicator that command is running
+    //todo: indicator that command inputStream running
     //todo: autoscroll
 
     @Override
