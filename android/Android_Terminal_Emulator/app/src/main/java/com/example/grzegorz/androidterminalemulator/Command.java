@@ -24,7 +24,7 @@ public abstract class Command extends AsyncTask {
 
     @Override
     protected void onProgressUpdate(Object[] values) {
-        for (int i = 0; i < values.length; i++) {
+        for (Object value : values) {
             if (tv != null && sv != null) {
                 tv.append((String) values[0]);
                 sv.fullScroll(ScrollView.FOCUS_DOWN);
