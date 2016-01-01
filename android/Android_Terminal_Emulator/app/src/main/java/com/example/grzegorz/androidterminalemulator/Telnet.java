@@ -34,7 +34,6 @@ public class Telnet extends ExtraCommand {
             telnet.disconnect();
             inputStream.close();
             outputStream.close();
-            errorStream.close();
         } catch (IOException e) {
             publishProgress(e.getMessage());
         }
