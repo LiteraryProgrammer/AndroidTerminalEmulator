@@ -3,8 +3,6 @@ package com.example.grzegorz.androidterminalemulator;
 import org.apache.commons.net.telnet.TelnetClient;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 /**
  * Created by gpietrus on 20.10.15.
