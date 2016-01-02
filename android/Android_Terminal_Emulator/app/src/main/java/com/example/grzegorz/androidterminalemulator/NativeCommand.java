@@ -23,11 +23,12 @@ public class NativeCommand extends Command {
     private Process process = null;
     private InputStreamTerminalWriter istw = null;
 
-
-
     @Override
     public void cancel() {
         process.destroy();
+        if(istw != null) {
+            istw.kill();
+        }
     }
 
     //todo: refactor arguments, move to upper class
