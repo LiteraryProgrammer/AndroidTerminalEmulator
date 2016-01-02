@@ -54,6 +54,21 @@ public class InputStreamTerminalWriter extends AsyncTask {
         return empty;
     }
 
+    private void delayedScroll() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {Thread.sleep(250);} catch (InterruptedException e) {}
+                sv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        sv.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
+            }
+        }).start();
+    }
+
     @Override
     protected Object doInBackground(Object[] params) {
         List<InputStreamReader> streamReaders = new ArrayList<>();
@@ -79,6 +94,7 @@ public class InputStreamTerminalWriter extends AsyncTask {
                 }
                 sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
+            delayedScroll();
         } catch (IOException e) {
             publishProgress(e.getMessage());
         }
