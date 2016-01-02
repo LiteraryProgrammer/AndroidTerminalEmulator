@@ -69,6 +69,15 @@ public class InputStreamTerminalWriter extends AsyncTask {
         }).start();
     }
 
+    private String readUntilEnd(InputStreamReader streamReader) throws IOException {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        while(streamReader.ready()) {
+            stringBuilder.append((char) streamReader.read());
+        }
+        return stringBuilder.toString();
+    }
+
     @Override
     protected Object doInBackground(Object[] params) {
         List<InputStreamReader> streamReaders = new ArrayList<>();
@@ -81,15 +90,11 @@ public class InputStreamTerminalWriter extends AsyncTask {
 
         try {
             while (!finished || !allStreamsEmpty(streamReaders)) {
-                //todo: streams are not closing?
-                //todo: use callback on command finished?
                 for (InputStreamReader streamReader : streamReaders) {
-                    if (streamReader.ready()) {
-                        Character inputChar = (char) streamReader.read();
-                        if (inputChar == '\uFFFF') finished = true;
-                        if (inputChar != -1) {
-                            publishProgress(String.valueOf(inputChar));
-                        }
+                    String text = readUntilEnd(streamReader);
+                    publishProgress(text);
+                    if(text.endsWith(String.valueOf('\uFFFF'))) {
+                        finished = true;
                     }
                 }
                 sv.fullScroll(ScrollView.FOCUS_DOWN);
