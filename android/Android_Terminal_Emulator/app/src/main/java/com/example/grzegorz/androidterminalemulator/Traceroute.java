@@ -218,7 +218,7 @@ public class Traceroute extends ExtraCommand {
         }).start();
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(textView, scrollView, totalIs);
+        istw.onPreExecute(textView, scrollView, totalIs, null);
         istw.execute();
 
         return null;

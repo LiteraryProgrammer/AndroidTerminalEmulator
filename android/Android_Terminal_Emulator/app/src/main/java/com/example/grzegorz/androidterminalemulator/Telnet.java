@@ -71,7 +71,7 @@ public class Telnet extends ExtraCommand {
         outputStream = telnet.getOutputStream();
 
         InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-        istw.onPreExecute(textView, scrollView, inputStream);
+        istw.onPreExecute(textView, scrollView, inputStream, null);
         istw.execute();
 
         return outputStream;
