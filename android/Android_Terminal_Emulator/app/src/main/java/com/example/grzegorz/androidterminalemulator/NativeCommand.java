@@ -21,6 +21,8 @@ public class NativeCommand extends Command {
     private Runtime runtime = null;
     private String currentWorkingDirectory;
     private Process process = null;
+    private InputStreamTerminalWriter istw = null;
+
 
 
     @Override
@@ -60,33 +62,31 @@ public class NativeCommand extends Command {
             outputStream = process.getOutputStream();
 
             if(textView != null) {
-//                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                //todo: add error stream?
-
-                //todo: for error stream: refactor?
-                InputStreamTerminalWriter estw = new InputStreamTerminalWriter();
-                estw.onPreExecute(textView, scrollView, errorStream);
-                estw.execute();
-
-                InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
-                istw.onPreExecute(textView, scrollView, inputStream);
+                istw = new InputStreamTerminalWriter();
+                istw.onPreExecute(textView, scrollView, inputStream, errorStream);
                 istw.execute();
-
             }
 
-//            process.waitFor(); //todo: check if necessary?
         } catch (Exception e) {
-//            errorStream = new ByteArrayInputStream("No such command".getBytes());
-//            inputStream = new ByteArrayInputStream("".getBytes());
-//            notify(); //todo?
             publishProgress("No such command.");
             e.printStackTrace();
         }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //wait for process to finish to terminate InputStreamTerminalWriter
+                try {
+                    process.waitFor();
+                    istw.kill();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
         return outputStream;
     }
-
-
-    //todo: error stream that gives manual!! very importatnt
 
     @Override
     protected void onPostExecute(Object o) {
