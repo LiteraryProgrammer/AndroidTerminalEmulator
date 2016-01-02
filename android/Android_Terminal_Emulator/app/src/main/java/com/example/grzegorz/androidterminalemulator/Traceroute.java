@@ -7,6 +7,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.net.InetAddress;
@@ -52,7 +53,7 @@ public class Traceroute extends ExtraCommand {
     private int PING_MAX_TTL = 64;
     Process process;
     private String usage = "usage: traceroute ip [-t] [-f]\n-t - prints rtts\n-f - prints in fqdn format if possible\n";
-
+    private InputStreamTerminalWriter istw = null;
 
     public Boolean finished() {
         return true;
@@ -201,6 +202,7 @@ public class Traceroute extends ExtraCommand {
                         out.write((entryName + "\t" + (rrtsStr.length() > 0 ? rrtsStr : "") + "\n").getBytes());
 
                         if (responseAddr.equals(finalDstIP)) {
+                            istw.kill();
                             break;
                         }
 
@@ -217,7 +219,7 @@ public class Traceroute extends ExtraCommand {
             }
         }).start();
 
-        InputStreamTerminalWriter istw = new InputStreamTerminalWriter();
+        istw = new InputStreamTerminalWriter();
         istw.onPreExecute(textView, scrollView, totalIs, null);
         istw.execute();
 
