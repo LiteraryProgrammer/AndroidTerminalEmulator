@@ -58,13 +58,12 @@ public class InputStreamTerminalWriter extends AsyncTask {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {Thread.sleep(250);} catch (InterruptedException e) {}
-                sv.post(new Runnable() {
+                sv.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         sv.fullScroll(ScrollView.FOCUS_DOWN);
                     }
-                });
+                }, 250);
             }
         }).start();
     }
