@@ -71,8 +71,10 @@ public class InputStreamTerminalWriter extends AsyncTask {
     private String readUntilEnd(InputStreamReader streamReader) throws IOException {
 
         StringBuilder stringBuilder = new StringBuilder();
-        while(streamReader.ready()) {
-            stringBuilder.append((char) streamReader.read());
+        char inputChar = 0;
+        while (streamReader.ready() && inputChar != '\n') {
+            inputChar = (char) streamReader.read();
+            stringBuilder.append(inputChar);
         }
         return stringBuilder.toString();
     }
@@ -92,7 +94,7 @@ public class InputStreamTerminalWriter extends AsyncTask {
                 for (InputStreamReader streamReader : streamReaders) {
                     String text = readUntilEnd(streamReader);
                     publishProgress(text);
-                    if(text.endsWith(String.valueOf('\uFFFF'))) {
+                    if (text.endsWith(String.valueOf('\uFFFF'))) {
                         finished = true;
                     }
                 }
