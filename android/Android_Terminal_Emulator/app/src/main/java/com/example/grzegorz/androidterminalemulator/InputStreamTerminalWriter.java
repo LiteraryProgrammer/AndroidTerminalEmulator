@@ -38,7 +38,9 @@ public class InputStreamTerminalWriter extends AsyncTask {
     protected void onProgressUpdate(Object[] values) {
         super.onProgressUpdate(values);
         if (tv != null && sv != null) {
-            tv.append((String) values[0]);
+            for(Object value : values) {
+                tv.append((String) value);
+            }
             sv.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
@@ -93,12 +95,13 @@ public class InputStreamTerminalWriter extends AsyncTask {
             while (!finished || !allStreamsEmpty(streamReaders)) {
                 for (InputStreamReader streamReader : streamReaders) {
                     String text = readUntilEnd(streamReader);
-                    publishProgress(text);
-                    if (text.endsWith(String.valueOf('\uFFFF'))) {
-                        finished = true;
+                    if(text.length() > 0) {
+                        publishProgress(text);
+                        if (text.endsWith(String.valueOf('\uFFFF'))) {
+                            finished = true;
+                        }
                     }
                 }
-                sv.fullScroll(ScrollView.FOCUS_DOWN);
             }
             delayedScroll();
         } catch (IOException e) {
